@@ -629,13 +629,12 @@ const projects = [
                           Live Demo
                         </Button>
                       </a>
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-  <Button variant="outline" size="sm" className="gap-2 hover-lift">
-    <Github className="w-4 h-4" />
-    Source Code
-  </Button>
-</a>
-
+                                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="sm" className="gap-2 hover-lift">
+                      <Github className="w-4 h-4" />
+                      Source Code
+                    </Button>
+                  </a>
                     </div>
                   </CardContent>
                 </Card>
@@ -644,7 +643,6 @@ const projects = [
           </div>
         </div>
       </section>
-
       {/* Skills Section */}
       <section id="skills" className="py-16 px-4">
         <div className="container mx-auto">
@@ -743,7 +741,6 @@ const projects = [
           </div>
         </div>
       </section>
-
       {/* Contact Section */}
       <section id="contact" className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto">
