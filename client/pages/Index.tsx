@@ -90,7 +90,7 @@ export default function Index() {
   };
 
 const projects = [
-  {
+    {
     title: "E-Commerce Platform",
     description:
       "A complete e-commerce solution built with React, Redux, and Tailwind CSS. Includes product listing, shopping cart, user authentication, and payment integration. Designed with responsive layouts and interactive UI elements.",
@@ -103,8 +103,8 @@ const projects = [
       "Context API",
       "Framer Motion"
     ],
-    liveDemo: "https://ahmedebrahem0.github.io/e-commerce/",
-    github: "https://github.com/ahmedebrahem0/e-commerce",
+    liveDemo: "https://ahmedebrahem0.github.io/FreshCart/Home",
+    github: "https://github.com/ahmedebrahem0/FreshCart.git",
     featured: true
   },
   {
@@ -136,8 +136,8 @@ const projects = [
       "Tailwind CSS",
       "Lazy Loading"
     ],
-    liveDemo: "https://ahmedebrahem0.github.io/WeatherApp/",
-    github: "https://github.com/ahmedebrahem0/WeatherApp",
+    liveDemo: "https://ahmedebrahem0.github.io/weather-App/",
+    github: "https://github.com/ahmedebrahem0/weather-App.git",
     featured: false
   },
   {
