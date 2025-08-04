@@ -579,7 +579,7 @@ const projects = [
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-16 px-4 bg-muted/30">
+      <section id="projects" className="py-16 bg-muted/30">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
