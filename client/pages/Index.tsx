@@ -579,7 +579,7 @@ const projects = [
             Get In Touch
           </Button>
           <a
-            href="https://drive.google.com/uc?export=download&id=1dcapy8w6ovgEQFPowKKAVesrtiV0mBzc"
+            href="https://drive.google.com/file/d/1o4uZcJXuzNWWFIv0LPhUK4kTOiOOB_tG/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
           >
