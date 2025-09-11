@@ -221,8 +221,8 @@ const projects = [
       "Payment Processing",
       "Responsive Design"
     ],
-    liveDemo: "https://ahmedebrahem0.github.io/e-commerce/",
-    github: "https://github.com/ahmedebrahem0/e-commerce",
+    liveDemo: "https://ahmedebrahem0.github.io/FreshCart/Home",
+    github: "https://github.com/ahmedebrahem0/FreshCart.git",
     featured: true
   },
   {
@@ -256,8 +256,8 @@ const projects = [
       "Dynamic Search",
       "Performance Optimization"
     ],
-    liveDemo: "https://ahmedebrahem0.github.io/WeatherApp/",
-    github: "https://github.com/ahmedebrahem0/WeatherApp",
+    liveDemo: "https://ahmedebrahem0.github.io/weather-App/",
+    github: "https://github.com/ahmedebrahem0/weather-App.git",
     featured: false
   },
   {
