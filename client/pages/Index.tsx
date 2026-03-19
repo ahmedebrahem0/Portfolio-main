@@ -210,6 +210,7 @@ export default function Index() {
 const projects = [
   {
     title: "E-Commerce Platform",
+    image: "/images/FreshCart.png",
     description:
       "Developed and deployed a fully functional e-commerce application using React, Context API, Redux and Tailwind CSS. Integrated API for product management, user authentication, and payment processing. Optimized user experience with responsive design and interactive features.",
     technologies: [
@@ -227,6 +228,7 @@ const projects = [
   },
   {
     title: "Product Management System",
+    image: "/images/ProductManagement.png",
     description:
       "Developed a React-based product management system with CRUD operations. Utilized Re-charts for data visualization, implemented Redux Toolkit for state management, and integrated local-Storage to persist data. Added like and cart functionalities with region-based product filtering.",
     technologies: [
@@ -245,6 +247,7 @@ const projects = [
   },
   {
     title: "Weather Forecast Application",
+    image: "/images/Weather.png",
     description:
       "Developed a real-time weather application using React, Tailwind CSS, and Open-weather API. Implemented dynamic search functionality, location-based weather updates, and optimized performance with lazy loading and API response caching.",
     technologies: [
@@ -262,6 +265,7 @@ const projects = [
   },
   {
     title: "Breast Cancer Awareness Graduation Project",
+    image: "/images/Breast.png",
     description:
       "Built a React-based platform to raise awareness about breast cancer, featuring live medical data via API integration. Implemented interactive animations, React-Toastify notifications, and secure authentication/authorization protocols with user dashboard for personalized data.",
     technologies: [
@@ -278,8 +282,131 @@ const projects = [
     period: "Nov 2023 - Jan 2024",
     featured: true
   },
+ 
+ {
+  title: "Alkohlany Business Website",
+  image: "/images/Alkohlany.png",
+  description:
+    "A modern and responsive business website showcasing services and company information with clean UI and structured layout. Built without frameworks to demonstrate strong frontend fundamentals.",
+  technologies: [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "Bootstrap",
+    "Responsive Design",
+    "Modern Layout"
+  ],
+  liveDemo: "https://ahmedebrahem0.github.io/ALKOHLANY/",
+  github: "https://github.com/ahmedebrahem0/ALKOHLANY",
+  period: "2024",
+  featured: false
+},
+{
+  title: "School Website (Responsive UI)",
+  image: "/images/School.png",
+  description:
+    "A responsive school website presenting academic information, services, and navigation with clean layout and modern design. Built without frameworks to demonstrate solid HTML, CSS, and JavaScript skills.",
+  technologies: [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "Bootstrap",
+    "Responsive Design",
+    "Semantic Structure"
+  ],
+  liveDemo: "https://ahmedebrahem0.github.io/School-Web-Site/",
+  github: "https://github.com/ahmedebrahem0/School-Web-Site",
+  period: "2024",
+  featured: false
+},
+ {
+  title: "Prosthetic Care Medical Website",
+  image: "/images/Prosthetic.png",
+  description:
+    "A responsive medical website focused on prosthetic care awareness, providing structured information and user-friendly navigation. Built without frameworks to demonstrate strong fundamentals in HTML, CSS, and JavaScript.",
+  technologies: [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "Bootstrap",
+    "Responsive Design",
+    "Semantic Structure"
+  ],
+  liveDemo: "https://ahmedebrahem0.github.io/prosthetic-care/",
+  github: "https://github.com/ahmedebrahem0/prosthetic-care",
+  period: "2024",
+  featured: false
+  },
+{
+  title: "Simple Landing Page",
+  image: "/images/LandingPage.png",
+  description:
+    "A clean and responsive landing page designed with HTML, CSS, and Bootstrap to showcase content in a simple and structured layout. Built to demonstrate core frontend skills without frameworks.",
+  technologies: [
+    "HTML5",
+    "CSS3",
+    "Bootstrap",
+    "Responsive Layout"
+  ],
+  liveDemo: "https://ahmedebrahem0.github.io/website-1/",
+  github: "https://github.com/ahmedebrahem0/website-1",
+  period: "2024",
+  featured: false
+  },
   {
-    title: "Task Management App",
+  title: "Bootstrap Responsive Page",
+  image: "/images/Bootstrap.png",
+  description:
+    "A clean and responsive Bootstrap-based webpage showcasing layout and component usage with organized structure. Built with core frontend fundamentals using HTML, CSS, and Bootstrap.",
+  technologies: [
+    "HTML5",
+    "CSS3",
+    "Bootstrap",
+    "Responsive Design",
+    "Grid System"
+  ],
+  liveDemo: "https://ahmedebrahem0.github.io/bootstrap-1/",
+  github: "https://github.com/ahmedebrahem0/bootstrap-1",
+  period: "2024",
+  featured: false
+  },
+  {
+  title: "Responsive Personal Landing Page",
+  image: "/images/PersonalLandingPage.png",
+  description:
+    "A clean and responsive landing page built with HTML and CSS to showcase content with a simple and modern layout. Demonstrates solid core frontend fundamentals without using frameworks.",
+  technologies: [
+    "HTML5",
+    "CSS3",
+    "Responsive Design",
+    "Semantic Layout"
+  ],
+  liveDemo: "https://ahmedebrahem0.github.io/website-2/",
+  github: "https://github.com/ahmedebrahem0/website-2",
+  period: "2024",
+  featured: false
+}  ,
+{
+  title: "IEEE Organization Website (Responsive UI)",
+  image: "/images/IEEEOrganization.png",
+  description:
+    "A clean and responsive organization website built to showcase information about IEEE activities and sections. Built with HTML, CSS, and Bootstrap to demonstrate strong core frontend fundamentals.",
+  technologies: [
+    "HTML5",
+    "CSS3",
+    "Bootstrap",
+    "Responsive Design",
+    "Semantic Layout"
+  ],
+  liveDemo: "https://ahmedebrahem0.github.io/ieee-website-1/",
+  github: "https://github.com/ahmedebrahem0/ieee-website-1",
+  period: "2024",
+  featured: false
+  },
+
+ {
+   title: "Task Management App",
+   image: "/images/TaskManagement.png",
     description:
       "Collaborative task management app with real-time updates, drag-and-drop tasks, and team features. Built with TypeScript, Redux Toolkit, and Socket.io for seamless multi-user experience.",
     technologies: [
@@ -896,6 +1023,28 @@ const projects = [
                   className={`hover-lift animate-scale-in hover-glow ${project.featured ? "ring-2 ring-primary/20" : ""}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
+                  <div className="relative aspect-video overflow-hidden border-b border-border">
+            {project.image ? (
+              <img 
+                src={project.image} 
+                alt={`${project.title} Screenshot`}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              // حالة احتياطية إذا لم توجد صورة (Placeholder)
+              <div className="w-full h-full bg-accent flex items-center justify-center">
+                <Code className="w-12 h-12 text-muted-foreground/50" />
+              </div>
+            )}
+            
+            {/* شارة "مميز" فوق الصورة إذا كان المشروع Featured */}
+            {/* {project.featured && (
+              <Badge className="absolute top-3 right-3 gap-1 bg-primary text-primary-foreground">
+                <Star className="w-3 h-3 fill-current" />
+                Featured
+              </Badge>
+            )} */}
+          </div>
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <CardTitle className="text-xl">{project.title}</CardTitle>
