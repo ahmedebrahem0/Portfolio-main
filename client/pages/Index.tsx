@@ -1020,30 +1020,70 @@ const projects = [
               {projects.map((project, index) => (
                 <Card
                   key={index}
-                  className={`hover-lift animate-scale-in hover-glow ${project.featured ? "ring-2 ring-primary/20" : ""}`}
+                  className={`hover-project animate-scale-in hover-glow group relative overflow-hidden bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border-2 ${project.featured ? "border-primary/30 shadow-lg shadow-primary/10" : "border-border hover:border-primary/20"}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="relative aspect-video overflow-hidden border-b border-border">
+                  <div className="relative aspect-video overflow-hidden border-b border-border group/image">
             {project.image ? (
-              <img 
-                src={project.image} 
-                alt={`${project.title} Screenshot`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+              <>
+                <img 
+                  src={project.image} 
+                  alt={`${project.title} Screenshot`}
+                  className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-105 group-hover:saturate-110"
+                  loading="lazy"
+                  onLoad={(e) => {
+                    e.currentTarget.classList.add('animate-fade-in');
+                  }}
+                />
+                {/* Loading skeleton overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-muted via-muted/50 to-muted animate-shimmer opacity-0 peer-loading:opacity-100" />
+                
+                {/* Overlay gradient effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Animated border effect */}
+                <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/50 transition-all duration-500 rounded-lg" />
+                
+                {/* Shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                
+                {/* Floating particles effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                  <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-primary/60 rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
+                  <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-primary/40 rounded-full animate-ping" style={{ animationDelay: '1s' }} />
+                  <div className="absolute bottom-1/4 left-2/3 w-1 h-1 bg-primary/50 rounded-full animate-ping" style={{ animationDelay: '1.5s' }} />
+                </div>
+                
+                {/* View Project overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                  <div className="bg-white/90 dark:bg-black/90 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <span className="text-sm font-semibold text-primary flex items-center gap-2">
+                      <ExternalLink className="w-4 h-4 animate-bounce" />
+                      View Project
+                    </span>
+                  </div>
+                </div>
+              </>
             ) : (
               // حالة احتياطية إذا لم توجد صورة (Placeholder)
-              <div className="w-full h-full bg-accent flex items-center justify-center">
-                <Code className="w-12 h-12 text-muted-foreground/50" />
+              <div className="w-full h-full bg-gradient-to-br from-accent to-muted flex items-center justify-center group-hover:from-primary/10 group-hover:to-primary/5 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-shimmer" />
+                <div className="text-center z-10">
+                  <Code className="w-12 h-12 text-muted-foreground/50 mx-auto mb-2 group-hover:text-primary/70 transition-colors duration-300 animate-pulse-slow" />
+                  <span className="text-xs text-muted-foreground/70">Project Preview</span>
+                </div>
               </div>
             )}
             
             {/* شارة "مميز" فوق الصورة إذا كان المشروع Featured */}
-            {/* {project.featured && (
-              <Badge className="absolute top-3 right-3 gap-1 bg-primary text-primary-foreground">
-                <Star className="w-3 h-3 fill-current" />
-                Featured
-              </Badge>
-            )} */}
+            {project.featured && (
+              <div className="absolute top-3 right-3 animate-pulse-slow">
+                <Badge className="gap-1 bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground shadow-lg border border-primary/20 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:scale-110">
+                  <Star className="w-3 h-3 fill-current animate-spin" style={{ animationDuration: '4s' }} />
+                  Featured
+                </Badge>
+              </div>
+            )}
           </div>
                   <CardHeader>
                     <div className="flex justify-between items-start">
@@ -1081,17 +1121,17 @@ const projects = [
                     </div>
                     <div className="flex gap-4">
                       <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
-                        <Button size="sm" className="gap-2 hover-lift">
-                          <ExternalLink className="w-4 h-4" />
+                        <Button size="sm" className="gap-2 hover-lift bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                          <ExternalLink className="w-4 h-4 animate-pulse" />
                           Live Demo
                         </Button>
                       </a>
-                                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="sm" className="gap-2 hover-lift">
-                      <Github className="w-4 h-4" />
-                      Source Code
-                    </Button>
-                  </a>
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Button variant="outline" size="sm" className="gap-2 hover-lift border-2 hover:border-primary hover:bg-primary/5 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                          <Github className="w-4 h-4 group-hover:animate-spin" style={{ animationDuration: '2s' }} />
+                          Source Code
+                        </Button>
+                      </a>
                     </div>
                   </CardContent>
                 </Card>
