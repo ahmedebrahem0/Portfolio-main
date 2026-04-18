@@ -49,6 +49,9 @@ import { Badge } from "@/components/ui/badge";
 
 export default function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeProjectFilter, setActiveProjectFilter] = useState<
+    "all" | "framework" | "vanilla"
+  >("all");
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -210,7 +213,7 @@ export default function Index() {
 const projects = [
 {
     title: "Logistics & Shipping Management System",
-    image: "/images/ShippingSystem.png",
+    image: "/client/images/ShippingSystem.png",
     description:
       "Engineered a production-grade logistics platform featuring a multi-role architecture (Admin,Employee, Merchant, Delivery). Developed complex order lifecycle management with a custom RBAC system, dynamic form handling, and real-time analytics dashboards. Focused on high performance with Next.js Server Components and a perfect 100/100 Lighthouse score.",
     technologies: [
@@ -443,6 +446,47 @@ const projects = [
     featured: false
   },
 ];
+
+  const isFrameworkProject = (technologies: string[]) =>
+    technologies.some((tech) =>
+      ["React", "Next.js", "Redux", "Context API", "RTK Query"].some(
+        (keyword) => tech.includes(keyword),
+      ),
+    );
+
+  const getProjectCategory = (technologies: string[]) =>
+    isFrameworkProject(technologies) ? "framework" : "vanilla";
+
+  const projectFilters = [
+    { id: "all", label: "All Projects" },
+    { id: "framework", label: "React / Next" },
+    { id: "vanilla", label: "Without Framework" },
+  ] as const;
+
+  const sortedProjects = [...projects].sort((a, b) => {
+    const aFramework = isFrameworkProject(a.technologies) ? 1 : 0;
+    const bFramework = isFrameworkProject(b.technologies) ? 1 : 0;
+    const aFeatured = a.featured ? 1 : 0;
+    const bFeatured = b.featured ? 1 : 0;
+
+    if (bFramework !== aFramework) {
+      return bFramework - aFramework;
+    }
+
+    if (bFeatured !== aFeatured) {
+      return bFeatured - aFeatured;
+    }
+
+    return 0;
+  });
+
+  const visibleProjects = sortedProjects.filter((project) => {
+    if (activeProjectFilter === "all") {
+      return true;
+    }
+
+    return getProjectCategory(project.technologies) === activeProjectFilter;
+  });
 
   const experiences = [
     {
@@ -1035,10 +1079,55 @@ const projects = [
               Featured Projects
             </h2>
 
+            <div className="mb-10 flex flex-col items-center gap-5">
+              <p className="max-w-2xl text-center text-sm text-muted-foreground md:text-base">
+                A selection of the most important projects I have built, with a
+                focus on modern React and Next.js applications.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-3 rounded-full border border-border/60 bg-background/80 p-2 shadow-sm backdrop-blur">
+                {projectFilters.map((filter) => {
+                  const isActive = activeProjectFilter === filter.id;
+                  const count =
+                    filter.id === "all"
+                      ? projects.length
+                      : projects.filter(
+                          (project) =>
+                            getProjectCategory(project.technologies) ===
+                            filter.id,
+                        ).length;
+
+                  return (
+                    <button
+                      key={filter.id}
+                      type="button"
+                      onClick={() => setActiveProjectFilter(filter.id)}
+                      className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 ${
+                        isActive
+                          ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      }`}
+                    >
+                      {filter.label}
+                      <span
+                        className={`ml-2 rounded-full px-2 py-0.5 text-xs ${
+                          isActive
+                            ? "bg-primary-foreground/15 text-primary-foreground"
+                            : "bg-muted-foreground/10 text-muted-foreground"
+                        }`}
+                      >
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8">
-              {projects.map((project, index) => (
+              {visibleProjects.map((project, index) => (
                 <Card
-                  key={index}
+                  key={project.title}
                   className={`hover-project animate-scale-in hover-glow group relative overflow-hidden bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border-2 ${project.featured ? "border-primary/30 shadow-lg shadow-primary/10" : "border-border hover:border-primary/20"}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -1074,14 +1163,20 @@ const projects = [
                 </div>
                 
                 {/* View Project overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                <a
+                  href={project.liveDemo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${project.title}`}
+                  className="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0"
+                >
                   <div className="bg-white/90 dark:bg-black/90 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <span className="text-sm font-semibold text-primary flex items-center gap-2">
                       <ExternalLink className="w-4 h-4 animate-bounce" />
                       View Project
                     </span>
                   </div>
-                </div>
+                </a>
               </>
             ) : (
               // حالة احتياطية إذا لم توجد صورة (Placeholder)
@@ -1096,7 +1191,7 @@ const projects = [
             
             {/* شارة "مميز" فوق الصورة إذا كان المشروع Featured */}
             {project.featured && (
-              <div className="absolute top-3 right-3 animate-pulse-slow">
+              <div className="absolute top-3 right-3 z-20 animate-pulse-slow">
                 <Badge className="gap-1 bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground shadow-lg border border-primary/20 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:scale-110">
                   <Star className="w-3 h-3 fill-current animate-spin" style={{ animationDuration: '4s' }} />
                   Featured
@@ -1107,14 +1202,29 @@ const projects = [
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <CardTitle className="text-xl">{project.title}</CardTitle>
-                      {project.featured && (
+                      <div className="flex flex-wrap items-center justify-end gap-2">
                         <Badge
-                          variant="default"
-                          className="animate-bounce-gentle"
+                          variant="secondary"
+                          className={`${
+                            getProjectCategory(project.technologies) === "framework"
+                              ? "border border-sky-500/30 bg-sky-500/10 text-sky-600 dark:text-sky-300"
+                              : "border border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300"
+                          }`}
                         >
-                          Featured
+                          {getProjectCategory(project.technologies) ===
+                          "framework"
+                            ? "Framework"
+                            : "Core Frontend"}
                         </Badge>
-                      )}
+                        {project.featured && (
+                          <Badge
+                            variant="default"
+                            className="animate-bounce-gentle"
+                          >
+                            Featured
+                          </Badge>
+                        )}
+                      </div>
                     </div>
                     <CardDescription className="mb-2">{project.description}</CardDescription>
                     {project.period && (
@@ -1146,8 +1256,8 @@ const projects = [
                         </Button>
                       </a>
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Button variant="outline" size="sm" className="gap-2 hover-lift border-2 hover:border-primary hover:bg-primary/5 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                          <Github className="w-4 h-4 group-hover:animate-spin" style={{ animationDuration: '2s' }} />
+                        <Button variant="outline" size="sm" className="gap-2 hover-lift border-2 hover:border-primary hover:bg-primary/5 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:text-sky-500">
+                          <Github className="w-4 h-4 group-hover:animate-spin " style={{ animationDuration: '2s' }} />
                           Source Code
                         </Button>
                       </a>
