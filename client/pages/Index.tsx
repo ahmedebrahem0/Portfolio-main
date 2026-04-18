@@ -208,6 +208,25 @@ export default function Index() {
   };
 
 const projects = [
+{
+    title: "Logistics & Shipping Management System",
+    image: "/images/ShippingSystem.png",
+    description:
+      "Engineered a production-grade logistics platform featuring a multi-role architecture (Admin,Employee, Merchant, Delivery). Developed complex order lifecycle management with a custom RBAC system, dynamic form handling, and real-time analytics dashboards. Focused on high performance with Next.js Server Components and a perfect 100/100 Lighthouse score.",
+    technologies: [
+      "Next.js 16",
+      "TypeScript",
+      "Redux Toolkit",
+      "RTK Query",
+      "Tailwind CSS",
+      "RBAC",
+      "Lighthouse Optimized",
+      "Zod/Yup Validation"
+    ],
+    liveDemo: "https://shipping-system-nine.vercel.app/",
+    github: "https://github.com/ahmedebrahem0/shipping_system.git",
+    featured: true
+  },
   {
     title: "E-Commerce Platform",
     image: "/images/FreshCart.png",
@@ -1026,7 +1045,7 @@ const projects = [
                   <div className="relative aspect-video overflow-hidden border-b border-border group/image">
             {project.image ? (
               <>
-                <img 
+                <img
                   src={project.image} 
                   alt={`${project.title} Screenshot`}
                   className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-105 group-hover:saturate-110"
