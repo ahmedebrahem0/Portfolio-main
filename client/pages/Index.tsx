@@ -213,7 +213,7 @@ export default function Index() {
 const projects = [
 {
     title: "Logistics & Shipping Management System",
-    image: "/images/ShippingSystem.png",
+    image: "/images/ShippingSystem_1.png",
     description:
       "Engineered a production-grade logistics platform featuring a multi-role architecture (Admin,Employee, Merchant, Delivery). Developed complex order lifecycle management with a custom RBAC system, dynamic form handling, and real-time analytics dashboards. Focused on high performance with Next.js Server Components and a perfect 100/100 Lighthouse score.",
     technologies: [
@@ -1131,13 +1131,13 @@ const projects = [
                   className={`hover-project animate-scale-in hover-glow group relative overflow-hidden bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border-2 ${project.featured ? "border-primary/30 shadow-lg shadow-primary/10" : "border-border hover:border-primary/20"}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="relative aspect-video overflow-hidden border-b border-border group/image">
+                  <div className="relative aspect-video overflow-hidden border-b border-border group/image bg-gradient-to-br from-muted/80 via-background to-muted/60">
             {project.image ? (
               <>
                 <img
                   src={project.image} 
                   alt={`${project.title} Screenshot`}
-                  className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-105 group-hover:saturate-110"
+                  className="w-full h-full object-contain p-3 transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110 group-hover:contrast-105 group-hover:saturate-110"
                   loading="lazy"
                   onLoad={(e) => {
                     e.currentTarget.classList.add('animate-fade-in');
