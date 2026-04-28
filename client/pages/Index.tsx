@@ -213,7 +213,7 @@ export default function Index() {
 const projects = [
 {
     title: "Logistics & Shipping Management System",
-    image: "/images/ShippingSystem_1.png",
+    image: "/images/ShippingSystem_1.pngv",
     description:
       "Engineered a production-grade logistics platform featuring a multi-role architecture (Admin,Employee, Merchant, Delivery). Developed complex order lifecycle management with a custom RBAC system, dynamic form handling, and real-time analytics dashboards. Focused on high performance with Next.js Server Components and a perfect 100/100 Lighthouse score.",
     technologies: [
@@ -769,7 +769,7 @@ const projects = [
             Get In Touch
           </Button>
           <a
-            href="https://drive.google.com/file/d/1o4uZcJXuzNWWFIv0LPhUK4kTOiOOB_tG/view?usp=sharing"
+            href="https://drive.google.com/file/d/1cJQQIwI2jHVw8dlTeE4b4rU-U38o9eUF/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
           >
