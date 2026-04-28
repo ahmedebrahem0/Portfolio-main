@@ -213,7 +213,7 @@ export default function Index() {
 const projects = [
 {
     title: "Logistics & Shipping Management System",
-    image: "/images/ShippingSystem_1.pngv",
+    image: "/images/ShippingSystem_1.png",
     description:
       "Engineered a production-grade logistics platform featuring a multi-role architecture (Admin,Employee, Merchant, Delivery). Developed complex order lifecycle management with a custom RBAC system, dynamic form handling, and real-time analytics dashboards. Focused on high performance with Next.js Server Components and a perfect 100/100 Lighthouse score.",
     technologies: [
@@ -1124,7 +1124,7 @@ const projects = [
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
               {visibleProjects.map((project, index) => (
                 <Card
                   key={project.title}
