@@ -792,6 +792,7 @@ const projects = [
         </div>
       </nav>
 
+      <main id="main-content">
       {/* Hero Section */}
 <section id="home" className="pt-20 pb-8 px-4">
   <div className="container mx-auto">
@@ -855,13 +856,13 @@ const projects = [
         </div>
 
         <div className="flex justify-center md:justify-start space-x-6">
-          <a href="https://github.com/ahmedebrahem0" target="_blank" className="p-3 rounded-full bg-card hover:bg-accent transition-all">
+          <a href="https://github.com/ahmedebrahem0" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahmed Ebrahem's GitHub profile" title="GitHub" className="p-3 rounded-full bg-card hover:bg-accent transition-all">
             <Github className="w-6 h-6" />
           </a>
-          <a href="https://linkedin.com/in/ahmedebrahem" target="_blank" className="p-3 rounded-full bg-card hover:bg-accent transition-all">
+          <a href="https://linkedin.com/in/ahmedebrahem" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahmed Ebrahem's LinkedIn profile" title="LinkedIn" className="p-3 rounded-full bg-card hover:bg-accent transition-all">
             <Linkedin className="w-6 h-6" />
           </a>
-          <a href="mailto:ahmed.ebrahem.ebdelazem@gmail.com" className="p-3 rounded-full bg-card hover:bg-accent transition-all">
+          <a href="mailto:ahmed.ebrahem.ebdelazem@gmail.com" aria-label="Send an email to Ahmed Ebrahem" title="Email Ahmed" className="p-3 rounded-full bg-card hover:bg-accent transition-all">
             <Mail className="w-6 h-6" />
           </a>
         </div>
@@ -883,7 +884,7 @@ const projects = [
           <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.1s" }}>
             <CardContent className="p-6 text-center">
               <Layers className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" />
-              <h4 className="font-semibold mb-1">Systems Thinker</h4>
+              <h3 className="font-semibold mb-1">Systems Thinker</h3>
               <p className="text-sm text-muted-foreground">
                 Architecture-first approach to every feature
               </p>
@@ -892,7 +893,7 @@ const projects = [
           <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.2s" }}>
             <CardContent className="p-6 text-center">
               <Zap className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "0.5s" }} />
-              <h4 className="font-semibold mb-1">Performance Obsessed</h4>
+              <h3 className="font-semibold mb-1">Performance Obsessed</h3>
               <p className="text-sm text-muted-foreground">
                 100/100 Lighthouse across production builds
               </p>
@@ -901,7 +902,7 @@ const projects = [
           <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.3s" }}>
             <CardContent className="p-6 text-center">
               <Shield className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "1s" }} />
-              <h4 className="font-semibold mb-1">Security Minded</h4>
+              <h3 className="font-semibold mb-1">Security Minded</h3>
               <p className="text-sm text-muted-foreground">
                 RBAC & permission systems at every layer
               </p>
@@ -910,7 +911,7 @@ const projects = [
           <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
             <CardContent className="p-6 text-center">
               <Rocket className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "1.5s" }} />
-              <h4 className="font-semibold mb-1">Shipping Owner</h4>
+              <h3 className="font-semibold mb-1">Shipping Owner</h3>
               <p className="text-sm text-muted-foreground">
                 From dev to live — owning the full journey
               </p>
@@ -1167,7 +1168,7 @@ const projects = [
                       <span
                         className={`ml-2 rounded-full px-2 py-0.5 text-xs ${
                           isActive
-                            ? "bg-primary-foreground/15 text-primary-foreground"
+                            ? "bg-primary-foreground text-primary"
                             : "bg-muted-foreground/10 text-muted-foreground"
                         }`}
                       >
@@ -1511,7 +1512,7 @@ const projects = [
                 style={{ animationDelay: "0.2s" }}
               >
                 <CardContent className="p-6 text-center">
-                  <a href="https://www.linkedin.com/in/ahmedebrahem">
+                  <a href="https://www.linkedin.com/in/ahmedebrahem" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahmed Ebrahem's LinkedIn profile" title="LinkedIn">
                     <Linkedin
                     className="w-8 h-8 mx-auto mb-4 text-primary animate-bounce-gentle hover:text-accent transition-all duration-300 hover-lift hover-glow"
                     style={{ animationDelay: "0.5s" }}
@@ -1531,7 +1532,7 @@ const projects = [
               >
                 <CardContent className="p-6 text-center">
 
-                  <a href="https://github.com/ahmedebrahem0">
+                  <a href="https://github.com/ahmedebrahem0" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahmed Ebrahem's GitHub profile" title="GitHub">
                     <Github
                     className="w-8 h-8 mx-auto mb-4 text-primary animate-bounce-gentle hover:text-accent transition-all duration-300 hover-lift hover-glow"
                     style={{ animationDelay: "1s" }}
@@ -1561,6 +1562,8 @@ const projects = [
         </div>
       </section>
 
+      </main>
+
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-border">
         <div className="container mx-auto text-center">
@@ -1572,6 +1575,8 @@ const projects = [
     </div>
   );
 }
+
+
 
 
 

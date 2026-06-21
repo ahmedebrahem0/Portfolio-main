@@ -18,7 +18,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 217 91% 60%;
+    --primary: 217 91% 46%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 14% 96%;
@@ -27,7 +27,7 @@
     --muted: 220 14% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 217 91% 60%;
+    --accent: 217 91% 46%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -35,12 +35,12 @@
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 217 91% 60%;
+    --ring: 217 91% 46%;
 
     --radius: 0.75rem;
 
-    --gradient-start: 217 91% 60%;
-    --gradient-end: 229 84% 65%;
+    --gradient-start: 217 91% 46%;
+    --gradient-end: 229 74% 58%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -323,3 +323,4 @@
     animation-delay: var(--delay, 0s);
   }
 }
+
