@@ -211,7 +211,51 @@ export default function Index() {
   };
 
 const projects = [
-{
+  {
+    title: "YUMA Furniture E-Commerce Platform",
+    image: "/images/yuma.png",
+    description:
+      "Owned the frontend architecture of a live Next.js 16 e-commerce storefront serving real customers. Built and stabilized OTP authentication, guest-to-user cart and wishlist sync, reusable SEO architecture, and production debugging flows across live releases.",
+    technologies: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Redux Toolkit",
+      "RTK Query",
+      "Tailwind CSS 4",
+      "React Hook Form",
+      "Zod",
+      "Framer Motion",
+    ],
+    liveDemo: "https://yuma-homz.com",
+    // github: "",
+    // repositoryNote: "Private (NDA)",
+    period: "May 2026 - Present",
+    featured: true,
+  },
+  {
+    title: "El-Hattab Furniture Store",
+    image: "/images/elhatab.png",
+    description:
+      "Built and maintained a production-grade Arabic RTL furniture storefront covering the full customer journey from product discovery to checkout. Owned feature architecture, OTP auth, API integrations, SEO structure, responsive UX quality, and production reliability.",
+    technologies: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Redux Toolkit",
+      "Tailwind CSS",
+      "Axios",
+      "Zod",
+      "React Hook Form",
+      "Framer Motion",
+      "Arabic RTL",
+    ],
+    liveDemo: "https://el-hattab.com",
+    // github: "https://github.com/ahmedebrahem0/Hatab",
+    period: "May 2026 - Present",
+    featured: true,
+  },
+  {
     title: "Logistics & Shipping Management System",
     image: "/images/ShippingSystem_1.png",
     description:
@@ -490,6 +534,20 @@ const projects = [
 
   const experiences = [
     {
+      title: "Front-End Developer",
+      company: "BIG GROUP",
+      period: "May 2026 – Present",
+      location: "Cairo, Egypt",
+      description:
+        "Currently owning frontend development across 3 e-commerce brands at BIG GROUP. Leading frontend architecture, authentication flows, SEO strategy, state management, and production stability across live customer-facing platforms and a shared dashboard.",
+      achievements: [
+        "Own frontend architecture and feature delivery across 3 brand experiences and a shared operational dashboard",
+        "Shipped and maintained 2 live e-commerce platforms currently serving active customers",
+        "Built OTP-based authentication, session handling, redirect logic, and protected account flows",
+        "Led SEO architecture, API integration quality, and production debugging across real live environments",
+      ],
+    },
+    {
       title: "Front-End Instructor",
       company: "Google Developer Student Club (GDSC)",
       period: "Aug 2024 – Dec 2024",
@@ -750,13 +808,13 @@ const projects = [
           Ahmed Ebrahem
         </h1>
         <h2 className="text-2xl md:text-3xl text-muted-foreground mb-6">
-          Front-End Developer & Instructor
+          Front-End Developer | E-Commerce Specialist
         </h2>
         <p className="text-lg text-muted-foreground mb-4">
-          Experienced Front-End Developer with hands-on experience in building dynamic, user-friendly web applications using React, Redux, and modern UI frameworks. Front-End Instructor at GDSC, leading and training students in web development.
+          Front-End Developer building production-grade e-commerce experiences with React, Next.js, TypeScript, and modern state management. Currently owning frontend development across 3 brands at BIG GROUP, with 2 live storefronts actively serving real customers.
         </p>
         <p className="text-sm text-muted-foreground mb-8">
-          📅 Born: September 20, 2002 | 📞 +20 127 735 1598 | 📍 Cairo, Egypt
+          📅 Born: September 20, 2002 | 📞 01099491558 | 📍 Cairo, Egypt
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-8">
@@ -784,7 +842,7 @@ const projects = [
           <a href="https://github.com/ahmedebrahem0" target="_blank" className="p-3 rounded-full bg-card hover:bg-accent transition-all">
             <Github className="w-6 h-6" />
           </a>
-          <a href="https://linkedin.com/in/ahmed-ebrahem-421604235" target="_blank" className="p-3 rounded-full bg-card hover:bg-accent transition-all">
+          <a href="https://linkedin.com/in/ahmedebrahem" target="_blank" className="p-3 rounded-full bg-card hover:bg-accent transition-all">
             <Linkedin className="w-6 h-6" />
           </a>
           <a href="mailto:ahmed.ebrahem.ebdelazem@gmail.com" className="p-3 rounded-full bg-card hover:bg-accent transition-all">
@@ -808,10 +866,10 @@ const projects = [
                   Hello, I'm Ahmed
                 </h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Experienced Front-End Developer with hands-on experience in building dynamic, user-friendly web applications using React, Redux, and modern UI frameworks. As a Front-End Instructor at GDSC, I lead and train a large number of students in web development, emphasizing best coding practices and real-world project execution.
+                  I am a Front-End Developer focused on building scalable, production-ready web applications with React, Next.js, TypeScript, Redux Toolkit, and modern UI systems. I currently own frontend development across three e-commerce brands at BIG GROUP, helping deliver stable live storefronts, strong customer journeys, and reliable feature architecture.
                 </p>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                  My expertise spans across state management, API integration, and performance optimization, ensuring seamless and engaging user experiences. With a strong background in e-commerce, UI/UX design, and team collaboration, I focus on delivering high-quality software solutions that exceed expectations.
+                  My expertise spans authentication flows, SEO architecture, API integration, state management, and performance optimization. Alongside my industry work, I have also led and trained students in web development at GDSC, combining real-world engineering ownership with mentoring and collaboration.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="secondary">React.js</Badge>
@@ -1255,12 +1313,18 @@ const projects = [
                           Live Demo
                         </Button>
                       </a>
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Button variant="outline" size="sm" className="gap-2 hover-lift border-2 hover:border-primary hover:bg-primary/5 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:text-sky-500">
-                          <Github className="w-4 h-4 group-hover:animate-spin " style={{ animationDuration: '2s' }} />
-                          Source Code
-                        </Button>
-                      </a>
+                      {project.github ? (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                          <Button variant="outline" size="sm" className="gap-2 hover-lift border-2 hover:border-primary hover:bg-primary/5 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:text-sky-500">
+                            <Github className="w-4 h-4 group-hover:animate-spin " style={{ animationDuration: '2s' }} />
+                            Source Code
+                          </Button>
+                        </a>
+                      ) : project.repositoryNote ? (
+                        <Badge variant="outline" className="px-3 py-2 text-sm">
+                          {project.repositoryNote}
+                        </Badge>
+                      ) : null}
                     </div>
                   </CardContent>
                 </Card>
@@ -1450,7 +1514,7 @@ const projects = [
                 style={{ animationDelay: "0.2s" }}
               >
                 <CardContent className="p-6 text-center">
-                  <a href="https://www.linkedin.com/in/ahmed-ebrahem-421604235">
+                  <a href="https://www.linkedin.com/in/ahmedebrahem">
                     <Linkedin
                     className="w-8 h-8 mx-auto mb-4 text-primary animate-bounce-gentle hover:text-accent transition-all duration-300 hover-lift hover-glow"
                     style={{ animationDelay: "0.5s" }}
@@ -1511,3 +1575,5 @@ const projects = [
     </div>
   );
 }
+
+
