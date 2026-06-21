@@ -31,10 +31,15 @@ import {
   Monitor,
   Sparkles,
   Cpu,
+    Shield,
+  Rocket,
   Split,
   HardDrive,
   Minus,
   Eye,
+  Calendar,
+  PhoneCall,
+  MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -788,7 +793,7 @@ const projects = [
       </nav>
 
       {/* Hero Section */}
-<section id="home" className="pt-20 pb-16 px-4">
+<section id="home" className="pt-20 pb-8 px-4">
   <div className="container mx-auto">
     <div className="flex flex-col md:flex-row items-center gap-12">
       
@@ -807,15 +812,26 @@ const projects = [
         <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">
           Ahmed Ebrahem
         </h1>
-        <h2 className="text-2xl md:text-3xl text-muted-foreground mb-6">
-          Front-End Developer | E-Commerce Specialist
+        <h2 className="text-lg md:text-lg text-muted-foreground mb-6">
+          Front-End Developer | Next.js · Enterprise Dashboards | Scalable Platforms | Clean Architecture |  Performance Optimization 
         </h2>
-        <p className="text-lg text-muted-foreground mb-4">
-          Front-End Developer building production-grade e-commerce experiences with React, Next.js, TypeScript, and modern state management. Currently owning frontend development across 3 brands at BIG GROUP, with 2 live storefronts actively serving real customers.
+        <p className="text-base md:text-lg text-muted-foreground mb-4">
+          Front-End Developer specializing in React and Next.js, building scalable production applications with clean architecture and measurable performance. Currently owning frontend development across 3 brands at BIG GROUP with 2 live storefronts. Previously engineered an enterprise Logistics Dashboard with multi-layer RBAC, a State Machine, and a perfect 100/100 Lighthouse score.
         </p>
-        <p className="text-sm text-muted-foreground mb-8">
-          📅 Born: September 20, 2002 | 📞 01099491558 | 📍 Cairo, Egypt
-        </p>
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground md:justify-start">
+          <span className="inline-flex items-center gap-2">
+            <Calendar className="h-4 w-4 text-primary" />
+            Born: September 20, 2002
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <PhoneCall className="h-4 w-4 text-primary" />
+            01099491558
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-primary" />
+            Cairo, Egypt
+          </span>
+        </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-8">
           <Button
@@ -857,95 +873,76 @@ const projects = [
 
       {/* About Section */}
       <section id="about" className="py-16 px-4 bg-muted/30">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">About Me</h2>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h3 className="text-2xl font-semibold mb-4">
-                  Hello, I'm Ahmed
-                </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  I am a Front-End Developer focused on building scalable, production-ready web applications with React, Next.js, TypeScript, Redux Toolkit, and modern UI systems. I currently own frontend development across three e-commerce brands at BIG GROUP, helping deliver stable live storefronts, strong customer journeys, and reliable feature architecture.
-                </p>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  My expertise spans authentication flows, SEO architecture, API integration, state management, and performance optimization. Alongside my industry work, I have also led and trained students in web development at GDSC, combining real-world engineering ownership with mentoring and collaboration.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">React.js</Badge>
-                  <Badge variant="secondary">Redux Toolkit</Badge>
-                  <Badge variant="secondary">TypeScript</Badge>
-                  <Badge variant="secondary">Tailwind CSS</Badge>
-                  <Badge variant="secondary">Next.js</Badge>
-                  <Badge variant="secondary">jQuery</Badge>
-                  <Badge variant="secondary">Bootstrap</Badge>
-                  <Badge variant="secondary">SASS</Badge>
-                  <Badge variant="secondary">Figma</Badge>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-6">
-                <Card
-                  className="hover-lift animate-scale-in"
-                  style={{ animationDelay: "0.1s" }}
-                >
-                  <CardContent className="p-6 text-center">
-                    <Code className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" />
-                    <h4 className="font-semibold mb-1">Clean Code</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Writing maintainable, readable code
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card
-                  className="hover-lift animate-scale-in"
-                  style={{ animationDelay: "0.2s" }}
-                >
-                  <CardContent className="p-6 text-center">
-                    <Smartphone
-                      className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle"
-                      style={{ animationDelay: "0.5s" }}
-                    />
-                    <h4 className="font-semibold mb-1">Responsive</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Mobile-first design approach
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card
-                  className="hover-lift animate-scale-in"
-                  style={{ animationDelay: "0.3s" }}
-                >
-                  <CardContent className="p-6 text-center">
-                    <Globe
-                      className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle"
-                      style={{ animationDelay: "1s" }}
-                    />
-                    <h4 className="font-semibold mb-1">Modern Tech</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Latest web technologies
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card
-                  className="hover-lift animate-scale-in"
-                  style={{ animationDelay: "0.4s" }}
-                >
-                  <CardContent className="p-6 text-center">
-                    <Users
-                      className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle"
-                      style={{ animationDelay: "1.5s" }}
-                    />
-                    <h4 className="font-semibold mb-1">Collaboration</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Team player mindset
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
+  <div className="container mx-auto">
+    <div className="max-w-4xl mx-auto">
+      <h2 className="text-4xl font-bold text-center mb-12">About Me</h2>
+      <div className="grid md:grid-cols-2 gap-12 items-center">
+        
+        {/* Cards على اليسار */}
+        <div className="grid grid-cols-2 gap-6">
+          <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.1s" }}>
+            <CardContent className="p-6 text-center">
+              <Layers className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" />
+              <h4 className="font-semibold mb-1">Systems Thinker</h4>
+              <p className="text-sm text-muted-foreground">
+                Architecture-first approach to every feature
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.2s" }}>
+            <CardContent className="p-6 text-center">
+              <Zap className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "0.5s" }} />
+              <h4 className="font-semibold mb-1">Performance Obsessed</h4>
+              <p className="text-sm text-muted-foreground">
+                100/100 Lighthouse across production builds
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.3s" }}>
+            <CardContent className="p-6 text-center">
+              <Shield className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "1s" }} />
+              <h4 className="font-semibold mb-1">Security Minded</h4>
+              <p className="text-sm text-muted-foreground">
+                RBAC & permission systems at every layer
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
+            <CardContent className="p-6 text-center">
+              <Rocket className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "1.5s" }} />
+              <h4 className="font-semibold mb-1">Shipping Owner</h4>
+              <p className="text-sm text-muted-foreground">
+                From dev to live — owning the full journey
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* الكلام على اليمين */}
+        <div>
+          <h3 className="text-2xl font-semibold mb-4">Hello, I'm Ahmed</h3>
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            I'm a Front-End Engineer who builds systems, not just interfaces. I currently own frontend development across 3 live e-commerce brands at BIG GROUP — handling architecture, authentication flows, API integration, SEO, and production stability for storefronts actively serving real customers.
+          </p>
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            Before that, I engineered an enterprise Logistics Dashboard with a multi-layer RBAC system, an Order Lifecycle State Machine, and a perfect 100/100 Lighthouse score across Performance, Accessibility, Best Practices, and SEO. I also led a 4-month Frontend program at GDSC — because understanding something deeply enough to teach it is what separates good engineers from great ones.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="secondary">React.js</Badge>
+            <Badge variant="secondary">Next.js</Badge>
+            <Badge variant="secondary">TypeScript</Badge>
+            <Badge variant="secondary">Redux Toolkit</Badge>
+            <Badge variant="secondary">RTK Query</Badge>
+            <Badge variant="secondary">Tailwind CSS</Badge>
+            <Badge variant="secondary">SASS</Badge>
+            <Badge variant="secondary">Figma</Badge>
           </div>
         </div>
-      </section>
+
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Experience Section */}
       <section id="experience" className="py-16 px-4">
@@ -1575,5 +1572,6 @@ const projects = [
     </div>
   );
 }
+
 
 
