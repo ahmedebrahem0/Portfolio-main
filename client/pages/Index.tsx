@@ -873,46 +873,46 @@ const projects = [
 
 
       {/* About Section */}
-      <section id="about" className="py-16 px-4 bg-muted/30">
+      <section id="about" className="py-10 px-2.5 sm:px-4 md:py-16 bg-muted/30">
   <div className="container mx-auto">
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-4xl font-bold text-center mb-12">About Me</h2>
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 md:mb-12">About Me</h2>
+      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         
         {/* Cards على اليسار */}
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-3.5 sm:gap-6">
           <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.1s" }}>
-            <CardContent className="p-6 text-center">
-              <Layers className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" />
-              <h3 className="font-semibold mb-1">Systems Thinker</h3>
-              <p className="text-sm text-muted-foreground">
+            <CardContent className="p-4 sm:p-6 text-center">
+              <Layers className="w-7 h-7 sm:w-8 sm:h-8 mx-auto mb-2 text-primary animate-bounce-gentle" />
+              <h3 className="text-sm sm:text-base font-semibold mb-1">Systems Thinker</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Architecture-first approach to every feature
               </p>
             </CardContent>
           </Card>
           <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.2s" }}>
-            <CardContent className="p-6 text-center">
-              <Zap className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "0.5s" }} />
-              <h3 className="font-semibold mb-1">Performance Obsessed</h3>
-              <p className="text-sm text-muted-foreground">
+            <CardContent className="p-4 sm:p-6 text-center">
+              <Zap className="w-7 h-7 sm:w-8 sm:h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "0.5s" }} />
+              <h3 className="text-sm sm:text-base font-semibold mb-1">Performance Obsessed</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 100/100 Lighthouse across production builds
               </p>
             </CardContent>
           </Card>
           <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.3s" }}>
-            <CardContent className="p-6 text-center">
-              <Shield className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "1s" }} />
-              <h3 className="font-semibold mb-1">Security Minded</h3>
-              <p className="text-sm text-muted-foreground">
+            <CardContent className="p-4 sm:p-6 text-center">
+              <Shield className="w-7 h-7 sm:w-8 sm:h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "1s" }} />
+              <h3 className="text-sm sm:text-base font-semibold mb-1">Security Minded</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 RBAC & permission systems at every layer
               </p>
             </CardContent>
           </Card>
           <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
-            <CardContent className="p-6 text-center">
-              <Rocket className="w-8 h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "1.5s" }} />
-              <h3 className="font-semibold mb-1">Shipping Owner</h3>
-              <p className="text-sm text-muted-foreground">
+            <CardContent className="p-4 sm:p-6 text-center">
+              <Rocket className="w-7 h-7 sm:w-8 sm:h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "1.5s" }} />
+              <h3 className="text-sm sm:text-base font-semibold mb-1">Shipping Owner</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 From dev to live — owning the full journey
               </p>
             </CardContent>
@@ -921,11 +921,11 @@ const projects = [
 
         {/* الكلام على اليمين */}
         <div>
-          <h3 className="text-2xl font-semibold mb-4">Hello, I'm Ahmed</h3>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Hello, I'm Ahmed</h3>
+          <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
             I'm a Front-End Engineer who builds systems, not just interfaces. I currently own frontend development across 3 live e-commerce brands at BIG GROUP — handling architecture, authentication flows, API integration, SEO, and production stability for storefronts actively serving real customers.
           </p>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
             Before that, I engineered an enterprise Logistics Dashboard with a multi-layer RBAC system, an Order Lifecycle State Machine, and a perfect 100/100 Lighthouse score across Performance, Accessibility, Best Practices, and SEO. I also led a 4-month Frontend program at GDSC — because understanding something deeply enough to teach it is what separates good engineers from great ones.
           </p>
           <div className="flex flex-wrap gap-2">
@@ -947,7 +947,7 @@ const projects = [
 
       {/* Experience Section */}
       <section id="experience" className="py-16 px-4">
-        <div className="container mx-auto">
+        <div className=" mx-auto">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               Professional Experience
@@ -995,7 +995,7 @@ const projects = [
 
       {/* Education Section */}
       <section id="education" className="py-16 px-4 bg-muted/30">
-        <div className="container mx-auto">
+        <div className=" mx-auto">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               Education
@@ -1029,7 +1029,7 @@ const projects = [
 
       {/* Internships & Memberships Section */}
       <section id="internships" className="py-16 px-4">
-        <div className="container mx-auto">
+        <div className=" mx-auto">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               Internships & Memberships
@@ -1129,7 +1129,7 @@ const projects = [
 
       {/* Projects Section */}
       <section id="projects" className="py-16 bg-muted/30">
-        <div className="container mx-auto">
+        <div className=" mx-auto">
           <div className="max-w-8xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               Featured Projects
@@ -1333,7 +1333,7 @@ const projects = [
       </section>
       {/* Skills Section */}
       <section id="skills" className="py-16 px-4">
-        <div className="container mx-auto">
+        <div className=" mx-auto">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-4">
               Technical Skills
@@ -1485,7 +1485,7 @@ const projects = [
       </section>
       {/* Contact Section */}
       <section id="contact" className="py-16 px-4 bg-muted/30">
-        <div className="container mx-auto">
+        <div className=" mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-8">Let's Work Together</h2>
             <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -1498,7 +1498,7 @@ const projects = [
                 className="hover-lift animate-scale-in"
                 style={{ animationDelay: "0.1s" }}
               >
-                <CardContent className="p-6 text-center">
+                <CardContent className="p-4 sm:p-6 text-center">
                   <Mail className="w-8 h-8 mx-auto mb-4 text-primary animate-bounce-gentle" />
                   <h3 className="font-semibold mb-2">Email</h3>
                   <p className="text-muted-foreground text-xs font-medium">
@@ -1511,7 +1511,7 @@ const projects = [
                 className="hover-lift animate-scale-in"
                 style={{ animationDelay: "0.2s" }}
               >
-                <CardContent className="p-6 text-center">
+                <CardContent className="p-4 sm:p-6 text-center">
                   <a href="https://www.linkedin.com/in/ahmedebrahem" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahmed Ebrahem's LinkedIn profile" title="LinkedIn">
                     <Linkedin
                     className="w-8 h-8 mx-auto mb-4 text-primary animate-bounce-gentle hover:text-accent transition-all duration-300 hover-lift hover-glow"
@@ -1521,7 +1521,7 @@ const projects = [
                   
                   <h3 className="font-semibold mb-2 ">LinkedIn</h3>
                   <p className="text-muted-foreground hover-lift animate-scale-in">
-                    ahmed-ebrahem-421604235
+                    ahmed-ebrahem
                   </p>
                 </CardContent>
               </Card>
@@ -1530,7 +1530,7 @@ const projects = [
                 className="hover-lift animate-scale-in"
                 style={{ animationDelay: "0.3s" }}
               >
-                <CardContent className="p-6 text-center">
+                <CardContent className="p-4 sm:p-6 text-center">
 
                   <a href="https://github.com/ahmedebrahem0" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahmed Ebrahem's GitHub profile" title="GitHub">
                     <Github
@@ -1575,6 +1575,7 @@ const projects = [
     </div>
   );
 }
+
 
 
 
