@@ -844,7 +844,7 @@ const projects = [
             Get In Touch
           </Button>
           <a
-            href="https://drive.google.com/file/d/1cJQQIwI2jHVw8dlTeE4b4rU-U38o9eUF/view?usp=sharing"
+                    href="https://drive.google.com/file/d/1rsqsm1XRj_II6Kr_xQ7m6J-nh5Db98vj/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
           >
