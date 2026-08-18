@@ -809,17 +809,17 @@ const projects = [
       </div>
 
       {/* المحتوى */}
-      <div className="w-full md:w-1/2 text-center md:text-left animate-slide-up">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">
+      <div className="w-full md:w-1/2 animate-slide-up">
+        <h1 className="mb-4 text-center text-[2.35rem] font-bold leading-none whitespace-nowrap gradient-text sm:text-5xl md:text-left md:text-6xl">
           Ahmed Ebrahem
         </h1>
-        <h2 className="text-lg md:text-lg text-muted-foreground mb-6">
+        <h2 className="mb-6 text-left text-base leading-7 text-muted-foreground sm:text-lg md:text-lg">
           Front-End Developer | Next.js · Enterprise Dashboards | Scalable Platforms | Clean Architecture |  Performance Optimization 
         </h2>
-        <p className="text-base md:text-lg text-muted-foreground mb-4">
+        <p className="mb-4 text-left text-base leading-7 text-muted-foreground md:text-lg">
           Front-End Developer specializing in React and Next.js, building scalable production applications with clean architecture and measurable performance. Currently owning frontend development across 3 brands at BIG GROUP with 2 live storefronts. Previously engineered an enterprise Logistics Dashboard with multi-layer RBAC, a State Machine, and a perfect 100/100 Lighthouse score.
         </p>
-        <div className="mb-8 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground md:justify-start">
+        <div className="mb-8 flex flex-wrap items-center justify-start gap-4 text-sm text-muted-foreground">
           <span className="inline-flex items-center gap-2">
             <Calendar className="h-4 w-4 text-primary" />
             Born: September 20, 2002
@@ -834,7 +834,7 @@ const projects = [
           </span>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-8">
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:justify-start">
           <Button
             size="lg"
             className="gap-2 hover-lift"
