@@ -902,7 +902,7 @@ export default function Index() {
                   <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.3s" }}>
                     <CardContent className="p-4 sm:p-6 text-center">
                       <Shield className="w-7 h-7 sm:w-8 sm:h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "1s" }} />
-                      <h3 className="text-sm sm:text-base font-semibold mb-1"System Design</h3>
+                      <h3 className="text-sm sm:text-base font-semibold mb-1">System Design</h3>
                       <p className="text-xs sm:text-sm text-muted-foreground">
                         RBAC, state machines, scalable workflows & application structure.
                       </p>
@@ -911,7 +911,7 @@ export default function Index() {
                   <Card className="hover-lift animate-scale-in" style={{ animationDelay: "0.4s" }}>
                     <CardContent className="p-4 sm:p-6 text-center">
                       <Rocket className="w-7 h-7 sm:w-8 sm:h-8 mx-auto mb-2 text-primary animate-bounce-gentle" style={{ animationDelay: "1.5s" }} />
-                      <h3 className="text-sm sm:text-base font-semibold mb-1">Shipping Owner</h3>
+                      <h3 className="text-sm sm:text-base font-semibold mb-1">End-to-End Ownership</h3>
                       <p className="text-xs sm:text-sm text-muted-foreground">
                         From dev to live — owning the full journey
                       </p>
