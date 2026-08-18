@@ -1518,7 +1518,7 @@ const projects = [
                     style={{ animationDelay: "0.5s" }}
                   />
                   </a>
-                  
+                  {/*  */}
                   <h3 className="font-semibold mb-2 ">LinkedIn</h3>
                   <p className="text-muted-foreground hover-lift animate-scale-in">
                     ahmed-ebrahem
