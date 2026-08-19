@@ -837,7 +837,7 @@ export default function Index() {
                 <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:justify-start">
                   <Button
                     size="lg"
-                    className="gap-2 hover-lift"
+                    className="w-full gap-2 hover-lift sm:w-auto"
                     onClick={() => scrollToSection("contact")}
                   >
                     <Mail className="w-5 h-5" />
@@ -847,8 +847,9 @@ export default function Index() {
                     href="https://drive.google.com/file/d/1rsqsm1XRj_II6Kr_xQ7m6J-nh5Db98vj/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="w-full sm:w-auto"
                   >
-                    <Button variant="outline" size="lg" className="gap-2 hover-lift">
+                    <Button variant="outline" size="lg" className="w-full gap-2 hover-lift sm:w-auto">
                       <Download className="w-5 h-5" />
                       Download Resume
                     </Button>
