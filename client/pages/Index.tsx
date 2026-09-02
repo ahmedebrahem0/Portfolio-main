@@ -844,7 +844,7 @@ export default function Index() {
                     Get In Touch
                   </Button>
                   <a
-                    href="https://drive.google.com/file/d/1rsqsm1XRj_II6Kr_xQ7m6J-nh5Db98vj/view?usp=sharing"
+                    href="https://drive.google.com/file/d/1yrsGISsfnTXcjxD0zgiS2cmJh9ES7-j4/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto"
