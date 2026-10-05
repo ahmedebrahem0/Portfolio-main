@@ -70,6 +70,7 @@ export const projects = [
       // github: "",
       // repositoryNote: "Private (NDA)",
       period: "May 2026 - Present",
+      showcaseStatus: "production",
       featured: true,
     },
     {
@@ -92,6 +93,7 @@ export const projects = [
       liveDemo: "https://el-hattab.com",
       // github: "https://github.com/ahmedebrahem0/Hatab",
       period: "May 2026 - Present",
+      showcaseStatus: "production",
       featured: true,
     },
     {
@@ -111,6 +113,7 @@ export const projects = [
       ],
       liveDemo: "https://shipping-system-nine.vercel.app/",
       github: "https://github.com/ahmedebrahem0/shipping_system.git",
+      showcaseStatus: "demo",
       featured: true
     },
     {
@@ -133,6 +136,7 @@ export const projects = [
       liveDemo: "https://school-system-liard-one.vercel.app/login",
       github: "https://github.com/ahmedebrahem0/School_System.git",
       period: "Apr 2026 - Present",
+      showcaseStatus: "demo",
       featured: true,
     },
     {
@@ -151,6 +155,7 @@ export const projects = [
       ],
       liveDemo: "https://ahmedebrahem0.github.io/FreshCart/Home",
       github: "https://github.com/ahmedebrahem0/FreshCart.git",
+      showcaseStatus: "demo",
       featured: true
     },
     {
@@ -170,6 +175,7 @@ export const projects = [
       liveDemo: "https://ahmedebrahem0.github.io/AdminDashbord/",
       github: "https://github.com/ahmedebrahem0/AdminDashbord",
       period: "May 2024 - June 2024",
+      showcaseStatus: "demo",
       featured: true
     },
     {
@@ -207,6 +213,7 @@ export const projects = [
       liveDemo: "https://ahmedebrahem0.github.io/BreastCancerAwareness/",
       github: "https://github.com/ahmedebrahem0/BreastCancerAwareness",
       period: "Nov 2023 - Jan 2024",
+      showcaseStatus: "demo",
       featured: true
     },
 

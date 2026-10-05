@@ -2332,7 +2332,29 @@
 .pf .pf-footer p > span { color: #afbea7; }
 .pf .pf-work-heading { align-items: center; flex-shrink: 0; }
 .pf .pf-work-heading .pf-label { margin-bottom: 12px; }
-.pf .pf-work-heading h2 { font-size: clamp(32px, 3.4vw, 48px); letter-spacing: -1.5px; }
+.pf .pf-work-heading h2 { font-size: clamp(27px, 2.7vw, 40px); letter-spacing: -1.3px; }
+.pf-showcase-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  color: #abb9b2;
+  font-family: "Segoe UI", Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.pf-showcase-status.is-production { color: var(--lime); }
+.pf-showcase-status.is-production::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 9px #c9f66f88;
+}
+.pf-showcase-status-detail { display: flex; margin-top: 14px; font-size: 11px; }
 .pf .pf-work-intro { font-size: 14px; padding: 0; }
 .pf .pf-work-intro a { font-size: 14px; }
 .pf-project-stage { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 45px; flex: 1; min-height: 0; margin-top: 25px; }
@@ -2493,6 +2515,8 @@
 
 /* The same scroll-driven helix on touch screens, composed for a narrow viewport. */
 @media (max-width: 799px) {
+  .pf .pf-helix-linear .pf-work-heading h2 { font-size: clamp(17px, 4.8vw, 23px); font-weight: 700; letter-spacing: -.75px; white-space: nowrap; }
+  .pf .pf-helix-linear .pf-work-heading .pf-label { margin-bottom: 8px; }
   .pf #projects { scroll-margin-top: 0; }
   .pf .pf-helix-section:not(.pf-helix-linear) { height: 620svh; }
   .pf .pf-helix-section:not(.pf-helix-linear) .pf-helix-sticky {
@@ -2501,6 +2525,11 @@
   .pf-helix-section:not(.pf-helix-linear) .pf-work-heading { display: flex; align-items: center; gap: 12px; }
   .pf-helix-section:not(.pf-helix-linear) .pf-work-heading .pf-label { display: none; }
   .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-heading h2 { font-size: 25px; letter-spacing: -.6px; }
+  .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-heading { flex-wrap: wrap; }
+  .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-heading > div:first-child { width: 100%; min-width: 0; }
+  .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-heading h2 { font-size: clamp(17px, 4.8vw, 23px); font-weight: 700; letter-spacing: -.75px; white-space: nowrap; }
+  .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-intro { margin-left: auto; }
+  .pf-helix-section:not(.pf-helix-linear) .pf-card-top .pf-showcase-status { font-size: 9px !important; letter-spacing: .5px; }
   .pf-helix-section:not(.pf-helix-linear) .pf-work-intro { margin: 0; flex-shrink: 0; }
   .pf-helix-section:not(.pf-helix-linear) .pf-work-intro p { display: none; }
   .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-intro a { margin: 0; font-size: 12px; max-width: 95px; line-height: 1.4; gap: 4px; }

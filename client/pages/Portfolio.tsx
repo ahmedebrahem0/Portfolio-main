@@ -64,6 +64,10 @@ function DriveMark() {
 const resume =
   "https://drive.google.com/file/d/1yrsGISsfnTXcjxD0zgiS2cmJh9ES7-j4/view?usp=sharing";
 const selectedProjects = projects.filter((p) => p.featured);
+const showcaseStatus = (project: (typeof projects)[number]) =>
+  "showcaseStatus" in project && project.showcaseStatus === "production"
+    ? "IN PRODUCTION"
+    : "LIVE DEMO";
 const defaultProjectSignals = ["Feature-based", "Next.js", "TypeScript", "RBAC", "Performance", "SEO", "API Integration", "Authorization", "Role-based", "Order Lifecycle", "Error Handling", "Reusable", "Responsive", "RTK Query"];
 const projectSignals: Record<string, readonly string[]> = {
   "EduSystem — School Management": ["RBAC", "Architecture", "Data Visualization"],
@@ -297,7 +301,7 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
         <div className="pf-work-heading">
           <div>
             <SectionLabel index="03">PROJECTS</SectionLabel>
-            <h2>Selected projects<span className="pf-title-dot">.</span></h2>
+            <h2>Live Products &amp; Selected Work</h2>
           </div>
           <div className="pf-work-intro">
             <p>
@@ -347,7 +351,7 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
                       <span>
                         {number(i + 1)} / {number(selectedProjects.length)}
                       </span>
-                      <span>{p.technologies[0]}</span>
+                      <span className={`pf-showcase-status ${showcaseStatus(p) === "IN PRODUCTION" ? "is-production" : ""}`}>{showcaseStatus(p)}</span>
                       <ArrowUpRight size={15} />
                     </div>
                     <img
@@ -379,6 +383,7 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
                   <CalendarDays size={16} />
                   {selectedProjects[active].period || "SELECTED PROJECT"}
                 </span>
+                <span className={`pf-showcase-status pf-showcase-status-detail ${showcaseStatus(selectedProjects[active]) === "IN PRODUCTION" ? "is-production" : ""}`}>{showcaseStatus(selectedProjects[active])}</span>
                 <h3>{selectedProjects[active].title}</h3>
                 <p><SignalText text={selectedProjects[active].description} disabled={motionDisabled} select={signalsFor(selectedProjects[active])} /></p>
                 <div className="pf-tags">{selectedProjects[active].technologies.map(tech => <span key={tech}><TechnologyIcon name={tech} size={15} />{tech}</span>)}</div>
