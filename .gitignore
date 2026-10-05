@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 
 .config/
+.cursor
+.npmrc
+AGENTS.md
+h -u origin main --verbose
+

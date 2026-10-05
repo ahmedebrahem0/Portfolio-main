@@ -1,0 +1,71 @@
+.arch-panel { min-width: 0; width: 100%; max-width: 620px; position: relative; }
+.arch-heading { display: flex; align-items: center; gap: 14px; margin-bottom: 7px; }
+.arch-heading-icon { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid #6d815746; color: var(--lime); background: #c9f66f0a; }
+.arch-kicker { display: block; color: var(--lime); font: 10px "Courier New", monospace; letter-spacing: 2px; margin-bottom: 4px; }
+.arch-heading h3 { color: var(--cream); font-size: 23px; font-weight: 500; letter-spacing: -.7px; line-height: 1.1; }
+.arch-heading h3 span { color: var(--lime); }
+.arch-intro { color: #a9b9af; font-size: 13px; margin: 0 0 21px 56px; }
+.arch-projects { display: flex; gap: 5px; overflow-x: auto; scrollbar-width: none; padding-bottom: 8px; margin-bottom: 2px; }
+.arch-projects::-webkit-scrollbar { display: none; }
+.arch-project { flex: 0 0 auto; border: 1px solid transparent; background: transparent; color: #a9b9af; padding: 9px 11px; font-size: 12px; cursor: pointer; transition: color .22s, background .22s, border-color .22s; white-space: nowrap; }
+.arch-project span { margin-right: 7px; color: #7a8b7f; font: 10px "Courier New", monospace; }
+.arch-project:hover { color: var(--cream); background: #d5eeae0b; }
+.arch-project.is-active { color: var(--lime); border-color: #c9f66f55; background: #c9f66f10; }
+.arch-project.is-active span { color: var(--lime); }
+.arch-panel button:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+.arch-editor { border: 1px solid #63756870; background: linear-gradient(140deg, #17211e 0%, #101817 52%, #101515 100%); box-shadow: 0 24px 65px #0005, 10px 10px 0 #c9f66f08; animation: arch-enter .36s ease both; overflow: hidden; }
+.arch-editor-bar { min-height: 46px; display: flex; align-items: center; gap: 12px; padding: 0 15px; border-bottom: 1px solid #43544975; background: #1e292455; }
+.arch-editor-dots { display: flex; gap: 5px; }
+.arch-editor-dots i { width: 6px; height: 6px; border: 1px solid #667969; border-radius: 50%; }
+.arch-editor-dots i:first-child { background: #c9f66f; border-color: #c9f66f; }
+.arch-editor-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-flex; align-items: center; gap: 7px; color: #e5eade; font: 11px "Courier New", monospace; }
+.arch-editor-title svg { flex: none; color: var(--lime); }
+.arch-editor-count { margin-left: auto; flex: none; color: #9aab9c; font: 10px "Courier New", monospace; }
+.arch-editor-meta { display: flex; justify-content: space-between; gap: 12px; padding: 14px 16px 8px; color: #98a99d; font: 10px "Courier New", monospace; letter-spacing: 1px; }
+.arch-editor-meta span:first-child { color: var(--lime); }
+.arch-tree-actions { display: flex; justify-content: flex-end; gap: 14px; padding: 0 16px 0px; }
+.arch-pan-hint { display: none; }
+.arch-tree-actions button { border: 0; border-bottom: 1px solid transparent; background: none; padding: 3px 0; color: #b8c8b9; font: 10px "Courier New", monospace; cursor: pointer; transition: color .18s, border-color .18s; }
+.arch-tree-actions button:hover { color: var(--lime); border-color: var(--lime); }
+.arch-scroll { height: 290px; overflow: auto; scrollbar-color: #53664b transparent; scrollbar-width: thin; padding: 0px 8px 16px 0; }
+.arch-scroll:focus-visible { outline: 2px solid var(--lime); outline-offset: -2px; }
+.arch-scroll > .arch-list { min-width: max-content; }
+.arch-list { list-style: none; margin: 0; padding: 0; }
+.pf .arch-node { margin: 0; padding: 0; line-height: normal; }
+.pf .arch-node::before { content: none; display: none; }
+.arch-row { width: 100%; min-height: 30px; display: flex; align-items: center; gap: 8px; color: #c5d2c7; font: 11px "Courier New", monospace; text-align: left; white-space: nowrap; background: transparent; border: 0; }
+.arch-row span { white-space: nowrap; }
+.arch-folder { cursor: pointer; transition: color .18s, background .18s; }
+.arch-folder:hover { color: var(--cream); background: #c9f66f12; }
+.arch-folder-icon { width: 19px; height: 18px; flex: none; display: inline-flex; align-items: center; justify-content: center; color: var(--folder-color); filter: drop-shadow(0 0 4px color-mix(in srgb, var(--folder-color) 20%, transparent)); }
+.arch-folder-icon svg { display: block; }
+.arch-folder-green { --folder-color: #9bd85b; }
+.arch-folder-coral { --folder-color: #fa806c; }
+.arch-folder-yellow { --folder-color: #eadc58; }
+.arch-folder-cyan { --folder-color: #59c9dc; }
+.arch-folder-amber { --folder-color: #f5ae50; }
+.arch-folder-teal { --folder-color: #4ec7bd; }
+.arch-folder-purple { --folder-color: #af8be9; }
+.arch-folder-blue { --folder-color: #66adf2; }
+.arch-folder-pink { --folder-color: #e88eb8; }
+.arch-folder-slate { --folder-color: #9baebb; }
+.arch-chevron { color: #9aaa9c; flex: none; }
+.arch-file { color: #a9b9af; }
+.arch-file-icon { width: 17px; height: 17px; flex: none; display: inline-flex; align-items: center; justify-content: center; border-radius: 2px; font: 8px/1 "Courier New", monospace; font-weight: 800; letter-spacing: -.5px; }
+.arch-file-ts, .arch-file-tsx { background: #1875ba; color: #e6f6ff; }
+.arch-file-js, .arch-file-jsx { background: #e2cc42; color: #222526; }
+.arch-file-tsx, .arch-file-jsx { border: 1px solid #61d8e8; color: #e5ffff; background: #17617c; font-size: 8px; letter-spacing: -.7px; }
+.arch-file-jsx { border-color: #e2cc42; color: #fff4a8; background: #646020; }
+.arch-file-css { background: #287bc2; color: #fff; font-size: 13px; }
+.arch-file-json { background: #cfb65b; color: #212b28; font-size: 10px; }
+.arch-file-image { color: #e49cbb; }
+.arch-file-md { color: #78addd; }
+.arch-file-generic { color: #9eb4b4; }
+.arch-editor-foot { border-top: 1px solid #43544975; color: #aebcaf; font: 10px/1.5 "Courier New", monospace; display: flex; align-items: flex-start; gap: 8px; padding: 12px 16px; min-height: 47px; }
+.arch-status-dot { width: 6px; height: 6px; flex: none; border-radius: 50%; background: var(--lime); box-shadow: 0 0 9px #c9f66f99; margin-top: 4px; }
+.arch-caption { display: flex; justify-content: space-between; gap: 12px; color: #8e9f94; font: 11px "Courier New", monospace; margin-top: 15px; }
+.arch-caption span { color: var(--lime); }
+@keyframes arch-enter { from { opacity: .45; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 900px) { .arch-panel { max-width: 650px; } }
+@media (max-width: 600px) { .arch-heading h3 { font-size: 21px; } .arch-projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; } .arch-project { min-width: 0; width: 100%; text-align: left; padding: 9px 10px; } .arch-scroll { height: 270px; } .arch-editor-bar { padding: 0 11px; } .arch-editor-meta { padding-inline: 12px; font-size: 9px; } .arch-tree-actions { display: grid; grid-template-columns: max-content max-content; justify-content: start; column-gap: 15px; row-gap: 5px; padding-inline: 12px; } .arch-pan-hint { display: block; grid-column: 1 / -1; color: #a9bb9d; font: 9px "Courier New", monospace; letter-spacing: .15px; white-space: nowrap; } .arch-tree-actions button { font-size: 10px; white-space: nowrap; text-align: left; } .arch-row { min-height: 34px; font-size: 12px; } .arch-caption { font-size: 10px; } }
+@media (prefers-reduced-motion: reduce) { .arch-editor { animation: none; } .arch-project, .arch-folder { transition: none; } }
