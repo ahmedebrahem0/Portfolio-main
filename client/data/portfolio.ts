@@ -402,7 +402,7 @@ export const education = [
       degree: "Bachelor of Computer Science",
       institution: "Banha University",
       period: "2020 - 2024",
-      location: "Cairo, Egypt",
+      location: "Banha, Egypt",
       description:
         "Focused on software engineering, data structures, and web development technologies.",
     },
@@ -411,7 +411,7 @@ export const education = [
 export const internships = [
     {
       title: "Front-End Developer (Intern)",
-      organization: "Information Technology Institute (ITI)",
+      organization: "Information Technology Institute ( ITI )",
       period: "Sep 2022 – Oct 2022",
       location: "Cairo, Egypt",
       description:
@@ -424,7 +424,7 @@ export const internships = [
     },
     {
       title: "Front-End Developer (Intern)",
-      organization: "National Telecommunication Institute (NTI)",
+      organization: "National Telecommunication Institute ( NTI )",
       period: "Oct 2022 – Nov 2022",
       location: "Cairo, Egypt",
       description:

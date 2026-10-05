@@ -1474,6 +1474,21 @@
   color: #c3d1ba;
   margin: 14px 0;
 }
+.pf-foundations .pf-university-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--lime);
+  line-height: 1.35;
+}
+.pf-university-name img {
+  display: block;
+  width: 64px;
+  height: 64px;
+  flex: none;
+  object-fit: contain;
+}
+.pf-university-name span { min-width: 0; }
 .pf-foundations p {
   font-size: 12px;
   color: var(--muted);

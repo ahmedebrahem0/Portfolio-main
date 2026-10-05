@@ -1,7 +1,7 @@
 import { useRef, type ReactNode } from "react";
 import { useInView } from "framer-motion";
 
-const primary = ["Architecture", "Scalable", "Feature-based", "React", "Next.js", "TypeScript", "Performance", "Accessibility", "SEO", "Lighthouse", "API Integration", "State Management", "RBAC", "Real-world Systems"];
+const primary = ["Architecture", "Scalable", "Feature-based", "React", "Next.js", "TypeScript", "Performance", "Accessibility", "SEO", "Lighthouse", "API Integration", "State Management", "RBAC", "Real-world Systems", "ITI", "NTI", "Google", "IEEE"];
 const secondary = ["Maintainable", "Reusable", "Separation of Concerns", "Redux", "RTK Query", "Responsive", "Error Handling", "Authentication", "Authorization", "Role-based", "Order Lifecycle", "Data Visualization"];
 const terms = [...primary, ...secondary].sort((a, b) => b.length - a.length);
 const escape = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

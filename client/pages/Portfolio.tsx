@@ -29,7 +29,6 @@ import {
   memberships,
 } from "@/data/portfolio";
 import "./portfolio.css";
-
 const email = "ahmed.ebrahem.ebdelazem@gmail.com";
 const whatsapp = "https://wa.me/201099491558";
 
@@ -948,7 +947,10 @@ export default function Portfolio() {
                     {e.period} / {e.location}
                   </span>
                   <h3>{e.degree}</h3>
-                  <h4>{e.institution}</h4>
+                  <h4 className="pf-university-name">
+                    <img src="/images/Banha-Logo.png" alt="" width="64" height="64" loading="lazy" />
+                    <span>{e.institution}</span>
+                  </h4>
                   <p>{e.description}</p>
                 </article>
               ))}
@@ -958,7 +960,7 @@ export default function Portfolio() {
               {[...internships, ...memberships].map((e) => (
                 <details key={e.organization}>
                   <summary>
-                    <span>{e.organization}</span>
+                    <span><SignalText text={e.organization} disabled={paused || reduced} select={["ITI", "NTI", "Google", "IEEE"]} /></span>
                     <Plus size={16} />
                   </summary>
                   <span className="pf-eyebrow">{e.period}</span>
