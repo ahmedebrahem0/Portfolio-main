@@ -27,6 +27,15 @@
 .arch-pan-hint { display: none; }
 .arch-tree-actions button { border: 0; border-bottom: 1px solid transparent; background: none; padding: 3px 0; color: #b8c8b9; font: 10px "Courier New", monospace; cursor: pointer; transition: color .18s, border-color .18s; }
 .arch-tree-actions button:hover { color: var(--lime); border-color: var(--lime); }
+.arch-tree-viewport { position: relative; isolation: isolate; }
+.arch-guide { position: absolute; z-index: 4; top: 0; left: 0; width: 0; height: 0; pointer-events: none; transition: transform .62s cubic-bezier(.22, .9, .27, 1), opacity .3s ease; filter: drop-shadow(0 5px 5px #0009); }
+.arch-guide.is-live { transition: none; }
+.arch-guide-hand { position: absolute; left: 0; top: 0; width: 33px; height: 39px; color: #f2f1e8; transform: translate(-18px, -4px) rotate(27deg) scaleX(-1); transform-origin: 17px 5px; filter: drop-shadow(1px 1px 0 #111715) drop-shadow(-1px -1px 0 #111715); }
+.arch-guide-halo { position: absolute; left: -12px; top: -12px; width: 26px; height: 26px; border: 1px solid #c9f66f99; border-radius: 50%; background: #c9f66f18; box-shadow: 0 0 0 5px #c9f66f0d, 0 0 22px #c9f66f55; animation: arch-guide-pulse 1.7s ease-in-out infinite; }
+.arch-guide.is-pressing .arch-guide-halo { animation: arch-guide-click .33s ease-out both; }
+.arch-guide.is-pressing .arch-guide-hand { transform: translate(-18px, -4px) rotate(27deg) scale(-.9, .9); }
+@keyframes arch-guide-pulse { 50% { transform: scale(1.2); opacity: .6; } }
+@keyframes arch-guide-click { from { transform: scale(.65); box-shadow: 0 0 0 0 #c9f66f55; } to { transform: scale(1.45); box-shadow: 0 0 0 12px #c9f66f00; opacity: 0; } }
 .arch-scroll { height: 290px; overflow: auto; scrollbar-color: #53664b transparent; scrollbar-width: thin; padding: 0px 8px 16px 0; }
 .arch-scroll:focus-visible { outline: 2px solid var(--lime); outline-offset: -2px; }
 .arch-scroll > .arch-list { min-width: max-content; }
@@ -63,9 +72,12 @@
 .arch-file-generic { color: #9eb4b4; }
 .arch-editor-foot { border-top: 1px solid #43544975; color: #aebcaf; font: 10px/1.5 "Courier New", monospace; display: flex; align-items: flex-start; gap: 8px; padding: 12px 16px; min-height: 47px; }
 .arch-status-dot { width: 6px; height: 6px; flex: none; border-radius: 50%; background: var(--lime); box-shadow: 0 0 9px #c9f66f99; margin-top: 4px; }
-.arch-caption { display: flex; justify-content: space-between; gap: 12px; color: #8e9f94; font: 11px "Courier New", monospace; margin-top: 15px; }
-.arch-caption span { color: var(--lime); }
+.arch-caption { display: flex; align-items: center; gap: 8px; color: #b9cbb8; font: 11px "Courier New", monospace; margin-top: 15px; }
+.arch-discovery-dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 10px #c9f66faa; }
+.arch-caption .arch-caption-arrow { color: var(--lime); margin-left: 1px; }
+.arch-hint-touch { display: none; }
+@media (hover: hover) and (pointer: fine) { .arch-tree-viewport.is-following, .arch-tree-viewport.is-following .arch-folder, .arch-tree-viewport.is-following .arch-scroll { cursor: none; } }
 @keyframes arch-enter { from { opacity: .45; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 900px) { .arch-panel { max-width: 650px; } }
-@media (max-width: 600px) { .arch-heading h3 { font-size: 21px; } .arch-projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; } .arch-project { min-width: 0; width: 100%; text-align: left; padding: 9px 10px; } .arch-scroll { height: 270px; } .arch-editor-bar { padding: 0 11px; } .arch-editor-meta { padding-inline: 12px; font-size: 9px; } .arch-tree-actions { display: grid; grid-template-columns: max-content max-content; justify-content: start; column-gap: 15px; row-gap: 5px; padding-inline: 12px; } .arch-pan-hint { display: block; grid-column: 1 / -1; color: #a9bb9d; font: 9px "Courier New", monospace; letter-spacing: .15px; white-space: nowrap; } .arch-tree-actions button { font-size: 10px; white-space: nowrap; text-align: left; } .arch-row { min-height: 34px; font-size: 12px; } .arch-caption { font-size: 10px; } }
-@media (prefers-reduced-motion: reduce) { .arch-editor { animation: none; } .arch-project, .arch-folder { transition: none; } }
+@media (max-width: 600px) { .arch-heading h3 { font-size: 21px; } .arch-projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; } .arch-project { min-width: 0; width: 100%; text-align: left; padding: 9px 10px; } .arch-scroll { height: 270px; } .arch-editor-bar { padding: 0 11px; } .arch-editor-meta { padding-inline: 12px; font-size: 9px; } .arch-tree-actions { display: grid; grid-template-columns: max-content max-content; justify-content: start; column-gap: 15px; row-gap: 5px; padding-inline: 12px; } .arch-pan-hint { display: block; grid-column: 1 / -1; color: #a9bb9d; font: 9px "Courier New", monospace; letter-spacing: .15px; white-space: nowrap; } .arch-tree-actions button { font-size: 10px; white-space: nowrap; text-align: left; } .arch-row { min-height: 34px; font-size: 12px; } .arch-caption { font-size: 10px; } .arch-hint-desktop { display: none; } .arch-hint-touch { display: inline; } }
+@media (prefers-reduced-motion: reduce) { .arch-editor { animation: none; } .arch-project, .arch-folder, .arch-guide { transition: none; } .arch-guide-halo { animation: none; } }
