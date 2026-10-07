@@ -1325,59 +1325,6 @@
   padding-top: 125px;
   padding-bottom: 130px;
 }
-.pf-timeline {
-  margin-top: 70px;
-}
-.pf-timeline-item {
-  display: grid;
-  grid-template-columns: 240px 1fr 60px;
-  gap: 40px;
-  border-top: 1px solid var(--line);
-  padding: 42px 0;
-  position: relative;
-}
-.pf-timeline-meta {
-  font:
-    10px "Courier New",
-    monospace;
-  color: #abb5b0;
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
-  padding-top: 5px;
-}
-.pf-timeline-meta > span:nth-child(2) {
-  color: #76857c;
-}
-.pf-timeline-meta b {
-  font-size: 8px;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--lime);
-  margin-top: 10px;
-}
-.pf-timeline-content h3 {
-  font-size: 28px;
-  margin: 12px 0 18px;
-}
-.pf-timeline-content > p {
-  font-size: 13px;
-  color: var(--muted);
-  max-width: 620px;
-}
-.pf-timeline-content details {
-  margin-top: 22px;
-  max-width: 620px;
-}
-.pf-timeline-content summary {
-  display: flex;
-  font-size: 10px;
-  color: #bdcbb9;
-  align-items: center;
-  max-width: 160px;
-}
 .pf ul {
   list-style: none;
   padding: 0;
@@ -1396,12 +1343,6 @@
   left: 0;
   color: var(--lime);
   font-size: 10px;
-}
-.pf-timeline-number {
-  font-size: 43px;
-  letter-spacing: -2px;
-  color: #405047;
-  text-align: right;
 }
 .pf-foundations {
   display: grid;
@@ -1722,10 +1663,6 @@
   .pf-helix-sticky {
     padding-left: 35px;
     padding-right: 35px;
-  }
-  .pf-timeline-item {
-    grid-template-columns: 180px 1fr 40px;
-    gap: 30px;
   }
   .pf-foundations {
     gap: 50px;
@@ -2103,38 +2040,6 @@
     padding-top: 85px;
     padding-bottom: 85px;
   }
-  .pf-timeline {
-    margin-top: 45px;
-  }
-  .pf-timeline-item {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 30px 0;
-  }
-  .pf-timeline-meta {
-    font-size: 9px;
-    gap: 8px;
-  }
-  .pf-timeline-meta b {
-    margin-top: 5px;
-  }
-  .pf-timeline-content h3 {
-    font-size: 25px;
-    margin: 13px 0;
-  }
-  .pf-timeline-content p {
-    font-size: 12px;
-  }
-  .pf-timeline-number {
-    position: absolute;
-    right: 0;
-    top: 25px;
-    font-size: 35px;
-  }
-  .pf-timeline-content .pf-eyebrow {
-    font-size: 8px;
-    line-height: 1.6;
-  }
   .pf-foundations {
     grid-template-columns: 1fr;
     gap: 45px;
@@ -2309,26 +2214,25 @@
 .pf-archive-heading h3 > span,
 .pf-portrait figcaption,.pf-principles > div > span,.pf-orbit-core span,.pf-orbit-pause,
 .pf-skill-inventory summary > span,.pf-workflow-tools h4,
-.pf-timeline-meta,.pf-contact-details > span) {
+.pf-contact-details > span) {
   font-family: "Segoe UI", Helvetica, sans-serif !important;
   font-size: 13px !important; letter-spacing: .25px; line-height: 1.5;
 }
 .pf em { font-family: inherit; font-style: normal; font-weight: 500; }
 .pf :is(.pf-button,.pf-text-link,.pf-project-links a,.pf-skill-selectors button,.pf-filter button,
 .pf-personal,.pf-about-facts > div > span,.pf-orbit-tech span,.pf-tags > span,
-.pf-footer p,.pf-footer > div,.pf-timeline-meta b,.pf-timeline-content summary) { font-size: 13px; }
+.pf-footer p,.pf-footer > div) { font-size: 13px; }
 .pf :is(.pf-about-copy > p,.pf-principles p,.pf-section-heading > p,.pf-skill-copy > p,
-.pf-workflow p,.pf-timeline-content > p,.pf-foundations p,
+.pf-workflow p,.pf-foundations p,
 .pf-contact-top > p,.pf-mobile-project-description,.pf-contact-details,.pf li) { font-size: 15px; }
 .pf :is(.pf-skill-inventory summary,.pf-foundations h4,.pf-foundations summary) { font-size: 15px; }
 .pf .pf-label { gap: 12px; }
 .pf-label > svg { color: var(--lime); }
-.pf :is(.pf-skill-selectors button,.pf-tags > span,.pf-workflow-tools h4,.pf-contact-details > *, .pf-timeline-meta > span) { display: inline-flex; align-items: center; gap: 8px; }
+.pf :is(.pf-skill-selectors button,.pf-tags > span,.pf-workflow-tools h4,.pf-contact-details > *) { display: inline-flex; align-items: center; gap: 8px; }
 .pf-tech-icon { flex-shrink: 0; }
 .pf .pf-orbit-core span { font-size: 12px !important; letter-spacing: .3px; }
 .pf .pf-orbit-tech span { color: #c4d0c9; }
 .pf .pf-small-note { color: #aab9b1; }
-.pf .pf-timeline-meta > span:nth-child(2) { color: #b5c1b9; }
 .pf .pf-footer p > span { color: #afbea7; }
 .pf .pf-work-heading { align-items: center; flex-shrink: 0; }
 .pf .pf-work-heading .pf-label { margin-bottom: 12px; }
@@ -2387,15 +2291,6 @@
 .pf .pf-helix-controls > div { flex: 1; margin: 0; gap: 8px; }
 .pf .pf-helix-controls button { flex-shrink: 0; width: 40px; height: 40px; }
 .pf .pf-helix-controls .pf-eyebrow { font-size: 12px !important; }
-.pf .pf-timeline { padding-bottom: 55vh; }
-.pf .pf-timeline-item { position: sticky; top: calc(112px + var(--stack-index) * 20px); z-index: calc(10 + var(--stack-index)); grid-template-columns: 215px 1fr 55px; gap: 35px; margin-bottom: 100px; padding: 40px; min-height: 360px; border: 1px solid #566f5f70; border-radius: 14px; background: #17201e; box-shadow: 0 -16px 50px #0004; }
-.pf .pf-timeline-item:nth-child(2) { background: #1b2524; }
-.pf .pf-timeline-item:nth-child(3) { background: #202b28; margin-bottom: 0; }
-.pf .pf-timeline-item:has(details[open]) { position: relative; top: auto; }
-.pf-career-icon { color: var(--lime); margin-bottom: 12px; }
-.pf .pf-timeline-number { color: #a7be95; }
-.pf .pf-timeline-content summary { max-width: 200px; gap: 8px; }
-.pf .pf-timeline-content summary > svg:first-child { margin-left: 0; }
 @media (max-width: 1199px) {
   .pf .pf-mobile-menu { display: block; margin-left: auto; padding: 10px; }
   .pf .pf-nav nav { display: none; position: absolute; top: 86px; left: 0; right: 0; background: #101719; padding: 20px 35px; border-bottom: 1px solid var(--line); grid-template-columns: repeat(4, 1fr); gap: 8px 20px; }
@@ -2410,7 +2305,6 @@
   .pf .pf-intro-right > p { font-size: 14px; }
   .pf-project-stage { gap: 25px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .pf .pf-helix-card { width: 78%; }
-  .pf .pf-timeline-item { grid-template-columns: 180px 1fr 40px; gap: 25px; padding: 30px; }
 }
 @media (min-width: 800px) and (max-height: 760px) {
   .pf .pf-helix-sticky { padding: 100px 35px 18px; }
@@ -2422,7 +2316,6 @@
   .pf .pf-project-info > p { font-size: 14px; line-height: 1.55; }
   .pf .pf-project-info .pf-tags { margin: 10px 0; }
   .pf .pf-helix-controls { margin-top: 12px; padding-top: 10px; }
-  .pf .pf-timeline-item { position: relative; top: auto; margin-bottom: 30px; }
 }
 @media (max-width: 799px) {
   .pf .pf-nav nav { top: 70px; grid-template-columns: repeat(2, 1fr); padding: 15px 22px; }
@@ -2456,10 +2349,6 @@
   .pf .pf-mobile-project-description { padding: 0 17px 15px; }
   .pf .pf-card-caption h3 { font-size: 19px; }
   .pf .pf-card-top { font-size: 12px !important; }
-  .pf .pf-timeline { padding-bottom: 15px; }
-  .pf .pf-timeline-item { position: relative; top: auto; grid-template-columns: 1fr; gap: 20px; padding: 25px; margin-bottom: 22px; min-height: 0; }
-  .pf .pf-timeline-number { top: 23px; right: 25px; }
-  .pf .pf-timeline-content h3 { font-size: 25px; }
   .pf .pf-contact-details { flex-direction: column; align-items: flex-start; }
   .pf .pf-contact-details > span { margin-left: 0; }
   .pf .pf-contact-details > a:first-child { font-size: 13px; }
@@ -2474,7 +2363,6 @@
   .pf-footer .pf-footer-links a:hover { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .pf .pf-timeline-item { position: relative; top: auto; margin-bottom: 25px; }
   .pf .pf-project-stage { display: block; }
   .pf .pf-helix-linear .pf-helix-scene { height: auto; overflow: visible; }
   .pf .pf-helix-linear .pf-helix-card { width: min(650px, 100%); }
@@ -2502,7 +2390,6 @@
 .pf .pf-section-heading { gap: 24px; }
 .pf .pf-section-heading > p { padding-bottom: 0; }
 .pf .pf-skill-layout { margin-top: 24px; }
-.pf .pf-timeline { margin-top: 36px; }
 .pf .pf-contact-top h2 > span { margin-left: 14px; }
 .pf .pf-contact-email { margin-top: 25px; }
 @media (max-width: 799px) {
@@ -2625,7 +2512,6 @@
   .pf .pf-archive { padding-top: 66px; padding-bottom: 76px; }
   .pf .pf-workflow { margin-top: 48px; padding-top: 46px; }
   .pf .pf-foundations { margin-top: 44px; padding-top: 48px; }
-  .pf .pf-timeline { padding-bottom: 32vh; }
   .pf #about .pf-about-heading { margin-bottom: 16px; }
   .pf .pf-about-layout { gap: clamp(30px, 4vw, 65px); align-items: start; }
   .pf .pf-about-copy > p { margin-bottom: 10px; line-height: 1.48; }

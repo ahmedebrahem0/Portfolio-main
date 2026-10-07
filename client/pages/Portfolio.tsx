@@ -18,12 +18,12 @@ import {
 import { TechnologyIcon } from "@/components/TechnologyIcon";
 import { AiToolIcon } from "@/components/AiToolIcon";
 import { ArchitectureTree } from "@/components/ArchitectureTree";
+import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { PixelPortrait } from "@/components/PixelPortrait";
 import { SignalText } from "@/components/SignalText";
 import {
   projects,
   skillCategories,
-  experiences,
   education,
   internships,
   memberships,
@@ -911,38 +911,7 @@ export default function Portfolio() {
               Every chapter adds a new perspective.
             </p>
           </div>
-          <div className="pf-timeline">
-            {experiences.map((e, i) => (
-              <article className="pf-timeline-item" key={e.company} style={{ "--stack-index": i } as CSSProperties}>
-                <div className="pf-timeline-meta">
-                  <BriefcaseBusiness size={29} className="pf-career-icon" />
-                  <span><CalendarDays size={16} />{e.period}</span>
-                  <span><MapPin size={16} />{e.location}</span>
-                  {i === 0 && (
-                    <b>
-                      <i className="pf-status" /> CURRENT CHAPTER
-                    </b>
-                  )}
-                </div>
-                <div className="pf-timeline-content">
-                  <span className="pf-eyebrow">{e.company}</span>
-                  <h3>{e.title}</h3>
-                  <p><SignalText text={e.description} disabled={paused || reduced} select={["Authentication", "React", "Redux"]} /></p>
-                  <details>
-                    <summary>
-                      <Layers3 size={17} /> Contributions <Plus size={16} />
-                    </summary>
-                    <ul>
-                      {e.achievements.map((a) => (
-                        <li key={a}><SignalText text={a} disabled={paused || reduced} select={["Architecture", "SEO", "API Integration", "Authentication", "Redux", "State Management"]} /></li>
-                      ))}
-                    </ul>
-                  </details>
-                </div>
-                <span className="pf-timeline-number">{number(i + 1)}</span>
-              </article>
-            ))}
-          </div>
+          <ExperienceTimeline motionDisabled={paused || reduced} />
           <div className="pf-foundations">
             <div id="education" className="pf-reveal">
               <SectionLabel index="↗">THE FOUNDATION</SectionLabel>
