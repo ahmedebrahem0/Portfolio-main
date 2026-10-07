@@ -1,4 +1,4 @@
-import { useRef, type ReactNode } from "react";
+import { useRef, type CSSProperties, type ReactNode } from "react";
 import { useInView } from "framer-motion";
 
 const primary = ["Architecture", "Scalable", "Feature-based", "React", "Next.js", "TypeScript", "Performance", "Accessibility", "SEO", "Lighthouse", "API Integration", "State Management", "RBAC", "Real-world Systems", "ITI", "NTI", "Google", "IEEE"];
@@ -6,6 +6,32 @@ const secondary = ["Maintainable", "Reusable", "Separation of Concerns", "Redux"
 const terms = [...primary, ...secondary].sort((a, b) => b.length - a.length);
 const escape = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const matcher = new RegExp(`\\b(?:${terms.map(escape).join("|")})\\b`, "gi");
+
+function signalLetters(value: string) {
+  let letterIndex = 0;
+  return value.split(/(\s+)/).map((part, partIndex) => {
+    if (/^\s+$/.test(part)) {
+      letterIndex += part.length;
+      return part;
+    }
+    return (
+      <span className="pf-signal-word" key={partIndex}>
+        {Array.from(part).map((letter) => {
+          const index = letterIndex++;
+          return (
+            <span
+              className="pf-signal-char"
+              key={index}
+              style={{ "--signal-index": index } as CSSProperties}
+            >
+              {letter}
+            </span>
+          );
+        })}
+      </span>
+    );
+  });
+}
 
 /** Keeps every word as readable DOM text, including before the reveal. */
 export function SignalText({ text, disabled = false, select }: { text: string; disabled?: boolean; select?: readonly string[] }) {
@@ -23,7 +49,7 @@ export function SignalText({ text, disabled = false, select }: { text: string; d
       const tier = primary.some((term) => term.toLowerCase() === value.toLowerCase()) ? "primary" : "secondary";
       pieces.push(
         <mark className={`pf-signal pf-signal-${tier}`} key={`${index}-${value}`}>
-          {tier === "primary" ? <><span className="pf-signal-base">{value}</span><span className="pf-signal-ink" aria-hidden="true">{value}</span></> : value}
+          {signalLetters(value)}
         </mark>
       );
     } else pieces.push(value);

@@ -2558,44 +2558,64 @@
 /* Keep the biography and its four principles together beside the explorer. */
 .pf-signal-text { display: inline; }
 .pf-signal {
+  background: none;
+  padding: 0;
   color: inherit;
-  background: transparent;
-  box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
-  padding: 0 .055em;
-  margin: 0 -.055em;
-  border-radius: 2px;
-  transition: background-size .72s cubic-bezier(.2,.8,.2,1), color .35s ease;
-  background-repeat: no-repeat;
-  background-size: 0% 100%;
+  box-decoration-break: clone;
 }
 .pf-signal-primary {
-  display: inline-grid;
-  white-space: nowrap;
-  color: #e7f4de;
+  font-size: 1.055em;
   font-weight: 650;
-  background-image: linear-gradient(180deg, #a9df58 0%, #a9df58 100%);
-}
-.pf-signal-primary > span { grid-area: 1 / 1; }
-.pf-signal-primary .pf-signal-ink {
-  color: #111a12;
-  clip-path: inset(0 100% 0 0);
-  pointer-events: none;
-  transition: clip-path .72s cubic-bezier(.2,.8,.2,1);
+  --signal-settle-color: #d9ff8d;
+  --signal-settle-glow:
+    0 0 2px rgba(217, 255, 141, .66),
+    0 0 5px rgba(201, 246, 111, .32);
+  --signal-peak-color: #f7ffd1;
+  --signal-peak-glow:
+    0 0 2px rgba(247, 255, 209, .88),
+    0 0 4px rgba(201, 246, 111, .74),
+    0 0 7px rgba(201, 246, 111, .52),
+    0 0 12px rgba(201, 246, 111, .25);
 }
 .pf-signal-secondary {
-  color: #dcebcf;
   font-weight: 600;
-  background-image: linear-gradient(180deg, transparent 71%, #739955a8 71%, #739955a8 92%, transparent 92%);
+  --signal-settle-color: #d5f5b5;
+  --signal-settle-glow: none;
+  --signal-peak-color: #e9ffd1;
+  --signal-peak-glow: 0 0 3px rgba(201, 246, 111, .34);
 }
-.pf-signal-text.is-visible .pf-signal { background-size: 100% 100%; }
-.pf-signal-text.is-visible .pf-signal-primary .pf-signal-ink { clip-path: inset(0 0 0 0); }
-.pf-signal-text.is-static .pf-signal,
-.pf-signal-text.is-static .pf-signal-ink { transition: none; }
+.pf-signal-word { display: inline-block; white-space: nowrap; }
+.pf-signal-char {
+  color: inherit;
+  text-shadow: none;
+}
+@keyframes pf-signal-letter-reveal {
+  0% { color: inherit; text-shadow: none; }
+  38%, 55% {
+    color: var(--signal-peak-color);
+    text-shadow: var(--signal-peak-glow);
+  }
+  100% {
+    color: var(--signal-settle-color);
+    text-shadow: var(--signal-settle-glow);
+  }
+}
+.pf-signal-text.is-visible:not(.is-static) .pf-signal-char {
+  animation: pf-signal-letter-reveal .95s ease-out both;
+  animation-delay: calc(var(--signal-index) * 24ms);
+}
+.pf-signal-text.is-static .pf-signal-char {
+  color: var(--signal-settle-color);
+  text-shadow: var(--signal-settle-glow);
+}
 @media (prefers-reduced-motion: reduce) {
-  .pf-signal, .pf-signal-primary .pf-signal-ink { transition: none; }
-  .pf-signal { background-size: 100% 100%; }
-  .pf-signal-primary .pf-signal-ink { clip-path: inset(0 0 0 0); }
+  .pf-signal-text .pf-signal-char,
+  .pf-signal-text.is-visible:not(.is-static) .pf-signal-char {
+    animation: none;
+    color: var(--signal-settle-color);
+    text-shadow: var(--signal-settle-glow);
+  }
 }
 @media (min-width: 800px) {
   .pf #about { padding-top: clamp(30px, 4svh, 44px); padding-bottom: clamp(18px, 3svh, 28px); }
