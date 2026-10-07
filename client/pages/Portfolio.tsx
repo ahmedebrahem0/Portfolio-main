@@ -797,7 +797,7 @@ export default function Portfolio() {
             <h2 className="pb-3">
               {/* Thoughtful by nature.{" "}
               <em>Engineer by craft.</em> */}
-              Building Scalable Systems & High-Performance Web Apps
+              Scalable Systems & High-Performance
             </h2>
           </div>
           <div className="pf-about-layout">
