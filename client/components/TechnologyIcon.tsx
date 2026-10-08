@@ -42,6 +42,8 @@ export function SkillTechnologyIcon({ name, size = 27 }: { name: string; size?: 
     case "npm": return <svg {...base}><rect x="1" y="5" width="22" height="14" fill="#cb3837"/><path d="M4 8h16v8h-3v-5h-3v5H4Z" fill="#fff"/><path d="M7 11h2v5H7Zm4 0h2v5h-2Z" fill="#cb3837"/></svg>;
     case "Git": return <svg {...base}><rect x="4" y="4" width="16" height="16" rx="2" transform="rotate(45 12 12)" fill="#f05032"/><path d="M9 8v8m0-5 6 3m0-3v6" fill="none" stroke="#fff" strokeWidth="1.8"/><circle cx="9" cy="8" r="1.5" fill="#fff"/><circle cx="9" cy="16" r="1.5" fill="#fff"/><circle cx="15" cy="11" r="1.5" fill="#fff"/></svg>;
     case "VS Code": return <svg {...base}><path d="m17.3 1 5.2 2.5v17L17.3 23 7.5 15.3 3.2 18.7 1 17v-3l4.1-2L1 10V7l2.2-1.7 4.3 3.4Z" fill="#22a7f2"/><path d="m17.3 1-9.8 7.7L5.1 12l2.4 3.3 9.8 7.7Z" fill="#007acc"/><path d="m17.3 5.8-7.8 6.2 7.8 6.2Z" fill="#fff" opacity=".86"/></svg>;
+    case "React Hook Form": return <svg {...base}><rect x="3" y="2" width="18" height="20" rx="3" fill="#ec5990"/><rect x="7" y="7" width="10" height="2.4" rx="1" fill="#fff"/><rect x="7" y="11" width="10" height="2.4" rx="1" fill="#fff"/><rect x="7" y="15" width="6" height="2.4" rx="1" fill="#fff"/></svg>;
+    case "Formik": return <svg {...base}><rect x="2" y="2" width="20" height="20" rx="4" fill="#2563eb"/><path d="M8 6h9v2.6h-6v2.2h5v2.6h-5V18H8Z" fill="#fff"/></svg>;
     default: return null;
   }
 }

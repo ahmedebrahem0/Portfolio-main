@@ -32,6 +32,8 @@ export const portfolioSkills: PortfolioSkill[] = [
   { name: "React Query", category: "State & data", detail: "Handles asynchronous server state, caching, refetching and request lifecycle.", color: "#ef7d88", mark: "RQ" },
   { name: "Redux", category: "State & data", detail: "Provides a centralized, predictable model for shared client state.", color: "#b59bf5" },
   { name: "Context API", category: "State & data", detail: "Shares cross-cutting values through a component tree without prop drilling.", color: "#79d6e6", mark: "◉" },
+  { name: "React Hook Form", category: "State & data", detail: "Manages complex forms with minimal re-renders and schema-based validation.", color: "#ec5990" },
+  { name: "Formik", category: "State & data", detail: "Handles form state, validation and submission in React applications.", color: "#2563eb" },
   { name: "Axios", category: "API & integration", detail: "Wraps HTTP requests with reusable configuration and response handling.", color: "#9f9be8", mark: "A" },
   { name: "RESTful APIs", category: "API & integration", detail: "Organizes resource-based client and server communication over HTTP.", color: "#93d8c7", mark: "{ }" },
   { name: "JSON", category: "API & integration", detail: "Represents structured data exchanged between services and user interfaces.", color: "#d5c48d", mark: "{}" },
@@ -71,7 +73,7 @@ const pick = (names: string[]) =>
 
 export const skillGroups = [
   { title: "Core", skills: pick(["React.js", "Next.js", "TypeScript", "JavaScript (ES6)", "HTML", "CSS"]) },
-  { title: "State & Data", skills: pick(["Redux Toolkit", "React Query", "Axios"]) },
+  { title: "State & Data", skills: pick(["Redux Toolkit", "React Query", "Axios", "React Hook Form","Formik"]) },
   { title: "Styling & UI", skills: pick(["Tailwind CSS", "Material UI", "Bootstrap", "Styled Components"]) },
   { title: "Tooling & Workflow", skills: pick(["Vite", "Webpack", "Git", "GitHub", "Postman", "Figma", "VS Code"]) },
 ];

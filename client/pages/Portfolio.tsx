@@ -863,7 +863,7 @@ export default function Portfolio() {
               {education.map((e) => (
                 <article key={e.degree}>
                   <span className="pf-eyebrow">
-                    {e.period} / {e.location}
+                    {e.period.split(/(\d{4})/).map((part, i) => /^\d{4}$/.test(part) ? <span key={i}>{part.slice(0, 2)}<b className="pf-year-end">{part.slice(2)}</b></span> : part)} / {e.location}
                   </span>
                   <h3>{e.degree}</h3>
                   <h4 className="pf-university-name">

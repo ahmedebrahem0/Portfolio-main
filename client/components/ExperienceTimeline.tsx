@@ -29,6 +29,7 @@ export function ExperienceTimeline({ motionDisabled }: { motionDisabled: boolean
     const fill = fillRef.current;
     if (!timeline || !svg || !track || !fill) return;
 
+    const journey = timeline.closest<HTMLElement>(".pf-journey");
     const entries = Array.from(timeline.querySelectorAll<HTMLElement>(".pf-career-entry"));
     let measureFrame = 0;
     let scrollFrame = 0;
@@ -56,6 +57,7 @@ export function ExperienceTimeline({ motionDisabled }: { motionDisabled: boolean
         progressLength = (lo + hi) / 2;
       }
       fill.style.strokeDashoffset = `${Math.max(0, length - progressLength)}`;
+      journey?.classList.toggle("is-timeline-complete", length > 0 && progressLength >= length - 0.5);
       entries.forEach((entry) => {
         const node = entry.querySelector<HTMLElement>(".pf-career-node");
         if (!node) return;
@@ -123,6 +125,7 @@ export function ExperienceTimeline({ motionDisabled }: { motionDisabled: boolean
       cancelAnimationFrame(scrollFrame);
       revealTimers.forEach(window.clearTimeout);
       timeline.classList.remove("is-animated");
+      journey?.classList.remove("is-timeline-complete");
     };
   }, [motionDisabled]);
 

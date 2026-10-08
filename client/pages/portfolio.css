@@ -2774,3 +2774,15 @@
   .pf .pf-ring-chip { width: 11cqw; height: 11cqw; margin: -5.5cqw 0 0 -5.5cqw; }
   .pf .pf-ring-core { width: 12cqw; height: 12cqw; }
 }
+
+.pf .pf-foundations { --fg: 44px; position: relative; border-top-color: transparent; }
+.pf .pf-foundations::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: var(--line); }
+.pf .pf-foundations::after { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: linear-gradient(90deg, transparent, var(--lime) 20%, var(--lime) 80%, transparent); box-shadow: 0 0 18px #c9f66fb0, 0 0 4px var(--lime); transform: scaleX(0); opacity: 0; transform-origin: center; transition: transform .9s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; pointer-events: none; }
+.pf .pf-journey.is-timeline-complete .pf-foundations::after { transform: scaleX(1); opacity: 1; }
+.pf .pf-foundations > #education { position: relative; }
+.pf .pf-foundations > #education::before { content: ""; position: absolute; left: calc(100% + 50px); top: calc(var(--fg) * -1 - 1px); width: 2px; height: var(--fg); background: linear-gradient(var(--lime), #c9f66f20); box-shadow: 0 0 12px #c9f66f90; transform: scaleY(0); transform-origin: top; transition: transform .45s ease; }
+.pf .pf-journey.is-timeline-complete .pf-foundations > #education::before { transform: scaleY(1); }
+@media (max-width: 799px) { .pf .pf-foundations > #education::before { display: none; } }
+@media (prefers-reduced-motion: reduce) { .pf .pf-foundations::after, .pf .pf-foundations > #education::before { transition: none; } }
+
+.pf .pf-year-end { color: #fff; font-size: 1em; font-weight: 700; }
