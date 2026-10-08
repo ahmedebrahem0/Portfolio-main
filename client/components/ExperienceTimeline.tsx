@@ -1,5 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from "react";
-import { BriefcaseBusiness, CalendarDays, Layers3, MapPin, Plus } from "lucide-react";
+import { BriefcaseBusiness, CalendarDays, MapPin } from "lucide-react";
 import { experiences } from "@/data/portfolio";
 import "./experience-timeline.css";
 
@@ -34,10 +34,14 @@ export function ExperienceTimeline({ motionDisabled }: { motionDisabled: boolean
     let scrollFrame = 0;
     let disposed = false;
     let length = 0;
+    const revealTimers: number[] = [];
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const update = () => {
-      const marker = window.innerHeight * .57;
+      // Reveal chapters as their node approaches the reader's lower field of view.
+      // The rail still tracks scrolling in both directions, but completed chapters
+      // remain readable when the reader scrolls back to revisit them.
+      const marker = window.innerHeight * (window.matchMedia("(max-width: 799px)").matches ? .78 : .52);
       const bounds = timeline.getBoundingClientRect();
       const targetY = Math.max(0, Math.min(bounds.height, marker - bounds.top));
       let progressLength = length;
@@ -55,9 +59,17 @@ export function ExperienceTimeline({ motionDisabled }: { motionDisabled: boolean
       entries.forEach((entry) => {
         const node = entry.querySelector<HTMLElement>(".pf-career-node");
         if (!node) return;
-        const active = motionDisabled || prefersReduced || node.getBoundingClientRect().top <= marker;
-        entry.classList.toggle("is-lit", active);
-        entry.classList.toggle("is-revealed", active);
+        const nodeRect = node.getBoundingClientRect();
+        const distance = nodeRect.top + nodeRect.height / 2 - marker;
+        const charge = motionDisabled || prefersReduced ? 1 : Math.max(0, Math.min(1, 1 - distance / 170));
+        entry.style.setProperty("--node-charge", String(charge));
+        if (motionDisabled || prefersReduced) {
+          entry.classList.add("is-lit", "is-card-revealed", "is-contributions-revealed");
+        } else if (distance <= 0 && !entry.classList.contains("is-lit")) {
+          entry.classList.add("is-lit");
+          revealTimers.push(window.setTimeout(() => entry.classList.add("is-card-revealed"), 230));
+          revealTimers.push(window.setTimeout(() => entry.classList.add("is-contributions-revealed"), 510));
+        }
       });
     };
 
@@ -109,6 +121,7 @@ export function ExperienceTimeline({ motionDisabled }: { motionDisabled: boolean
       window.removeEventListener("resize", scheduleMeasure);
       cancelAnimationFrame(measureFrame);
       cancelAnimationFrame(scrollFrame);
+      revealTimers.forEach(window.clearTimeout);
       timeline.classList.remove("is-animated");
     };
   }, [motionDisabled]);
@@ -118,8 +131,8 @@ export function ExperienceTimeline({ motionDisabled }: { motionDisabled: boolean
     {experiences.map((experience, index) => <article className={`pf-career-entry${index % 2 ? " is-right" : " is-left"}`} key={experience.company}>
       <span className="pf-career-node" aria-hidden="true"><span /></span>
       <span className="pf-career-date"><CalendarDays size={13} aria-hidden="true" />{experience.period}</span>
-      <aside className="pf-career-contributions" aria-label={`${experience.company} contributions`}>
-        <details open><summary><Layers3 size={16} aria-hidden="true" /><span>Contributions</span><Plus size={16} aria-hidden="true" /></summary><AchievementList items={experience.achievements} /></details>
+      <aside className="pf-career-contributions" aria-label={`${experience.company} achievements`}>
+        <AchievementList items={experience.achievements} />
       </aside>
       <div className="pf-career-card">
         <div className="pf-career-card-top"><span className="pf-career-card-index">{number(index + 1)} / {number(experiences.length)}</span>{index === 0 && <span className="pf-career-now"><i /> CURRENT CHAPTER</span>}</div>
@@ -127,7 +140,7 @@ export function ExperienceTimeline({ motionDisabled }: { motionDisabled: boolean
         <h3>{experience.title}</h3>
         <div className="pf-career-facts"><span><MapPin size={15} aria-hidden="true" />{experience.location}</span></div>
         <p><IlluminatedText text={experience.description} /></p>
-        <details className="pf-career-mobile-details"><summary><Layers3 size={17} aria-hidden="true" /> Contributions <Plus size={16} aria-hidden="true" /></summary><AchievementList items={experience.achievements} /></details>
+        <div className="pf-career-mobile-details" aria-label={`${experience.company} achievements`}><AchievementList items={experience.achievements} /></div>
       </div>
     </article>)}
   </div>;
