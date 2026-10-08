@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Page scrollbar belongs to html, not the portfolio's inner wrapper. */
+html { scrollbar-color: #9bbd65 #101719; scrollbar-width: thin; }
+html::-webkit-scrollbar { width: 11px; }
+html::-webkit-scrollbar-track { background: #101719; }
+html::-webkit-scrollbar-thumb { background: #7f9e57; border: 2px solid #101719; border-radius: 8px; }
+html::-webkit-scrollbar-thumb:hover { background: #c9f66f; }
+
 @layer base {
   /**
    * Tailwind CSS theme

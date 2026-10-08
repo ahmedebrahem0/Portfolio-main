@@ -2568,3 +2568,136 @@
 @media (min-width: 1200px) and (max-height: 800px) {
   .pf .pf-archive { padding-top: 24px; padding-bottom: 29px; }
 }
+
+/* Skills catalogue: the orbit is a window onto the complete CV, not a second inventory. */
+.pf .pf-skill-layout { min-width: 0; }
+.pf .pf-orbits { --orbit-inner: 132px; --orbit-outer: 205px; }
+.pf .pf-orbit-tech { width: 58px; height: 58px; top: -29px; left: calc(var(--orbit-outer) - 29px); border-radius: 11px; }
+.pf .pf-orbit-inner .pf-orbit-tech { left: calc(var(--orbit-inner) - 29px); }
+.pf .pf-orbit-tech.is-active { background: #263629; border-color: var(--lime); box-shadow: 0 0 0 4px #c9f66f1a, 0 0 22px #c9f66f90, inset 0 0 18px #c9f66f20; }
+.pf .pf-orbit-tech.is-active span { color: var(--lime); text-shadow: 0 0 9px #c9f66f80; }
+.pf .pf-orbit-tech span { width: max-content; max-width: 108px; white-space: normal; text-align: center; line-height: 1.2; }
+.pf .pf-orbit-mark { font: 700 17px/1 "Courier New", monospace; letter-spacing: -.06em; color: var(--tech-color); }
+.pf .pf-skill-readout { min-height: 170px; animation: pf-skill-enter .42s ease both; }
+.pf .pf-skill-readout p { max-width: 400px; font-size: 15px; line-height: 1.65; color: #b9c7bf; }
+.pf .pf-skill-count { color: var(--lime); margin-left: 12px; }
+.pf .pf-skill-progress { height: 2px; width: min(100%, 390px); background: #52634c75; margin: 9px 0 19px; }
+.pf .pf-skill-progress span { display: block; height: 100%; background: var(--lime); box-shadow: 0 0 12px #c9f66f91; transition: width .35s ease; }
+.pf .pf-skill-controls { display: flex; align-items: center; gap: 9px; max-width: 400px; }
+.pf .pf-skill-controls label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+.pf .pf-skill-controls button { flex: none; width: 42px; height: 42px; border: 1px solid #697a61; color: var(--lime); display: grid; place-items: center; transition: border-color .2s, background .2s, transform .2s; }
+.pf .pf-skill-controls button:hover { border-color: var(--lime); background: #c9f66f1b; transform: translateY(-2px); }
+.pf .pf-skill-controls select { min-width: 0; flex: 1; height: 42px; padding: 0 12px; background: #17211c; color: #f0f4e9; border: 1px solid #697a61; font-size: 13px; }
+.pf .pf-skill-controls select option { background: #17211c; color: #f0f4e9; }
+.pf .pf-skill-controls :is(button, select):focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+.pf .pf-skill-copy .pf-small-note { display: block; margin-top: 13px; font-size: 10px; letter-spacing: .02em; }
+.pf .pf-nav nav > a { position: relative; padding: 11px 3px; transition: color .25s ease, text-shadow .25s ease; }
+.pf .pf-nav nav > a::after { content: ""; position: absolute; left: 4px; right: 4px; bottom: 3px; height: 2px; background: var(--lime); box-shadow: 0 0 12px #c9f66fc9; transform: scaleX(0); transform-origin: left center; transition: transform .32s cubic-bezier(.2,.8,.2,1); }
+.pf .pf-nav nav > a.is-active, .pf .pf-nav nav > a[aria-current="location"] { color: var(--lime); text-shadow: 0 0 14px #c9f66f75; }
+.pf .pf-nav nav > a.is-active svg { color: var(--lime); filter: drop-shadow(0 0 6px #c9f66f8c); }
+.pf .pf-nav nav > a.is-active::after { transform: scaleX(1); }
+.pf .pf-nav nav > a:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+@keyframes pf-skill-enter { from { opacity: .45; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (min-width: 800px) and (max-width: 1050px) {
+  .pf .pf-skill-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 46px; }
+  .pf .pf-orbits { width: 420px; max-width: 100%; height: 430px; transform: scale(.78); transform-origin: center left; margin: 0; --orbit-inner: 116px; --orbit-outer: 178px; }
+  .pf .pf-orbit-track.pf-track-one { width: 232px; height: 232px; }
+  .pf .pf-orbit-track.pf-track-two { width: 356px; height: 356px; }
+  .pf .pf-orbit-track.pf-track-three { width: 400px; height: 400px; }
+}
+@media (max-width: 799px) {
+  .pf .pf-skill-layout { margin-bottom: 28px; }
+  .pf .pf-skill-readout { min-height: 135px; }
+  .pf .pf-orbits { --orbit-inner: 118px; --orbit-outer: 178px; }
+  .pf .pf-orbit-tech span { font-size: 16px; max-width: 98px; }
+  .pf .pf-nav nav > a { padding: 14px 7px; }
+  .pf .pf-nav nav > a::after { left: 7px; right: 7px; bottom: 7px; }
+}
+@media (max-width: 380px) {
+  .pf .pf-skill-readout h3 { font-size: 30px; }
+  .pf .pf-orbits { --orbit-inner: 110px; --orbit-outer: 165px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf .pf-skill-readout { animation: none; }
+  .pf .pf-nav nav > a, .pf .pf-nav nav > a::after, .pf .pf-skill-progress span { transition: none; }
+}
+
+/* One complete skill constellation: every logo occupies its own tile on one rail. */
+.pf .pf-skill-layout { grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: clamp(25px, 4vw, 70px); }
+.pf .pf-orbits {
+  --orbit-radius: 218px;
+  width: 100%; max-width: 560px; height: 540px;
+  margin: 0 auto; transform: none;
+}
+.pf .pf-orbit-track.pf-track-one {
+  width: calc(var(--orbit-radius) * 2); height: calc(var(--orbit-radius) * 2);
+  border-color: #c9f66f4b; box-shadow: 0 0 35px #c9f66f0a, inset 0 0 35px #c9f66f08;
+}
+.pf .pf-orbit-core { width: 100px; height: 100px; gap: 9px; }
+.pf .pf-orbit-tech {
+  width: 46px; height: 46px; top: -23px;
+  left: calc(var(--orbit-radius) - 23px);
+  border-radius: 9px; cursor: pointer; padding: 0;
+}
+.pf .pf-orbit-tech .pf-tech-icon { width: 27px; height: 27px; }
+.pf .pf-orbit-tech:hover { border-color: var(--tech-color); background: #25342b; }
+.pf .pf-orbit-tech:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; z-index: 3; }
+.pf .pf-orbit-tech.is-active { z-index: 2; }
+.pf .pf-orbits.pf-paused .pf-orbit-arm,
+.pf .pf-orbits.pf-paused .pf-orbit-tech { animation-play-state: paused; }
+.pf .pf-skill-readout { min-height: 152px; }
+.pf .pf-skill-progress { margin-bottom: 14px; }
+@media (min-width: 800px) and (max-width: 1100px) {
+  .pf .pf-orbits { --orbit-radius: 166px; height: 420px; }
+  .pf .pf-skill-layout { grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); gap: 25px; }
+}
+@media (max-width: 799px) {
+  .pf .pf-skill-layout { display: flex; flex-direction: column; gap: 10px; }
+  .pf .pf-orbits {
+    --orbit-radius: clamp(112px, 34vw, 150px);
+    width: min(100%, 380px); height: min(calc(100vw - 36px), 380px);
+    max-width: none; margin: 0 auto; transform: none;
+  }
+  .pf .pf-orbit-tech { width: 34px; height: 34px; top: -17px; left: calc(var(--orbit-radius) - 17px); border-radius: 7px; }
+  .pf .pf-orbit-tech .pf-tech-icon { width: 22px; height: 22px; }
+  .pf .pf-orbit-core { width: 76px; height: 76px; gap: 4px; }
+  .pf .pf-orbit-core svg { width: 25px; height: 25px; }
+  .pf .pf-orbit-core span { font-size: 9px !important; }
+  .pf .pf-skill-copy { margin-top: 0; }
+}
+@media (max-width: 380px) {
+  .pf .pf-orbits { width: min(100%, 306px); height: min(calc(100vw - 36px), 306px); margin: 0 auto; --orbit-radius: clamp(112px, 34vw, 122px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf .pf-orbit-arm, .pf .pf-orbit-tech { animation: none !important; }
+}
+
+.pf .pf-orbit-core strong { color: var(--lime); font: 700 17px/1 "Courier New", monospace; }
+.pf .pf-orbit-core span { white-space: nowrap; }
+@media (max-width: 799px) {
+  /* Generous invisible targets; the visible logo tiles remain separated. */
+  .pf .pf-orbit-tech {
+    width: 40px; height: 40px; top: -20px;
+    left: calc(var(--orbit-radius) - 20px);
+    border: 0; background: transparent; box-shadow: none;
+    position: absolute; isolation: isolate;
+  }
+  .pf .pf-orbit-tech::before {
+    content: ""; position: absolute; z-index: -1;
+    width: 30px; height: 30px; inset: 5px;
+    border: 1px solid #40504b; border-radius: 7px; background: #111a1c;
+    transition: border-color .2s, background .2s, box-shadow .2s;
+  }
+  .pf .pf-orbit-tech:hover, .pf .pf-orbit-tech.is-active { border: 0; background: transparent; box-shadow: none; }
+  .pf .pf-orbit-tech:hover::before { border-color: var(--tech-color); background: #25342b; }
+  .pf .pf-orbit-tech.is-active::before { border-color: var(--lime); background: #263629; box-shadow: 0 0 0 3px #c9f66f1a, 0 0 17px #c9f66f90; }
+  .pf .pf-orbit-core { gap: 3px; }
+  .pf .pf-orbit-core strong { font-size: 14px; }
+}
+@media (max-width: 420px) {
+  .pf .pf-orbits {
+    --orbit-radius: clamp(132px, 41vw, 160px);
+    width: 100vw; height: 100vw; max-width: none;
+    margin-left: calc((100% - 100vw) / 2); margin-right: 0;
+  }
+}

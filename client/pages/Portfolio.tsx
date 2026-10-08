@@ -15,7 +15,7 @@ import {
   Home, User, BriefcaseBusiness, GraduationCap, BookOpen, Layers3, Cpu, Mail,
   MapPin, Linkedin, Phone, CalendarDays, Network, Gauge, ShieldCheck, Rocket, Braces, Users,
 } from "lucide-react";
-import { TechnologyIcon } from "@/components/TechnologyIcon";
+import { TechnologyIcon, SkillTechnologyIcon } from "@/components/TechnologyIcon";
 import { AiToolIcon } from "@/components/AiToolIcon";
 import { ArchitectureTree } from "@/components/ArchitectureTree";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
@@ -23,11 +23,11 @@ import { PixelPortrait } from "@/components/PixelPortrait";
 import { SignalText } from "@/components/SignalText";
 import {
   projects,
-  skillCategories,
   education,
   internships,
   memberships,
 } from "@/data/portfolio";
+import { orbitSkills } from "@/data/skills";
 import "./portfolio.css";
 const email = "ahmed.ebrahem.ebdelazem@gmail.com";
 const whatsapp = "https://wa.me/201099491558";
@@ -88,56 +88,6 @@ const navigation = [
   { id: "experience", label: "Experience", icon: BriefcaseBusiness }, { id: "education", label: "Education", icon: GraduationCap },
   { id: "internships", label: "Internships", icon: BookOpen }, { id: "contact", label: "Contact", icon: Mail },
 ];
-const techs = [
-  [
-    "React.js",
-    "⚛",
-    "Component-driven interfaces, reusable architecture, and production applications.",
-    "#86dcf6",
-  ],
-  [
-    "Next.js",
-    "N",
-    "Production storefronts, server components, SEO architecture, and scalable platforms.",
-    "#f4f1e8",
-  ],
-  [
-    "TypeScript",
-    "TS",
-    "Typed application architecture for maintainable dashboards and reliable integrations.",
-    "#91b8ff",
-  ],
-  [
-    "Redux Toolkit",
-    "R",
-    "Predictable state, RTK Query, and synchronized customer journeys.",
-    "#c5b1ff",
-  ],
-  [
-    "Tailwind CSS",
-    "≈",
-    "Responsive interfaces, coherent design systems, and carefully crafted visual details.",
-    "#85e5de",
-  ],
-  [
-    "JavaScript",
-    "JS",
-    "Interactive experiences, application logic, and strong web fundamentals.",
-    "#e6ee91",
-  ],
-  [
-    "Figma",
-    "F",
-    "Bringing ideas into focus, from visual hierarchy to responsive user experiences.",
-    "#f2b8a6",
-  ],
-  [
-    "Git & GitHub",
-    "G",
-    "Version control, collaborative workflows, and continuous delivery.",
-    "#f3ac95",
-  ],
-];
 function SectionLabel({
   index,
   children,
@@ -169,77 +119,69 @@ function ProjectLinks({ project }: { project: Project }) {
   );
 }
 function SkillOrbit({ paused }: { paused: boolean }) {
-  const [active, setActive] = useState(0),
-    [stopped, setStopped] = useState(false);
+  const [active, setActive] = useState(0);
+  const [interacting, setInteracting] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [holdUntil, setHoldUntil] = useState(0);
+  const orbitRef = useRef<HTMLDivElement>(null);
+  const skill = orbitSkills[active];
+  const selectSkill = (index: number) => {
+    setActive(index);
+    setHoldUntil(Date.now() + 6500);
+  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.12 });
+    if (orbitRef.current) observer.observe(orbitRef.current);
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    if (paused || interacting || !visible) return;
+    const timer = window.setInterval(() => {
+      if (Date.now() >= holdUntil) setActive((index) => (index + 1) % orbitSkills.length);
+    }, 2600);
+    return () => window.clearInterval(timer);
+  }, [paused, interacting, visible, holdUntil]);
   return (
-    <div className="pf-skill-layout">
-      <div className={`pf-orbits ${paused || stopped ? "pf-paused" : ""}`}>
-        <div className="pf-orbit-track pf-track-one" />
-        <div className="pf-orbit-track pf-track-two" />
-        <div className="pf-orbit-track pf-track-three" />
+    <div className="pf-skill-layout" onMouseEnter={() => setInteracting(true)} onMouseLeave={() => setInteracting(false)} onFocusCapture={() => setInteracting(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setInteracting(false); }}>
+      <div ref={orbitRef} className={`pf-orbits ${paused || interacting ? "pf-paused" : ""}`}>
+        <div className="pf-orbit-track pf-track-one" aria-hidden="true" />
         <div className="pf-orbit-core">
           <Code2 size={34} />
           <span>MY STACK</span>
+          <strong>{orbitSkills.length}</strong>
         </div>
-        {techs.map(([name, , , color], i) => (
+        {orbitSkills.map((item, i) => (
           <div
-            key={name}
-            className={`pf-orbit-arm ${i < 3 ? "pf-orbit-inner" : "pf-orbit-outer"}`}
+            key={item.name}
+            className="pf-orbit-arm"
             style={
               {
-                "--angle": `${i * 47}deg`,
-                "--duration": i < 3 ? "40s" : "58s",
+                "--angle": `${(i * 360) / orbitSkills.length}deg`,
+                "--duration": "120s",
               } as CSSProperties
             }
           >
             <button
+              type="button"
               className={`pf-orbit-tech ${active === i ? "is-active" : ""}`}
-              style={{ "--tech-color": color } as CSSProperties}
-              onClick={() => setActive(i)}
-              aria-label={`Explore ${name}`}
+              style={{ "--tech-color": item.color } as CSSProperties}
+              onClick={() => selectSkill(i)}
+              aria-label={`Explore ${item.name}`}
               aria-pressed={active === i}
             >
-              <TechnologyIcon name={name} size={30} />
-              <span>{name}</span>
+              <SkillTechnologyIcon name={item.name} size={25} />
             </button>
           </div>
         ))}
-        {/* <button
-          className="pf-orbit-pause"
-          disabled={paused}
-          aria-pressed={paused || stopped}
-          onClick={() => setStopped(!stopped)}
-        >
-          {paused || stopped ? <Play size={13} /> : <Pause size={13} />}{" "}
-          {paused
-            ? "MOTION DISABLED"
-            : stopped
-              ? "RESUME ORBITS"
-              : "PAUSE ORBITS"}
-        </button> */}
       </div>
       <div className="pf-skill-copy">
-        <span className="pf-eyebrow">CONNECTED BY CURIOSITY</span>
-        <h3>
-          {techs[active][0]}
-          <span style={{ color: techs[active][3] }}>.</span>
-        </h3>
-        <p>{techs[active][2]}</p>
-        <div className="pf-skill-selectors">
-          {techs.map(([name], i) => (
-            <button
-              key={name}
-              onClick={() => setActive(i)}
-              className={active === i ? "is-active" : ""}
-              aria-pressed={active === i}
-            >
-              <TechnologyIcon name={name} size={18} /> {name}
-            </button>
-          ))}
+        <span className="pf-eyebrow">{skill.category} <span className="pf-skill-count">{number(active + 1)} / {number(orbitSkills.length)}</span></span>
+        <div className="pf-skill-readout" key={skill.name} aria-live={paused || interacting ? "polite" : "off"}>
+          <h3>{skill.name}<span style={{ color: skill.color }}>.</span></h3>
+          <p>{skill.detail}</p>
         </div>
-        <span className="pf-small-note">
-          Select a technology. Explore the possibilities.
-        </span>
+        <div className="pf-skill-progress" aria-hidden="true"><span style={{ width: `${((active + 1) / orbitSkills.length) * 100}%` }} /></div>
+        <span className="pf-small-note">{paused ? "Motion off · select any logo to explore" : "Every logo in one orbit · hover or focus to pause"}</span>
       </div>
     </div>
   );
@@ -603,12 +545,50 @@ function Archive() {
 
 export default function Portfolio() {
   const [menu, setMenu] = useState(false),
+    [activeSection, setActiveSection] = useState("home"),
     [paused, setPaused] = useState(false),
     [reduced, setReduced] = useState(
       () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     );
   const page = useRef<HTMLDivElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    // React renders the section after the browser's initial fragment-scroll pass.
+    let frame = 0;
+    const navigateToHash = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!navigation.some((item) => item.id === id)) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      const headerHeight = document.querySelector<HTMLElement>(".pf-nav")?.offsetHeight ?? 0;
+      window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - headerHeight - 12, behavior: "instant" });
+      setActiveSection(id);
+    };
+    const schedule = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(() => { frame = requestAnimationFrame(navigateToHash); }); };
+    schedule();
+    window.addEventListener("hashchange", schedule);
+    window.addEventListener("popstate", schedule);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener("hashchange", schedule); window.removeEventListener("popstate", schedule); };
+  }, []);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const anchor = Math.min(window.innerHeight * 0.37, 280);
+      let current = "home";
+      for (const { id } of navigation) {
+        const element = document.getElementById(id);
+        if (element && element.getBoundingClientRect().top <= anchor) current = id;
+      }
+      setActiveSection(current);
+    };
+    const request = () => { if (!frame) frame = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", request, { passive: true });
+    window.addEventListener("resize", request);
+    window.addEventListener("hashchange", request);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", request); window.removeEventListener("resize", request); window.removeEventListener("hashchange", request); };
+  }, []);
   useEffect(() => {
     if (!menu) return;
     const close = (event: KeyboardEvent) => {
@@ -704,7 +684,7 @@ export default function Portfolio() {
           className={menu ? "is-open" : ""}
         >
           {navigation.map(({ id, label, icon: Icon }) => (
-            <a key={id} href={`#${id}`} onClick={() => setMenu(false)}>
+            <a key={id} href={`#${id}`} className={activeSection === id ? "is-active" : ""} aria-current={activeSection === id ? "location" : undefined} onClick={() => { setActiveSection(id); setMenu(false); }}>
               <Icon size={15} aria-hidden="true" /> {label}
             </a>
           ))}
@@ -793,11 +773,11 @@ export default function Portfolio() {
         </section>
         <section id="about" className="pf-about pf-wrap">
           <div className="pf-about-heading pf-reveal">
-            <SectionLabel index="01">THE HUMAN BEHIND THE CODE</SectionLabel>
+            <SectionLabel index="01">SYSTEM ARCHITECTURE</SectionLabel>
             <h2 className="pb-3">
               {/* Thoughtful by nature.{" "}
               <em>Engineer by craft.</em> */}
-              Scalable Systems & High-Performance
+              Building Scalable, High-Performance Systems
             </h2>
           </div>
           <div className="pf-about-layout">
@@ -850,31 +830,14 @@ export default function Portfolio() {
           <div className="pf-wrap">
             <div className="pf-section-heading pf-reveal">
               <div>
-                <SectionLabel index="02">THE CREATIVE TOOLKIT</SectionLabel>
+                <SectionLabel index="02">TECHNICAL SKILLS</SectionLabel>
                 <h2>
-                  A universe{" "}
-                  of <em>possibilities.</em>
+                  Technologies I Build With.
                 </h2>
               </div>
               <p><SignalText disabled={paused || reduced} text="From typed interfaces to reliable data flow, I keep state management predictable as products grow." select={["State Management"]} /></p>
             </div>
             <SkillOrbit paused={paused || reduced} />
-            <div className="pf-skill-inventory pf-reveal">
-              {Object.entries(skillCategories).map(([category, skills], i) => (
-                <details key={category}>
-                  <summary>
-                    <span>{number(i + 1)}</span>
-                    {category}
-                    <Plus size={16} />
-                  </summary>
-                  <div className="pf-tags">
-                    {skills.map((s) => (
-                      <span key={s.name}><TechnologyIcon name={s.name} size={17} />{s.name}</span>
-                    ))}
-                  </div>
-                </details>
-              ))}
-            </div>
             <div className="pf-human-skills pf-reveal">
               <span className="pf-eyebrow"><Users size={16} /> THE HUMAN SKILLS</span>
               <p>Team Collaboration · Problem Solving · Adaptability · Continuous Learning · Growth Mindset · Time Management · Multitasking · Deadline-Oriented</p>
@@ -899,10 +862,9 @@ export default function Portfolio() {
         <section id="experience" className="pf-journey pf-wrap">
           <div className="pf-section-heading pf-reveal">
             <div>
-              <SectionLabel index="04">ALWAYS MOVING FORWARD</SectionLabel>
+              <SectionLabel index="04">PROFESSIONAL EXPERIENCE</SectionLabel>
               <h2>
-                Built through{" "}
-                <em>experience.</em>
+                Engineering Impact in Production
               </h2>
             </div>
             <p>
