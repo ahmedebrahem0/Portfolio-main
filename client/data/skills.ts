@@ -61,3 +61,17 @@ export const orbitSkills = orbitSkillNames.map((name) => {
   if (!skill) throw new Error(`Missing orbit skill: ${name}`);
   return skill;
 });
+
+const pick = (names: string[]) =>
+  names.map((name) => {
+    const skill = portfolioSkills.find((entry) => entry.name === name);
+    if (!skill) throw new Error(`Missing skill: ${name}`);
+    return skill;
+  });
+
+export const skillGroups = [
+  { title: "Core", skills: pick(["React.js", "Next.js", "TypeScript", "JavaScript (ES6)", "HTML", "CSS"]) },
+  { title: "State & Data", skills: pick(["Redux Toolkit", "React Query", "Axios"]) },
+  { title: "Styling & UI", skills: pick(["Tailwind CSS", "Material UI", "Bootstrap", "Styled Components"]) },
+  { title: "Tooling & Workflow", skills: pick(["Vite", "Webpack", "Git", "GitHub", "Postman", "Figma", "VS Code"]) },
+];

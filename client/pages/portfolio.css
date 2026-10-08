@@ -2701,3 +2701,63 @@
     margin-left: calc((100% - 100vw) / 2); margin-right: 0;
   }
 }
+
+.pf-skill-groups { display: grid; gap: 22px; }
+.pf-skill-group { display: grid; gap: 10px; }
+.pf-skill-group-title { font: 700 11px/1 "Courier New", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--lime); }
+.pf-skill-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.pf-skill-chips li { display: inline-flex; align-items: center;padding: 12px 18px; border: 1px solid var(--line); background: #ffffff05; color: #c4d0c9; font-size: 14px; transition: border-color .2s ease, background-color .2s ease, color .2s ease, transform .2s ease; }
+.pf-skill-chips li:hover { border-color: var(--tech-color); background: #25342b; color: #fff; transform: translateY(-2px); }
+.pf-skill-chips .pf-tech-icon { width: 20px; height: 20px; flex: none; }
+@media (max-width: 560px) {
+  .pf-skill-chips { gap: 8px; }
+  .pf-skill-chips li { padding: 9px 12px; font-size: 13px; }
+}
+
+.pf-skill-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center;  }
+.pf-rings { position: relative; width: min(100%, 480px); aspect-ratio: 1; container-type: size; justify-self: center; }
+.pf-ring { position: absolute; inset: 50% auto auto 50%; width: 0; height: 0; animation: pf-ring-spin var(--dur) linear infinite; animation-direction: var(--dir); }
+.pf-ring-track { position: absolute; width: calc(var(--r) * 2); height: calc(var(--r) * 2); left: calc(var(--r) * -1); top: calc(var(--r) * -1); border: 1px dashed #ffffff2a; border-radius: 50%; }
+.pf-ring-item { position: absolute; left: 0; top: 0; transform: rotate(var(--a)) translateX(var(--r)); }
+.pf-ring-upright { transform: rotate(calc(var(--a) * -1)); }
+.pf-ring-chip { display: grid; place-items: center; width: 11cqw; height: 11cqw; margin: -5.5cqw 0 0 -5.5cqw; border: 1px solid var(--line); border-radius: 12px; background: #111a16; animation: pf-ring-spin var(--dur) linear infinite; animation-direction: var(--cdir); transition: border-color .2s ease, background-color .2s ease; }
+.pf-ring-chip:hover { border-color: var(--tech-color); background: #25342b; }
+.pf-ring-chip .pf-tech-icon { width: 55%; height: 55%; }
+.pf-ring-core { position: absolute; inset: 50% auto auto 50%; width: 12cqw; height: 12cqw; transform: translate(-50%, -50%); display: grid; place-items: center; border: 1px solid var(--lime); border-radius: 50%; color: var(--lime); background: #c9f66f10; }
+.pf-ring-core svg { width: 50%; height: 50%; }
+.pf-rings:hover :is(.pf-ring, .pf-ring-chip), .pf-rings.is-paused :is(.pf-ring, .pf-ring-chip) { animation-play-state: paused; }
+@keyframes pf-ring-spin { to { transform: rotate(360deg); } }
+@media (max-width: 900px) {
+  .pf-skill-split { grid-template-columns: minmax(0, 1fr); }
+  .pf-rings { width: min(100%, 380px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-ring, .pf-ring-chip { animation: none; }
+}
+
+@media (min-width: 1000px) {
+  .pf .pf-skills { padding: 56px 0 36px; }
+  .pf .pf-skills .pf-section-heading h2 { font-size: clamp(34px, 3.4vw, 46px); }
+  .pf .pf-skill-split { grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); margin-top: 14px; gap: clamp(20px, 3vw, 48px); }
+  .pf .pf-rings { width: clamp(250px, calc(100vh - 480px), 400px); }
+  .pf .pf-skill-groups { gap: 12px; }
+  .pf .pf-skill-group { gap: 6px; }
+  .pf .pf-skill-chips { gap: 8px; }
+  .pf .pf-skill-chips li { padding: 7px 11px; gap: 8px; font-size: 13px; }
+  .pf .pf-skills .pf-human-skills { margin-top: 18px; padding-top: 12px; }
+  .pf .pf-skills .pf-human-skills p { margin-top: 6px; line-height: 1.6; }
+  .pf .pf-skills .pf-ai-workflow { margin-top: 14px; padding: 12px 0; }
+  .pf .pf-skills .pf-ai-tools li { min-height: 34px; }
+}
+
+@media (min-width: 1000px) {
+  .pf .pf-rings { width: clamp(300px, calc(100vh - 400px), 480px); }
+  .pf .pf-ring-chip { width: 12cqw; height: 12cqw; margin: -6cqw 0 0 -6cqw; }
+  .pf .pf-ring-core { width: 13cqw; height: 13cqw; }
+  .pf .pf-skill-groups { gap: 16px; }
+  .pf .pf-skill-group { gap: 8px; }
+  .pf .pf-skill-chips { gap: 10px; }
+  .pf .pf-skill-chips li { padding: 10px 15px; gap: 10px; font-size: 14.5px; }
+  .pf .pf-skill-chips .pf-tech-icon { width: 23px; height: 23px; }
+  .pf .pf-skill-group-title { font-size: 12px; }
+}

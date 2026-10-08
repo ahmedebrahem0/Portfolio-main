@@ -27,7 +27,7 @@ import {
   internships,
   memberships,
 } from "@/data/portfolio";
-import { orbitSkills } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
 import "./portfolio.css";
 const email = "ahmed.ebrahem.ebdelazem@gmail.com";
 const whatsapp = "https://wa.me/201099491558";
@@ -118,71 +118,54 @@ function ProjectLinks({ project }: { project: Project }) {
     </div>
   );
 }
-function SkillOrbit({ paused }: { paused: boolean }) {
-  const [active, setActive] = useState(0);
-  const [interacting, setInteracting] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [holdUntil, setHoldUntil] = useState(0);
-  const orbitRef = useRef<HTMLDivElement>(null);
-  const skill = orbitSkills[active];
-  const selectSkill = (index: number) => {
-    setActive(index);
-    setHoldUntil(Date.now() + 6500);
-  };
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.12 });
-    if (orbitRef.current) observer.observe(orbitRef.current);
-    return () => observer.disconnect();
-  }, []);
-  useEffect(() => {
-    if (paused || interacting || !visible) return;
-    const timer = window.setInterval(() => {
-      if (Date.now() >= holdUntil) setActive((index) => (index + 1) % orbitSkills.length);
-    }, 2600);
-    return () => window.clearInterval(timer);
-  }, [paused, interacting, visible, holdUntil]);
+function SkillGrid() {
   return (
-    <div className="pf-skill-layout" onMouseEnter={() => setInteracting(true)} onMouseLeave={() => setInteracting(false)} onFocusCapture={() => setInteracting(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setInteracting(false); }}>
-      <div ref={orbitRef} className={`pf-orbits ${paused || interacting ? "pf-paused" : ""}`}>
-        <div className="pf-orbit-track pf-track-one" aria-hidden="true" />
-        <div className="pf-orbit-core">
-          <Code2 size={34} />
-          <span>MY STACK</span>
-          <strong>{orbitSkills.length}</strong>
+    <div className="pf-skill-groups">
+      {skillGroups.map((group) => (
+        <div className="pf-skill-group" key={group.title}>
+          <span className="pf-skill-group-title">{group.title}</span>
+          <ul className="pf-skill-chips">
+            {group.skills.map((skill) => (
+              <li key={skill.name} style={{ "--tech-color": skill.color } as CSSProperties}>
+                <SkillTechnologyIcon name={skill.name} size={20} />
+                <span>{skill.name}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-        {orbitSkills.map((item, i) => (
-          <div
-            key={item.name}
-            className="pf-orbit-arm"
-            style={
-              {
-                "--angle": `${(i * 360) / orbitSkills.length}deg`,
-                "--duration": "120s",
-              } as CSSProperties
-            }
-          >
-            <button
-              type="button"
-              className={`pf-orbit-tech ${active === i ? "is-active" : ""}`}
-              style={{ "--tech-color": item.color } as CSSProperties}
-              onClick={() => selectSkill(i)}
-              aria-label={`Explore ${item.name}`}
-              aria-pressed={active === i}
-            >
-              <SkillTechnologyIcon name={item.name} size={25} />
-            </button>
-          </div>
-        ))}
+      ))}
+    </div>
+  );
+}
+const ringSpecs = [
+  { group: 0, radius: "43cqw", duration: "110s", dir: "normal", cdir: "reverse" },
+  { group: 1, radius: "30cqw", duration: "80s", dir: "reverse", cdir: "normal" },
+  { group: 2, radius: "18.5cqw", duration: "55s", dir: "normal", cdir: "reverse" },
+] as const;
+function SkillOrbit({ paused }: { paused: boolean }) {
+  return (
+    <div className="pf-skill-split">
+      <div className={`pf-rings ${paused ? "is-paused" : ""}`} role="group" aria-label="Core, state and styling technologies">
+        <div className="pf-ring-core" aria-hidden="true"><Code2 /></div>
+        {ringSpecs.map(({ group, radius, duration, dir, cdir }) => {
+          const skills = skillGroups[group].skills;
+          return (
+            <div className="pf-ring" key={group} style={{ "--r": radius, "--dur": duration, "--dir": dir, "--cdir": cdir } as CSSProperties}>
+              <span className="pf-ring-track" aria-hidden="true" />
+              {skills.map((skill, i) => (
+                <div className="pf-ring-item" key={skill.name} style={{ "--a": `${(i * 360) / skills.length}deg`, "--tech-color": skill.color } as CSSProperties}>
+                  <div className="pf-ring-upright">
+                    <span className="pf-ring-chip" title={skill.name} aria-label={skill.name} role="img">
+                      <SkillTechnologyIcon name={skill.name} size={24} />
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        })}
       </div>
-      <div className="pf-skill-copy">
-        <span className="pf-eyebrow">{skill.category} <span className="pf-skill-count">{number(active + 1)} / {number(orbitSkills.length)}</span></span>
-        <div className="pf-skill-readout" key={skill.name} aria-live={paused || interacting ? "polite" : "off"}>
-          <h3>{skill.name}<span style={{ color: skill.color }}>.</span></h3>
-          <p>{skill.detail}</p>
-        </div>
-        <div className="pf-skill-progress" aria-hidden="true"><span style={{ width: `${((active + 1) / orbitSkills.length) * 100}%` }} /></div>
-        <span className="pf-small-note">{paused ? "Motion off · select any logo to explore" : "Every logo in one orbit · hover or focus to pause"}</span>
-      </div>
+      <SkillGrid />
     </div>
   );
 }
@@ -661,7 +644,7 @@ export default function Portfolio() {
       { rootMargin: "100px" },
     );
     page.current
-      ?.querySelectorAll(".pf-sculpture,.pf-orbits")
+      ?.querySelectorAll(".pf-sculpture,.pf-orbits,.pf-rings")
       .forEach((e) => motion.observe(e));
     return () => {
       media.removeEventListener("change", update);
