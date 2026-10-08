@@ -1358,7 +1358,7 @@
   border-top: 1px solid var(--line);
 }
 .pf-human-skills .pf-eyebrow { display: inline-flex; align-items: center; gap: 9px; }
-.pf-human-skills p { max-width: 760px; margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.pf-human-skills p { max-width: 840px; margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
 .pf-ai-workflow {
   display: grid;
   grid-template-columns: minmax(235px, .28fr) minmax(0, 1fr);
