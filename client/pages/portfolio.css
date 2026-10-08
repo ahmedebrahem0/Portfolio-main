@@ -2761,3 +2761,16 @@
   .pf .pf-skill-chips .pf-tech-icon { width: 23px; height: 23px; }
   .pf .pf-skill-group-title { font-size: 12px; }
 }
+
+@media (min-width: 1000px) {
+  .pf .pf-skill-split { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(16px, 2vw, 32px); }
+  .pf .pf-rings { width: min(100%, 600px); }
+  .pf .pf-ring-chip { width: 12.5cqw; height: 12.5cqw; margin: -6.25cqw 0 0 -6.25cqw; border-radius: 16px; }
+  .pf .pf-ring-core { width: 14cqw; height: 14cqw; }
+  .pf .pf-skill-chips li { padding: 9px 13px; gap: 9px; font-size: 14px; }
+}
+
+@media (min-width: 1000px) {
+  .pf .pf-ring-chip { width: 11cqw; height: 11cqw; margin: -5.5cqw 0 0 -5.5cqw; }
+  .pf .pf-ring-core { width: 12cqw; height: 12cqw; }
+}

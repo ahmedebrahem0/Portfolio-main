@@ -138,9 +138,9 @@ function SkillGrid() {
   );
 }
 const ringSpecs = [
-  { group: 0, radius: "43cqw", duration: "110s", dir: "normal", cdir: "reverse" },
-  { group: 1, radius: "30cqw", duration: "80s", dir: "reverse", cdir: "normal" },
-  { group: 2, radius: "18.5cqw", duration: "55s", dir: "normal", cdir: "reverse" },
+  { group: 0, radius: "44cqw", duration: "110s", dir: "normal", cdir: "reverse" },
+  { group: 1, radius: "29.5cqw", duration: "80s", dir: "reverse", cdir: "normal" },
+  { group: 2, radius: "15cqw", duration: "55s", dir: "normal", cdir: "reverse" },
 ] as const;
 function SkillOrbit({ paused }: { paused: boolean }) {
   return (
