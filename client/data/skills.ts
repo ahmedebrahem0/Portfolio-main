@@ -75,5 +75,5 @@ export const skillGroups = [
   { title: "Core", skills: pick(["React.js", "Next.js", "TypeScript", "JavaScript (ES6)", "HTML", "CSS"]) },
   { title: "State & Data", skills: pick(["Redux Toolkit", "React Query", "Axios", "React Hook Form","Formik"]) },
   { title: "Styling & UI", skills: pick(["Tailwind CSS", "Material UI", "Bootstrap", "Styled Components"]) },
-  { title: "Tooling & Workflow", skills: pick(["Vite", "Webpack", "Git", "GitHub", "Postman", "Figma", "VS Code"]) },
+  { title: "Tooling & Workflow", skills: pick(["Vite", "Webpack", "Git", "GitHub", "Postman", "Figma"]) },
 ];

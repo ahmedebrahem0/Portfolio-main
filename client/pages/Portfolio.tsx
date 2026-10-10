@@ -21,6 +21,7 @@ import { ArchitectureTree } from "@/components/ArchitectureTree";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { PixelPortrait } from "@/components/PixelPortrait";
 import { SignalText } from "@/components/SignalText";
+import { ProjectChapters } from "./ProjectChapters";
 import {
   projects,
   education,
@@ -527,6 +528,7 @@ function Archive() {
 }
 
 export default function Portfolio() {
+  const classicArchive = new URLSearchParams(window.location.search).get("archive") === "classic";
   const [menu, setMenu] = useState(false),
     [activeSection, setActiveSection] = useState("home"),
     [paused, setPaused] = useState(false),
@@ -540,12 +542,12 @@ export default function Portfolio() {
     let frame = 0;
     const navigateToHash = () => {
       const id = decodeURIComponent(window.location.hash.slice(1));
-      if (!navigation.some((item) => item.id === id)) return;
+      if (id !== "project-archive" && !navigation.some((item) => item.id === id)) return;
       const target = document.getElementById(id);
       if (!target) return;
       const headerHeight = document.querySelector<HTMLElement>(".pf-nav")?.offsetHeight ?? 0;
       window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - headerHeight - 12, behavior: "instant" });
-      setActiveSection(id);
+      setActiveSection(id === "project-archive" ? "projects" : id);
     };
     const schedule = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(() => { frame = requestAnimationFrame(navigateToHash); }); };
     schedule();
@@ -840,7 +842,7 @@ export default function Portfolio() {
         </section>
         <section id="projects" className="pf-projects">
           <ProjectHelix reduced={reduced} motionDisabled={paused || reduced} />
-          <Archive />
+          {classicArchive ? <><div className="pf-wrap" style={{ paddingTop: 24, textAlign: "right" }}><a href="?archive=chapters#project-archive" style={{ color: "var(--lime)", fontFamily: '"Courier New", monospace', fontSize: 12, textTransform: "uppercase" }}>View Project Chapters <ArrowUpRight size={14} style={{ display: "inline" }} /></a></div><Archive /></> : <ProjectChapters />}
         </section>
         <section id="experience" className="pf-journey pf-wrap">
           <div className="pf-section-heading pf-reveal">
