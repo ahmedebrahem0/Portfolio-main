@@ -15,6 +15,13 @@ const descriptors = [
   "Responsive page · Bootstrap", "Personal website · Frontend",
   "Organization website · IEEE", "Team workspace · Real-time",
 ];
+const imagePositions: Record<number, string> = {
+  0: "30% 50%", // Keep the YUMA logo and hero copy in view.
+  8: "25% 50%", // Keep the Alkohlany headline and illustration together.
+  9: "30% 50%", // Preserve the school site's left-aligned identity.
+  10: "75% 50%", // Favor the prosthetic-care headline on the right.
+  15: "50% 25%", // Keep the taller task-management form heading visible.
+};
 const pad = (number: number) => String(number).padStart(2, "0");
 const pinQuery = "(prefers-reduced-motion: no-preference) and (min-height: 700px), (prefers-reduced-motion: no-preference) and (max-width: 799px) and (orientation: portrait) and (min-height: 600px)";
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
@@ -161,7 +168,7 @@ export function ProjectChapters() {
                     const index = projects.indexOf(project);
                     return (
                       <article className="pc-card" id={index === 2 ? "logistics-project" : undefined} key={project.title} onFocus={(event) => bringIntoView(event, rowIndex)}>
-                        <a className="pc-card-image" href={project.liveDemo} {...external} aria-label={`View ${project.title} live`} style={{ "--pc-image": `url("${project.image}")` } as CSSProperties}>
+                        <a className={index === 10 ? "pc-card-image pc-card-image--prosthetic" : "pc-card-image"} href={project.liveDemo} {...external} aria-label={`View ${project.title} live`} style={{ "--pc-position": imagePositions[index] || "50% 50%" } as CSSProperties}>
                           <img src={project.image} alt={`${project.title} screenshot`} loading="lazy" decoding="async" />
                           <span className="pc-card-image-action">VISIT PROJECT <ArrowUpRight size={16} /></span>
                         </a>
