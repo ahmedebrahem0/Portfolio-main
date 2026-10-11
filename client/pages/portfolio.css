@@ -688,10 +688,6 @@
 .pf-orbits:has(.pf-orbit-tech:focus-visible) .pf-orbit-tech {
   animation-play-state: paused;
 }
-@media (hover: hover) and (pointer: fine) {
-  .pf-orbits:hover .pf-orbit-arm,
-  .pf-orbits:hover .pf-orbit-tech { animation-play-state: paused; }
-}
 .pf-orbit-pause {
   position: absolute;
   bottom: 0;
@@ -960,15 +956,6 @@
   font-size: 12px;
   color: var(--muted);
   padding-bottom: 12px;
-}
-.pf-work-intro a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--lime);
-  font-size: 10px;
-  margin-top: 16px;
-  pointer-events: auto;
 }
 .pf-helix-scene {
   flex: 1;
@@ -2281,7 +2268,6 @@
 }
 .pf-showcase-status-detail { display: flex; margin-top: 14px; font-size: 11px; }
 .pf .pf-work-intro { font-size: 14px; padding: 0; }
-.pf .pf-work-intro a { font-size: 14px; }
 .pf-project-stage { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 45px; flex: 1; min-height: 0; margin-top: 25px; }
 .pf .pf-helix-scene { min-height: 0; height: 100%; margin: 0; overflow: clip; isolation: isolate; }
 .pf .pf-helix-card { width: min(385px, 70%); border-radius: 8px; overflow: hidden; }
@@ -2436,11 +2422,8 @@
   .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-heading { flex-wrap: wrap; }
   .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-heading > div:first-child { width: 100%; min-width: 0; }
   .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-heading h2 { font-size: clamp(17px, 4.8vw, 23px); font-weight: 700; letter-spacing: -.75px; white-space: nowrap; }
-  .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-intro { margin-left: auto; }
+  .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-intro { display: none; }
   .pf-helix-section:not(.pf-helix-linear) .pf-card-top .pf-showcase-status { font-size: 9px !important; letter-spacing: .5px; }
-  .pf-helix-section:not(.pf-helix-linear) .pf-work-intro { margin: 0; flex-shrink: 0; }
-  .pf-helix-section:not(.pf-helix-linear) .pf-work-intro p { display: none; }
-  .pf .pf-helix-section:not(.pf-helix-linear) .pf-work-intro a { margin: 0; font-size: 12px; max-width: 95px; line-height: 1.4; gap: 4px; }
   .pf-helix-section:not(.pf-helix-linear) .pf-project-stage {
     display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: clamp(180px, 28svh, 240px) minmax(0, 1fr); gap: 12px; margin-top: 12px;
   }
@@ -2746,7 +2729,7 @@
 .pf-ring-chip .pf-tech-icon { width: 55%; height: 55%; }
 .pf-ring-core { position: absolute; inset: 50% auto auto 50%; width: 12cqw; height: 12cqw; transform: translate(-50%, -50%); display: grid; place-items: center; border: 1px solid var(--lime); border-radius: 50%; color: var(--lime); background: #c9f66f10; }
 .pf-ring-core svg { width: 50%; height: 50%; }
-.pf-rings:hover :is(.pf-ring, .pf-ring-chip), .pf-rings.is-paused :is(.pf-ring, .pf-ring-chip) { animation-play-state: paused; }
+.pf-rings.is-paused :is(.pf-ring, .pf-ring-chip) { animation-play-state: paused; }
 @keyframes pf-ring-spin { to { transform: rotate(360deg); } }
 @media (max-width: 900px) {
   .pf-skill-split { grid-template-columns: minmax(0, 1fr); }

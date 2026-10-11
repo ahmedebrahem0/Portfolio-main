@@ -247,9 +247,6 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
               Real platforms. Real challenges.
               <br />A few things I’ve brought to life.
             </p>
-            <a href="#project-archive">
-              Browse all {projects.length} projects <ArrowUpRight size={15} />
-            </a>
           </div>
         </div>
         <div className="pf-project-stage">
