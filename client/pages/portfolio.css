@@ -1447,9 +1447,30 @@
   display: flex;
   align-items: center;
   font-size: 13px;
-  gap: 25px;
+  gap: 16px;
   padding: 9px 0;
 }
+.pf-foundation-name {
+  flex: 1;
+  min-width: 0;
+}
+.pf-foundation-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex: none;
+  margin-left: auto;
+}
+.pf-foundation-year {
+  color: var(--lime);
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.pf-foundation-meta svg { flex: none; }
 .pf-foundations details[open] summary {
   margin-bottom: 15px;
 }

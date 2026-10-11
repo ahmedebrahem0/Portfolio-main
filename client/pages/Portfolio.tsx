@@ -83,6 +83,19 @@ const aiTools = [
 type Project = (typeof projects)[number];
 const external = { target: "_blank", rel: "noopener noreferrer" };
 const number = (n: number) => String(n).padStart(2, "0");
+const formatPeriodYears = (period: string) => {
+  const years = [...period.matchAll(/\b(?:19|20)\d{2}\b/g)].map(([year]) => year);
+  const uniqueYears = [...new Set(years)];
+
+  if (uniqueYears.length === 0) return period;
+  if (uniqueYears.length === 1) return uniqueYears[0];
+
+  const firstYear = uniqueYears[0];
+  const lastYear = uniqueYears.at(-1)!;
+  return firstYear.slice(0, 2) === lastYear.slice(0, 2)
+    ? `${firstYear}\u2013${lastYear.slice(2)}`
+    : `${firstYear}\u2013${lastYear}`;
+};
 const navigation = [
   { id: "home", label: "Home", icon: Home }, { id: "about", label: "About", icon: User },
   { id: "skills", label: "Skills", icon: Cpu }, { id: "projects", label: "Projects", icon: Layers3 },
@@ -881,8 +894,13 @@ export default function Portfolio() {
               {[...internships, ...memberships].map((e) => (
                 <details key={e.organization}>
                   <summary>
-                    <span><SignalText text={e.organization} disabled={paused || reduced} select={["ITI", "NTI", "Google", "IEEE"]} /></span>
-                    <Plus size={16} />
+                    <span className="pf-foundation-name"><SignalText text={e.organization} disabled={paused || reduced} select={["ITI", "NTI", "Google", "IEEE"]} /></span>
+                    <span className="pf-foundation-meta">
+                      <time className="pf-foundation-year" aria-label={`Year: ${formatPeriodYears(e.period)}`}>
+                        {formatPeriodYears(e.period)}
+                      </time>
+                      <Plus size={16} aria-hidden="true" />
+                    </span>
                   </summary>
                   <span className="pf-eyebrow">{e.period}</span>
                   <h4>{e.title}</h4>
