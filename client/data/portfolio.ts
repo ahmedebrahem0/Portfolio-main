@@ -120,7 +120,7 @@ export const projects = [
       title: "EduSystem — School Management",
       image: "/images/school-system.png",
       description:
-        "Built and maintained a full-featured school management system covering Admin, Teacher, and Student roles end-to-end — students, teachers, classes, subjects, grades, attendance, timetables, and analytics. Owned role-based access control (RBAC), dashboard architecture, data visualization, and UX polish (dark mode, command palette, collapsible navigation, live notifications) on top of a real ASP.NET backend.",
+        "Built and maintained a full-featured school management system covering Admin, Teacher, and Student roles end-to-end — students, teachers, classes, subjects, grades, attendance, timetables, and analytics. Owned role-based access control (RBAC), dashboard architecture, data visualization.",
       technologies: [
         "Next.js 16",
         "React 19",
