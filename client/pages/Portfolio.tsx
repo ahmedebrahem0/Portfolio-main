@@ -21,6 +21,7 @@ import { ArchitectureTree } from "@/components/ArchitectureTree";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { PixelPortrait } from "@/components/PixelPortrait";
 import { SignalText } from "@/components/SignalText";
+import { PortfolioLogo } from "@/components/PortfolioLogo";
 import { ProjectChapters } from "./ProjectChapters";
 import {
   projects,
@@ -314,7 +315,7 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
           </div>
           {!linear && (
             <aside className="pf-project-sidebar">
-              <div className="pf-project-info" key={active} role="region" aria-label={`${selectedProjects[active].title} details`} tabIndex={0}>
+              <div className="pf-project-info" key={active} role="region" aria-label={`${selectedProjects[active].title} details`}>
                 <span className="pf-eyebrow">
                   <CalendarDays size={16} />
                   {selectedProjects[active].period || "SELECTED PROJECT"}
@@ -670,9 +671,7 @@ export default function Portfolio() {
         Skip to content
       </a>
       <header className="pf-nav">
-        <a href="#home" className="pf-brand" aria-label="Ahmed Ebrahem home">
-          Ahmed<span>Ebrahem.</span>
-        </a>
+        <PortfolioLogo onClick={() => { setActiveSection("home"); setMenu(false); }} />
         <nav
           id="portfolio-navigation"
           aria-label="Main navigation"
@@ -940,9 +939,7 @@ export default function Portfolio() {
               <span><MapPin size={18} />CAIRO, EGYPT</span>
             </div>
             <footer className="pf-footer">
-              <a href="#home" className="pf-brand">
-                Ahmed<span>Ebrahem.</span>
-              </a>
+              <PortfolioLogo footer />
               <div className="pf-footer-links" aria-label="Social and résumé links">
                 <a className="pf-footer-github" href="https://github.com/ahmedebrahem0" {...external} aria-label="Ahmed on GitHub (opens in a new tab)">
                   <Github size={19} aria-hidden="true" /> GitHub <ArrowUpRight size={14} aria-hidden="true" />
