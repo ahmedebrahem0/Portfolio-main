@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
-const SOURCE = "/images/my-photo - Copy.png";
+// const SOURCE = "/images/my-photo - Copy.png";
+const SOURCE = "/images/Confident Young Man in Black Suit-remove.png";
 const COLUMNS = 6;
 const ROWS = 8;
 const TILE_DURATION_MS = 720;
