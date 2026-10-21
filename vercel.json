@@ -1,7 +1,11 @@
 {
   "buildCommand": "npm run build:client",
   "outputDirectory": "dist/spa",
+  "redirects": [
+    { "source": "/ar", "destination": "/ar/", "permanent": true }
+  ],
   "rewrites": [
+    { "source": "/ar/", "destination": "/ar/index.html" },
     {
       "source": "/(.*)",
       "destination": "/index.html"

@@ -1,3 +1,4 @@
+import { T, useTranslation } from "@/i18n";
 import { useEffect, useRef, useState, type CSSProperties, type FocusEvent } from "react";
 import { ArrowRight, ArrowUpRight, Github } from "lucide-react";
 import { projects } from "@/data/portfolio";
@@ -27,6 +28,7 @@ const pinQuery = "(prefers-reduced-motion: no-preference) and (min-height: 700px
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 export function ProjectChapters() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const trackRefs = useRef<(HTMLDivElement | null)[]>([]);
   const railRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -146,21 +148,21 @@ export function ProjectChapters() {
       <div className="pc-gallery-sticky">
         <header className="pc-gallery-heading pf-wrap">
           <div>
-            <span className="pc-overline"><i /> EXPLORE THE WORK / {pad(projects.length)}</span>
-            <h3 id="pc-title">The project <em>index.</em></h3>
+            <span className="pc-overline"><i /> <T>EXPLORE THE WORK</T> / {pad(projects.length)}</span>
+            <h3 id="pc-title"><T>The project</T> <em><T>index.</T></em></h3>
           </div>
           <div className="pc-gallery-heading-aside">
-            <p>Sixteen ideas, built and shipped.<br />Scroll through the work.</p>
-            <a href="?archive=classic#project-archive">View classic index <ArrowUpRight size={15} aria-hidden="true" /></a>
+            <p><T>Sixteen ideas, built and shipped.</T><br /><T>Scroll through the work.</T></p>
+            <a href="?archive=classic#project-archive"><T>View classic index</T> <ArrowUpRight size={15} aria-hidden="true" /></a>
           </div>
         </header>
         <div className="pc-gallery-rows">
           {rows.map((row, rowIndex) => (
             <div className="pc-gallery-row" key={rowIndex}>
               <div className="pc-gallery-row-top pf-wrap">
-                <span className="pc-row-label"><b>{pad(rowIndex + 1)}</b> / <span className="pc-row-label-long">{rowIndex === 0 ? "FEATURED & RECENT" : "MORE FROM THE ARCHIVE"}</span><span className="pc-row-label-short">{rowIndex === 0 ? "FEATURED WORK" : "ARCHIVE WORK"}</span></span>
-                <span className="pc-row-direction">{rowIndex === 0 ? "MOVE LEFT" : "MOVE RIGHT"} <ArrowRight size={13} aria-hidden="true" /></span>
-                <output className="pc-rail-position" ref={(node) => { railCountRefs.current[rowIndex] = node; }} aria-label={`Position in row ${rowIndex + 1}`}>01 / {pad(row.length)}</output>
+                <span className="pc-row-label"><b>{pad(rowIndex + 1)}</b> / <span className="pc-row-label-long">{t(rowIndex === 0 ? "FEATURED & RECENT" : "MORE FROM THE ARCHIVE")}</span><span className="pc-row-label-short">{t(rowIndex === 0 ? "FEATURED WORK" : "ARCHIVE WORK")}</span></span>
+                <span className="pc-row-direction">{t(rowIndex === 0 ? "MOVE LEFT" : "MOVE RIGHT")} <ArrowRight size={13} aria-hidden="true" /></span>
+                <output className="pc-rail-position" ref={(node) => { railCountRefs.current[rowIndex] = node; }} aria-label={`${t("Position in row")} ${rowIndex + 1}`}>01 / {pad(row.length)}</output>
               </div>
               <div className="pc-gallery-window" ref={(node) => { railRefs.current[rowIndex] = node; }} onScroll={() => updateRailCount(rowIndex)}>
                 <div className="pc-gallery-track" ref={(node) => { trackRefs.current[rowIndex] = node; }}>
@@ -168,16 +170,16 @@ export function ProjectChapters() {
                     const index = projects.indexOf(project);
                     return (
                       <article className="pc-card" id={index === 2 ? "logistics-project" : undefined} key={project.title} onFocus={(event) => bringIntoView(event, rowIndex)}>
-                        <a className={index === 10 ? "pc-card-image pc-card-image--prosthetic" : "pc-card-image"} href={project.liveDemo} {...external} aria-label={`View ${project.title} live`} style={{ "--pc-position": imagePositions[index] || "50% 50%" } as CSSProperties}>
-                          <img src={project.image} alt={`${project.title} screenshot`} loading="lazy" decoding="async" />
-                          <span className="pc-card-image-action">VISIT PROJECT <ArrowUpRight size={16} /></span>
+                        <a className={index === 10 ? "pc-card-image pc-card-image--prosthetic" : "pc-card-image"} href={project.liveDemo} {...external} aria-label={`${t("View")} ${t(project.title)} ${t("live")}`} style={{ "--pc-position": imagePositions[index] || "50% 50%" } as CSSProperties}>
+                          <img src={project.image} alt={`${t(project.title)} ${t("screenshot")}`} loading="lazy" decoding="async" />
+                          <span className="pc-card-image-action"><T>VISIT PROJECT</T> <ArrowUpRight size={16} /></span>
                         </a>
                         <div className="pc-card-info">
                           <span className="pc-card-number">{pad(index + 1)}<small> / {pad(projects.length)}</small></span>
-                          <div className="pc-card-copy"><h4>{project.title}</h4><p>{descriptors[index]}</p></div>
+                          <div className="pc-card-copy"><h4>{t(project.title)}</h4><p>{t(descriptors[index])}</p></div>
                           <div className="pc-card-links">
-                            <a href={project.liveDemo} {...external} aria-label={`Open ${project.title} live project`} title="Live project"><ArrowUpRight size={19} /></a>
-                            {"github" in project && project.github && <a href={project.github} {...external} aria-label={`Open ${project.title} source code`} title="Source code"><Github size={18} /></a>}
+                            <a href={project.liveDemo} {...external} aria-label={`${t("Open")} ${t(project.title)} ${t("live project")}`} title={t("Live project")}><ArrowUpRight size={19} /></a>
+                            {"github" in project && project.github && <a href={project.github} {...external} aria-label={`${t("Open")} ${t(project.title)} ${t("source code")}`} title={t("Source code")}><Github size={18} /></a>}
                           </div>
                         </div>
                       </article>
@@ -189,10 +191,10 @@ export function ProjectChapters() {
           ))}
         </div>
         <footer className="pc-gallery-footer pf-wrap">
-          <span>SCROLL TO EXPLORE <ArrowRight size={13} aria-hidden="true" /></span>
+          <span><T>SCROLL TO EXPLORE</T> <ArrowRight size={13} aria-hidden="true" /></span>
           <span className="pc-gallery-progress" aria-hidden="true"><span ref={progressRef} /></span>
-          <output ref={numberRef} aria-label="Project gallery progress">01 / {pad(projects.length)}</output>
-          <a href="#experience">SKIP TO EXPERIENCE <ArrowUpRight size={13} /></a>
+          <output ref={numberRef} aria-label={t("Project gallery progress")}>01 / {pad(projects.length)}</output>
+          <a href="#experience"><T>SKIP TO EXPERIENCE</T> <ArrowUpRight size={13} /></a>
         </footer>
       </div>
     </section>

@@ -1,3 +1,5 @@
+import { T, useTranslation } from "@/i18n";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   ArrowUpRight,
@@ -119,26 +121,28 @@ function SectionLabel({
   );
 }
 function ProjectLinks({ project }: { project: Project }) {
+  const { t } = useTranslation();
   return (
     <div className="pf-project-links">
       <a className="pf-outline-action" href={project.liveDemo} {...external}>
-        Visit live site <ArrowUpRight size={16} />
+        <T>Visit live site</T> <ArrowUpRight size={16} />
       </a>
       {project.github && (
         <a className="pf-outline-action pf-sweep-action pf-source-link" href={project.github} {...external}>
-          <span className="pf-sweep-content"><Github size={16} /> Source</span>
-          <span className="pf-sweep-content pf-sweep-content-filled" aria-hidden="true"><Github size={16} /> Source</span>
+          <span className="pf-sweep-content"><Github size={16} /> {t("Source")}</span>
+          <span className="pf-sweep-content pf-sweep-content-filled" aria-hidden="true"><Github size={16} /> {t("Source")}</span>
         </a>
       )}
     </div>
   );
 }
 function SkillGrid() {
+  const { t } = useTranslation();
   return (
     <div className="pf-skill-groups">
       {skillGroups.map((group) => (
         <div className="pf-skill-group" key={group.title}>
-          <span className="pf-skill-group-title">{group.title}</span>
+          <span className="pf-skill-group-title">{t(group.title)}</span>
           <ul className="pf-skill-chips">
             {group.skills.map((skill) => (
               <li key={skill.name} style={{ "--tech-color": skill.color } as CSSProperties}>
@@ -158,9 +162,10 @@ const ringSpecs = [
   { group: 2, radius: "15cqw", duration: "55s", dir: "normal", cdir: "reverse" },
 ] as const;
 function SkillOrbit({ paused }: { paused: boolean }) {
+  const { t } = useTranslation();
   return (
     <div className="pf-skill-split">
-      <div className={`pf-rings ${paused ? "is-paused" : ""}`} role="group" aria-label="Core, state and styling technologies">
+      <div className={`pf-rings ${paused ? "is-paused" : ""}`} role="group" aria-label={t("Core, state and styling technologies")}>
         <div className="pf-ring-core" aria-hidden="true"><Code2 /></div>
         {ringSpecs.map(({ group, radius, duration, dir, cdir }) => {
           const skills = skillGroups[group].skills;
@@ -185,6 +190,7 @@ function SkillOrbit({ paused }: { paused: boolean }) {
   );
 }
 function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDisabled: boolean }) {
+  const { t, locale } = useTranslation();
   const section = useRef<HTMLDivElement>(null);
   const sticky = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0),
@@ -240,13 +246,13 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
       <div ref={sticky} className="pf-helix-sticky">
         <div className="pf-work-heading">
           <div>
-            <SectionLabel index="03">PROJECTS</SectionLabel>
-            <h2>Live Products &amp; Selected Work</h2>
+            <SectionLabel index="03"><T>PROJECTS</T></SectionLabel>
+            <h2><T>Live Products & Selected Work</T></h2>
           </div>
           <div className="pf-work-intro">
             <p>
-              Real platforms. Real challenges.
-              <br />A few things I’ve brought to life.
+              <T>Real platforms. Real challenges.</T>
+              <br /><T>A few things I’ve brought to life.</T>
             </p>
           </div>
         </div>
@@ -283,28 +289,28 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
                   key={p.title}
                   style={style}
                 >
-                  <a className="pf-card-full-link" href={p.liveDemo} {...external} tabIndex={linear || focus ? 0 : -1} aria-label={`Visit ${p.title}`}>
+                  <a className="pf-card-full-link" href={p.liveDemo} {...external} tabIndex={linear || focus ? 0 : -1} aria-label={`${t("Visit")} ${t(p.title)}`}>
                     <div className="pf-card-top">
                       <span>
                         {number(i + 1)} / {number(selectedProjects.length)}
                       </span>
-                      <span className={`pf-showcase-status ${showcaseStatus(p) === "IN PRODUCTION" ? "is-production" : ""}`}>{showcaseStatus(p)}</span>
+                      <span className={`pf-showcase-status ${showcaseStatus(p) === "IN PRODUCTION" ? "is-production" : ""}`}>{t(showcaseStatus(p))}</span>
                       <ArrowUpRight size={15} />
                     </div>
                     <img
                       src={p.image}
-                      alt={`${p.title} interface`}
+                      alt={`${t(p.title)} ${t("interface")}`}
                       loading="lazy"
                     />
                     <div className="pf-card-caption">
-                      <h3>{p.title}</h3>
+                      <h3>{t(p.title)}</h3>
                       <ArrowUpRight size={21} />
                     </div>
                   </a>
                   {linear && (
                     <>
                       <p className="pf-mobile-project-description">
-                        <SignalText text={p.description} disabled={motionDisabled} select={signalsFor(p)} />
+                        <SignalText text={t(p.description)} disabled={motionDisabled || locale === "ar"} select={signalsFor(p)} />
                       </p>
                       <ProjectLinks project={p} />
                     </>
@@ -315,15 +321,15 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
           </div>
           {!linear && (
             <aside className="pf-project-sidebar">
-              <div className="pf-project-info" key={active} role="region" aria-label={`${selectedProjects[active].title} details`}>
+              <div className="pf-project-info" key={active} role="region" aria-label={`${t(selectedProjects[active].title)} ${t("details")}`}>
                 <span className="pf-eyebrow">
                   <CalendarDays size={16} />
-                  {selectedProjects[active].period || "SELECTED PROJECT"}
+                  {t(selectedProjects[active].period || "SELECTED PROJECT")}
                 </span>
-                <span className={`pf-showcase-status pf-showcase-status-detail ${showcaseStatus(selectedProjects[active]) === "IN PRODUCTION" ? "is-production" : ""}`}>{showcaseStatus(selectedProjects[active])}</span>
-                <h3>{selectedProjects[active].title}</h3>
-                <p><SignalText text={selectedProjects[active].description} disabled={motionDisabled} select={signalsFor(selectedProjects[active])} /></p>
-                <div className="pf-tags">{selectedProjects[active].technologies.map(tech => <span key={tech}><TechnologyIcon name={tech} size={15} />{tech}</span>)}</div>
+                <span className={`pf-showcase-status pf-showcase-status-detail ${showcaseStatus(selectedProjects[active]) === "IN PRODUCTION" ? "is-production" : ""}`}>{t(showcaseStatus(selectedProjects[active]))}</span>
+                <h3>{t(selectedProjects[active].title)}</h3>
+                <p><SignalText text={t(selectedProjects[active].description)} disabled={motionDisabled || locale === "ar"} select={signalsFor(selectedProjects[active])} /></p>
+                <div className="pf-tags">{selectedProjects[active].technologies.map(tech => <span key={tech}><TechnologyIcon name={tech} size={15} />{t(tech)}</span>)}</div>
                 <ProjectLinks project={selectedProjects[active]} />
               </div>
               <div className="pf-helix-controls">
@@ -335,15 +341,15 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
                   <button
                     disabled={active === 0}
                     onClick={() => go(active - 1)}
-                    aria-label="Previous project"
+                    aria-label={t("Previous project")}
                   >
                     <ArrowLeft size={19} />
                   </button>
-                  <span className="pf-eyebrow">SCROLL TO ROTATE</span>
+                  <span className="pf-eyebrow"><T>SCROLL TO ROTATE</T></span>
                   <button
                     disabled={active === selectedProjects.length - 1}
                     onClick={() => go(active + 1)}
-                    aria-label="Next project"
+                    aria-label={t("Next project")}
                   >
                     <ArrowRight size={19} />
                   </button>
@@ -357,6 +363,7 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
   );
 }
 function Archive() {
+  const { t } = useTranslation();
   type ArchiveFilter = "all" | "framework" | "vanilla";
   const [filter, setFilter] = useState<ArchiveFilter>("all");
   const [selected, setSelected] = useState(projects[0].title);
@@ -451,10 +458,10 @@ function Archive() {
     <div id="project-archive" className="pf-archive pf-wrap">
       <div className="pf-archive-heading">
         <div>
-          <span className="pf-command-kicker">EXPLORE THE WORK / 03—16</span>
-          <h3>The project index<span> / {number(projects.length)}</span></h3>
+          <span className="pf-command-kicker"><T>EXPLORE THE WORK</T> / 03—16</span>
+          <h3><T>The project index</T><span> / {number(projects.length)}</span></h3>
         </div>
-        <div className="pf-filter" aria-label="Filter projects">
+        <div className="pf-filter" aria-label={t("Filter projects")}>
           {filters.map(({ id, title }) => (
             <button
               key={id}
@@ -467,7 +474,7 @@ function Archive() {
               aria-pressed={filter === id}
               className={filter === id ? "is-active" : ""}
             >
-              <span>{title}</span>
+              <span>{t(title)}</span>
               <span className="pf-filter-count">
                 {number(projects.filter((p) => matchesFilter(p, id)).length)}
               </span>
@@ -477,57 +484,57 @@ function Archive() {
       </div>
       <span id="logistics-project" className="pf-command-anchor" aria-hidden="true" />
       <div className="pf-command-center">
-        <div className="pf-command-rail" aria-label="Choose a project">
+        <div className="pf-command-rail" aria-label={t("Choose a project")}>
           <div className="pf-command-rail-header">
-            <span>PROJECT DIRECTORY</span><span>{number(visibleProjects.length)} ENTRIES</span>
+            <span><T>PROJECT DIRECTORY</T></span><span>{number(visibleProjects.length)} <T>ENTRIES</T></span>
           </div>
           <div ref={railRef} className="pf-command-list" onKeyDown={onRailKeyDown}>
             {visibleProjects.map((p) => (
               <button key={p.title} type="button" className={`pf-command-item ${activeProject.title === p.title ? "is-active" : ""}`}
                 onClick={() => selectProject(p)} aria-pressed={activeProject.title === p.title}
-                aria-label={`Show ${p.title}`}>
+                aria-label={`${t("Show")} ${t(p.title)}`}>
                 <span className="pf-command-number">{number(projects.indexOf(p) + 1)}</span>
-                <span className="pf-command-name">{p.title}</span>
+                <span className="pf-command-name">{t(p.title)}</span>
                 <ArrowUpRight size={15} aria-hidden="true" />
               </button>
             ))}
           </div>
-          <div className="pf-command-rail-footer"><span>SELECT A PROJECT</span><span>↑ ↓ TO NAVIGATE</span></div>
+          <div className="pf-command-rail-footer"><span><T>SELECT A PROJECT</T></span><span><T>↑ ↓ TO NAVIGATE</T></span></div>
         </div>
-        <article ref={previewRef} className="pf-command-preview" aria-label={`${activeProject.title} project details`}>
+        <article ref={previewRef} className="pf-command-preview" aria-label={`${t(activeProject.title)} ${t("project details")}`}>
           <div className="pf-command-mobile-switcher">
-            <div className="pf-command-mobile-toolbar" aria-label="Project navigation">
-              <button type="button" className="pf-command-mobile-step" onClick={() => selectProject(visibleProjects[(visibleIndex - 1 + visibleProjects.length) % visibleProjects.length])} aria-label="Previous project"><ArrowLeft size={19} /></button>
+            <div className="pf-command-mobile-toolbar" aria-label={t("Project navigation")}>
+              <button type="button" className="pf-command-mobile-step" onClick={() => selectProject(visibleProjects[(visibleIndex - 1 + visibleProjects.length) % visibleProjects.length])} aria-label={t("Previous project")}><ArrowLeft size={19} /></button>
               <button ref={chooserButtonRef} type="button" className="pf-command-mobile-choose" aria-expanded={pickerOpen} aria-controls="pf-mobile-project-chooser" onClick={() => setPickerOpen(!pickerOpen)}>
-                <span className="pf-command-mobile-position">{number(visibleIndex + 1)} / {number(visibleProjects.length)} <span>· CHOOSE PROJECT</span></span>
-                <span className="pf-command-mobile-title">{activeProject.title}</span>
+                <span className="pf-command-mobile-position">{number(visibleIndex + 1)} / {number(visibleProjects.length)} <span>· <T>CHOOSE PROJECT</T></span></span>
+                <span className="pf-command-mobile-title">{t(activeProject.title)}</span>
               </button>
-              <button type="button" className="pf-command-mobile-step" onClick={() => selectProject(visibleProjects[(visibleIndex + 1) % visibleProjects.length])} aria-label="Next project"><ArrowRight size={19} /></button>
+              <button type="button" className="pf-command-mobile-step" onClick={() => selectProject(visibleProjects[(visibleIndex + 1) % visibleProjects.length])} aria-label={t("Next project")}><ArrowRight size={19} /></button>
             </div>
-            {pickerOpen && <div id="pf-mobile-project-chooser" ref={chooserRef} className="pf-command-mobile-chooser" aria-label="Select a project">
-              <div className="pf-command-mobile-chooser-heading"><span>PROJECT DIRECTORY</span><button type="button" onClick={() => { setPickerOpen(false); chooserButtonRef.current?.focus(); }} aria-label="Close project chooser"><X size={18} /></button></div>
-              <div className="pf-command-mobile-options">{visibleProjects.map((p, index) => <button key={p.title} type="button" aria-current={p.title === activeProject.title ? "true" : undefined} onClick={() => selectProject(p, true)}><span>{number(index + 1)}</span><span>{p.title}</span>{p.title === activeProject.title && <span className="pf-command-mobile-current">VIEWING</span>}</button>)}</div>
+            {pickerOpen && <div id="pf-mobile-project-chooser" ref={chooserRef} className="pf-command-mobile-chooser" aria-label={t("Select a project")}>
+              <div className="pf-command-mobile-chooser-heading"><span><T>PROJECT DIRECTORY</T></span><button type="button" onClick={() => { setPickerOpen(false); chooserButtonRef.current?.focus(); }} aria-label={t("Close project chooser")}><X size={18} /></button></div>
+              <div className="pf-command-mobile-options">{visibleProjects.map((p, index) => <button key={p.title} type="button" aria-current={p.title === activeProject.title ? "true" : undefined} onClick={() => selectProject(p, true)}><span>{number(index + 1)}</span><span>{t(p.title)}</span>{p.title === activeProject.title && <span className="pf-command-mobile-current">{t("VIEWING")}</span>}</button>)}</div>
             </div>}
           </div>
           <div className="pf-command-preview-top">
-            <span><span className="pf-command-live-dot" /> PROJECT {number(activeIndex + 1)} / {number(projects.length)}</span>
+            <span><span className="pf-command-live-dot" /> <T>PROJECT</T> {number(activeIndex + 1)} / {number(projects.length)}</span>
             <span>{activeProject.technologies[0]}</span>
           </div>
           <div key={activeProject.title} className="pf-command-channel">
             <div className="pf-command-visual">
-              <img src={activeProject.image} alt={`${activeProject.title} interface screenshot`} loading="lazy" />
-              <span className="pf-command-visual-label">VISUAL PREVIEW — {number(activeIndex + 1)}</span>
+              <img src={activeProject.image} alt={`${t(activeProject.title)} ${t("interface screenshot")}`} loading="lazy" />
+              <span className="pf-command-visual-label"><T>VISUAL PREVIEW</T> — {number(activeIndex + 1)}</span>
             </div>
             <div className="pf-command-content">
               <div className="pf-command-title-row">
                 <div>
-                  <span className="pf-command-kicker">{activeProject.period || "SELECTED WORK"}</span>
-                  <h4>{activeProject.title}</h4>
+                  <span className="pf-command-kicker">{t(activeProject.period || "SELECTED WORK")}</span>
+                  <h4>{t(activeProject.title)}</h4>
                 </div>
                 <span className="pf-command-large-number" aria-hidden="true">{number(activeIndex + 1)}</span>
               </div>
-              <p>{activeProject.description}</p>
-              <div className="pf-tags">{activeProject.technologies.map((t) => <span key={t}><TechnologyIcon name={t} size={15} />{t}</span>)}</div>
+              <p>{t(activeProject.description)}</p>
+              <div className="pf-tags">{activeProject.technologies.map((tech) => <span key={tech}><TechnologyIcon name={tech} size={15} />{t(tech)}</span>)}</div>
               <ProjectLinks project={activeProject} />
             </div>
           </div>
@@ -539,6 +546,8 @@ function Archive() {
 }
 
 export default function Portfolio() {
+  const { t, locale } = useTranslation();
+  const location = useLocation();
   const classicArchive = new URLSearchParams(window.location.search).get("archive") === "classic";
   const [menu, setMenu] = useState(false),
     [activeSection, setActiveSection] = useState("home"),
@@ -668,25 +677,26 @@ export default function Portfolio() {
   return (
     <div ref={page} className={`pf ${paused || reduced ? "pf-paused" : ""}`}>
       <a className="pf-skip" href="#main-content">
-        Skip to content
+        <T>Skip to content</T>
       </a>
       <header className="pf-nav">
         <PortfolioLogo onClick={() => { setActiveSection("home"); setMenu(false); }} />
         <nav
           id="portfolio-navigation"
-          aria-label="Main navigation"
+          aria-label={t("Main navigation")}
           className={menu ? "is-open" : ""}
         >
           {navigation.map(({ id, label, icon: Icon }) => (
             <a key={id} href={`#${id}`} className={activeSection === id ? "is-active" : ""} aria-current={activeSection === id ? "location" : undefined} onClick={() => { setActiveSection(id); setMenu(false); }}>
-              <Icon size={15} aria-hidden="true" /> {label}
+              <Icon size={15} aria-hidden="true" /> {t(label)}
             </a>
           ))}
         </nav>
+        <Link className="pf-language-switch" to={{ pathname: locale === "ar" ? "/" : "/ar/", search: location.search, hash: location.hash }} lang={locale === "ar" ? "en" : "ar"} aria-label={locale === "ar" ? "Switch to English" : "التبديل إلى العربية"} title={locale === "ar" ? "Switch to English" : "التبديل إلى العربية"}>{locale === "ar" ? "AR" : "EN"}<span aria-hidden="true"> / {locale === "ar" ? "EN" : "AR"}</span></Link>
         <button
           ref={menuButton}
           className="pf-mobile-menu"
-          aria-label={menu ? "Close navigation" : "Open navigation"}
+          aria-label={t(menu ? "Close navigation" : "Open navigation")}
           aria-expanded={menu}
           aria-controls="portfolio-navigation"
           onClick={() => setMenu(!menu)}
@@ -698,17 +708,17 @@ export default function Portfolio() {
         <section id="home" className="pf-hero pf-wrap">
           <div className="pf-personal-hero">
             <div className="pf-intro-left">
-              <span className="pf-eyebrow"><span className="pf-status" /> Hello, I’m</span>
-              <h1>Ahmed<br /><span>Ebrahem.</span></h1>
-              <p className="pf-hero-role"><Code2 size={22} /> Front-End Engineer</p>
-              <p className="pf-hero-description">Turning complex ideas into intuitive, high-performance digital experiences.</p>
+              <span className="pf-eyebrow"><span className="pf-status" /> <T>Hello, I’m</T></span>
+              <h1>{locale === "ar" ? <>أحمد<br /><span>إبراهيم.</span></> : <>Ahmed<br /><span>Ebrahem.</span></>}</h1>
+              <p className="pf-hero-role"><Code2 size={22} /> <T>Front-End Engineer</T></p>
+              <p className="pf-hero-description"><T>Turning complex ideas into intuitive, high-performance digital experiences.</T></p>
               <div className="pf-hero-actions">
                 <a className="pf-button" href="#projects">
-                  <Layers3 size={18} /> View projects <ArrowUpRight size={18} />
+                  <Layers3 size={18} /> <T>View projects</T> <ArrowUpRight size={18} />
                 </a>
                 <a className="pf-text-link pf-resume-link pf-sweep-action" href={resume} {...external}>
-                  <span className="pf-sweep-content"><Download size={18} /> My résumé</span>
-                  <span className="pf-sweep-content pf-sweep-content-filled" aria-hidden="true"><Download size={18} /> My résumé</span>
+                  <span className="pf-sweep-content"><Download size={18} /> <T>My résumé</T></span>
+                  <span className="pf-sweep-content pf-sweep-content-filled" aria-hidden="true"><Download size={18} /> <T>My résumé</T></span>
                 </a>
               </div>
             </div>
@@ -719,22 +729,22 @@ export default function Portfolio() {
               <span className="pf-floating-tech pf-floating-react"><TechnologyIcon name="React" size={34} /></span>
               <span className="pf-floating-tech pf-floating-next"><TechnologyIcon name="Next.js" size={30} /></span>
               <span className="pf-floating-tech pf-floating-ts"><TechnologyIcon name="TypeScript" size={30} /></span>
-              <span className="pf-portrait-location"><MapPin size={16} /> Cairo, Egypt</span>
+              <span className="pf-portrait-location"><MapPin size={16} /> <T>Cairo, Egypt</T></span>
             </div>
             <div className="pf-intro-right">
-              <span className="pf-eyebrow"><Cpu size={18} /> React & Next.js specialist</span>
-              <h2>From a great idea to a <em>real experience.</em></h2>
-              <p>I own frontend development across customer-facing brands and internal systems at BIG GROUP — from architecture and authentication to production.</p>
-              <a className="pf-hero-proof" href="#logistics-project" aria-label="View Logistics Dashboard project: 100/100 Lighthouse score">
+              <span className="pf-eyebrow"><Cpu size={18} /> <T>React & Next.js specialist</T></span>
+              <h2><T>From a great idea to a</T> <em><T>real experience.</T></em></h2>
+              <p><T>I own frontend development across customer-facing brands and internal systems at BIG GROUP — from architecture and authentication to production.</T></p>
+              <a className="pf-hero-proof" href="#logistics-project" aria-label={t("View Logistics Dashboard project: 100/100 Lighthouse score")}>
                 <Gauge size={23} aria-hidden="true" />
                 <span><strong>100/100 Lighthouse</strong><br />Logistics Dashboard</span>
                 <ArrowRight className="pf-hero-proof-arrow" size={20} aria-hidden="true" />
               </a>
               <div className="pf-hero-socials">
-                <a href="https://github.com/ahmedebrahem0" {...external} aria-label="Ahmed on GitHub" className="pf-social-github"><Github size={21} aria-hidden="true" /></a>
-                <a href="https://www.linkedin.com/in/ahmedebrahem" {...external} aria-label="Ahmed on LinkedIn" className="pf-social-linkedin"><Linkedin size={21} aria-hidden="true" /></a>
-                <a href={`mailto:${email}`} aria-label="Email Ahmed" className="pf-social-gmail"><GmailMark size={21} /></a>
-                <a href={whatsapp} {...external} aria-label="WhatsApp Ahmed at +20 109 949 1558" className="pf-social-whatsapp"><WhatsAppMark size={23} /></a>
+                <a href="https://github.com/ahmedebrahem0" {...external} aria-label={t("Ahmed on GitHub")} className="pf-social-github"><Github size={21} aria-hidden="true" /></a>
+                <a href="https://www.linkedin.com/in/ahmedebrahem" {...external} aria-label={t("Ahmed on LinkedIn")} className="pf-social-linkedin"><Linkedin size={21} aria-hidden="true" /></a>
+                <a href={`mailto:${email}`} aria-label={t("Email Ahmed")} className="pf-social-gmail"><GmailMark size={21} /></a>
+                <a href={whatsapp} {...external} aria-label={t("WhatsApp Ahmed at +20 109 949 1558")} className="pf-social-whatsapp"><WhatsAppMark size={23} /></a>
               </div>
             </div>
           </div>
@@ -743,7 +753,7 @@ export default function Portfolio() {
               <span className="pf-scroll-icon">
                 <ArrowDown size={15} />
               </span>{" "}
-              SCROLL TO EXPLORE
+              <T>SCROLL TO EXPLORE</T>
             </a>
             <div>
               {["React", "Next.js", "TypeScript"].map(name => <span className="pf-inline-icon" key={name}><TechnologyIcon name={name} size={19} />{name}</span>)}
@@ -754,42 +764,42 @@ export default function Portfolio() {
               aria-pressed={paused || reduced}
               aria-label={
                 reduced
-                  ? "Ambient animations disabled by reduced motion preference"
+                  ? t("Ambient animations disabled by reduced motion preference")
                   : paused
-                    ? "Resume ambient animations"
-                    : "Pause ambient animations"
+                    ? t("Resume ambient animations")
+                    : t("Pause ambient animations")
               }
             >
-              {paused ? <Play size={13} /> : <Pause size={13} />} MOTION{" "}
-              {paused || reduced ? "OFF" : "ON"}
+              {paused ? <Play size={13} /> : <Pause size={13} />} <T>MOTION</T>{" "}
+              {t(paused || reduced ? "OFF" : "ON")}
             </button>
           </div>
         </section>
         <section id="about" className="pf-about pf-wrap">
           <div className="pf-about-heading pf-reveal">
-            <SectionLabel index="01">SYSTEM ARCHITECTURE</SectionLabel>
+            <SectionLabel index="01"><T>SYSTEM ARCHITECTURE</T></SectionLabel>
             <h2 className="pb-3">
               {/* Thoughtful by nature.{" "}
               <em>Engineer by craft.</em> */}
-              Building Scalable, High-Performance Systems
+              <T>Building Scalable, High-Performance Systems</T>
             </h2>
           </div>
           <div className="pf-about-layout">
             <ArchitectureTree />
             <div className="pf-about-copy pf-reveal">
               <strong>
-                I build systems,
-                not just interfaces.
+                <T>I build systems,</T>{" "}
+                <T>not just interfaces.</T>
               </strong>
-              <p><SignalText disabled={paused || reduced} text="I’m a Front-End Engineer working across React and Next.js products. At BIG GROUP, I own frontend development for customer-facing brands and internal systems — shaping the architecture, API integration, and production stability of each release." select={["Architecture", "API Integration"]} /></p>
-              <p><SignalText disabled={paused || reduced} text="I build real-world systems that can grow: features have clear ownership and separation of concerns. On a Logistics Dashboard, I designed multi-layer RBAC and an order lifecycle state machine, and achieved a 100/100 Lighthouse score across performance, accessibility, Best Practices, and SEO. I also led a 4-month Frontend program at GDSC." select={["Real-world Systems", "Separation of Concerns", "RBAC", "Lighthouse", "Accessibility"]} /></p>
+              <p><SignalText disabled={paused || reduced || locale === "ar"} text={t("I’m a Front-End Engineer working across React and Next.js products. At BIG GROUP, I own frontend development for customer-facing brands and internal systems — shaping the architecture, API integration, and production stability of each release.")} select={["Architecture", "API Integration"]} /></p>
+              <p><SignalText disabled={paused || reduced || locale === "ar"} text={t("I build real-world systems that can grow: features have clear ownership and separation of concerns. On a Logistics Dashboard, I designed multi-layer RBAC and an order lifecycle state machine, and achieved a 100/100 Lighthouse score across performance, accessibility, Best Practices, and SEO. I also led a 4-month Frontend program at GDSC.")} select={["Real-world Systems", "Separation of Concerns", "RBAC", "Lighthouse", "Accessibility"]} /></p>
               <div className="pf-about-facts">
                 <div>
                   <strong>
                     100<span>/100</span>
                   </strong>
                   <span>
-                    Lighthouse score
+                    <T>Lighthouse score</T>
                     <br />
                     Logistics Dashboard
                   </span>
@@ -812,8 +822,8 @@ export default function Portfolio() {
                 ].map(([n, title, detail], i) => (
                   <div key={n} className="pf-principle-card">
                     <span className="pf-inline-icon">{[<Network size={19} />, <Gauge size={19} />, <ShieldCheck size={19} />, <Rocket size={19} />][i]} {n}</span>
-                    <h3>{title}</h3>
-                    <p><SignalText text={detail} disabled={paused || reduced} select={["Scalable", "Maintainable", "RBAC"]} /></p>
+                    <h3>{t(title)}</h3>
+                    <p><SignalText text={t(detail)} disabled={paused || reduced || locale === "ar"} select={["Scalable", "Maintainable", "RBAC"]} /></p>
                   </div>
                 ))}
               </div>
@@ -824,26 +834,26 @@ export default function Portfolio() {
           <div className="pf-wrap">
             <div className="pf-section-heading pf-reveal">
               <div>
-                <SectionLabel index="02">TECHNICAL SKILLS</SectionLabel>
+                <SectionLabel index="02"><T>TECHNICAL SKILLS</T></SectionLabel>
                 <h2>
-                  Technologies I Build With.
+                  <T>Technologies I Build With.</T>
                 </h2>
               </div>
-              <p><SignalText disabled={paused || reduced} text="From typed interfaces to reliable data flow, I keep state management predictable as products grow." select={["State Management"]} /></p>
+              <p><SignalText disabled={paused || reduced || locale === "ar"} text={t("From typed interfaces to reliable data flow, I keep state management predictable as products grow.")} select={["State Management"]} /></p>
             </div>
             <SkillOrbit paused={paused || reduced} />
             <div className="pf-human-skills pf-reveal">
-              <span className="pf-eyebrow"><Users size={16} /> THE HUMAN SKILLS</span>
-              <p>Team Collaboration · Problem Solving · Adaptability · Continuous Learning · Growth Mindset · Time Management · Multitasking · Deadline-Oriented</p>
+              <span className="pf-eyebrow"><Users size={16} /> <T>THE HUMAN SKILLS</T></span>
+              <p><T>Team Collaboration · Problem Solving · Adaptability · Continuous Learning · Growth Mindset · Time Management · Multitasking · Deadline-Oriented</T></p>
             </div>
             <aside className="pf-ai-workflow pf-reveal" aria-labelledby="pf-ai-workflow-title">
               <div className="pf-ai-workflow-heading">
                 <div>
-                  <span className="pf-eyebrow">HOW I WORK</span>
-                  <h3 id="pf-ai-workflow-title">Human curiosity. <em>AI-assisted momentum.</em></h3>
+                  <span className="pf-eyebrow"><T>HOW I WORK</T></span>
+                  <h3 id="pf-ai-workflow-title"><T>Human curiosity.</T> <em><T>AI-assisted momentum.</T></em></h3>
                 </div>
               </div>
-              <ul className="pf-ai-tools" aria-label="AI tools in my workflow">
+              <ul className="pf-ai-tools" aria-label={t("AI tools in my workflow")}>
                 {aiTools.map((tool) => <li key={tool}><AiToolIcon name={tool} /><span>{tool}</span></li>)}
               </ul>
             </aside>
@@ -851,62 +861,60 @@ export default function Portfolio() {
         </section>
         <section id="projects" className="pf-projects">
           <ProjectHelix reduced={reduced} motionDisabled={paused || reduced} />
-          {classicArchive ? <><div className="pf-wrap" style={{ paddingTop: 24, textAlign: "right" }}><a href="?archive=chapters#project-archive" style={{ color: "var(--lime)", fontFamily: '"Courier New", monospace', fontSize: 12, textTransform: "uppercase" }}>View Project Chapters <ArrowUpRight size={14} style={{ display: "inline" }} /></a></div><Archive /></> : <ProjectChapters />}
+          {classicArchive ? <><div className="pf-wrap" style={{ paddingTop: 24, textAlign: "right" }}><a href="?archive=chapters#project-archive" style={{ color: "var(--lime)", fontFamily: '"Courier New", monospace', fontSize: 12, textTransform: "uppercase" }}><T>View Project Chapters</T> <ArrowUpRight size={14} style={{ display: "inline" }} /></a></div><Archive /></> : <ProjectChapters />}
         </section>
         <section id="experience" className="pf-journey pf-wrap">
           <div className="pf-section-heading pf-reveal">
             <div>
-              <SectionLabel index="04">PROFESSIONAL EXPERIENCE</SectionLabel>
-              <h2>
-                Engineering Impact in Production
-              </h2>
+              <SectionLabel index="04"><T>PROFESSIONAL EXPERIENCE</T></SectionLabel>
+              <h2><T>Engineering Impact in Production</T></h2>
             </div>
             <p>
-              Learning. Building. Sharing.
+              <T>Learning. Building. Sharing.</T>
               <br />
-              Every chapter adds a new perspective.
+              <T>Every chapter adds a new perspective.</T>
             </p>
           </div>
           <ExperienceTimeline motionDisabled={paused || reduced} />
           <div className="pf-foundations">
             <div id="education" className="pf-reveal">
-              <SectionLabel index="↗">THE FOUNDATION</SectionLabel>
+              <SectionLabel index="↗"><T>THE FOUNDATION</T></SectionLabel>
               {education.map((e) => (
                 <article key={e.degree}>
                   <span className="pf-eyebrow">
-                    {e.period.split(/(\d{4})/).map((part, i) => /^\d{4}$/.test(part) ? <span key={i}>{part.slice(0, 2)}<b className="pf-year-end">{part.slice(2)}</b></span> : part)} / {e.location}
+                    {t(e.period).split(/(\d{4})/).map((part, i) => /^\d{4}$/.test(part) ? <span key={i}>{part.slice(0, 2)}<b className="pf-year-end">{part.slice(2)}</b></span> : part)} / {t(e.location)}
                   </span>
-                  <h3>{e.degree}</h3>
+                  <h3>{t(e.degree)}</h3>
                   <h4 className="pf-university-name">
                     <img src="/images/Banha-Logo.png" alt="" width="64" height="64" loading="lazy" />
-                    <span>{e.institution}</span>
+                    <span>{t(e.institution)}</span>
                   </h4>
-                  <p>{e.description}</p>
+                  <p>{t(e.description)}</p>
                 </article>
               ))}
             </div>
             <div id="internships" className="pf-reveal">
-              <SectionLabel index="↗">LEARNING & INTERNSHIPS</SectionLabel>
+              <SectionLabel index="↗"><T>LEARNING & INTERNSHIPS</T></SectionLabel>
               {[...internships, ...memberships].map((e) => (
                 <details key={e.organization}>
                   <summary>
-                    <span className="pf-foundation-name"><SignalText text={e.organization} disabled={paused || reduced} select={["ITI", "NTI", "Google", "IEEE"]} /></span>
+                    <span className="pf-foundation-name" dir="ltr"><SignalText text={e.organization} disabled={paused || reduced} select={["ITI", "NTI", "Google", "IEEE"]} /></span>
                     <span className="pf-foundation-meta">
-                      <time className="pf-foundation-year" aria-label={`Year: ${formatPeriodYears(e.period)}`}>
+                      <time className="pf-foundation-year" aria-label={`${t("Year")}: ${formatPeriodYears(e.period)}`}>
                         {formatPeriodYears(e.period)}
                       </time>
                       <Plus size={16} aria-hidden="true" />
                     </span>
                   </summary>
-                  <span className="pf-eyebrow">{e.period}</span>
-                  <h4>{e.title}</h4>
+                  <span className="pf-eyebrow">{t(e.period)}</span>
+                  <h4>{t(e.title)}</h4>
                   {"location" in e && typeof e.location === "string" && (
-                    <p>{e.location}</p>
+                    <p>{t(e.location)}</p>
                   )}
-                  <p>{e.description}</p>
+                  <p>{t(e.description)}</p>
                   <ul>
                     {e.achievements.map((a) => (
-                      <li key={a}>{a}</li>
+                      <li key={a}>{t(a)}</li>
                     ))}
                   </ul>
                 </details>
@@ -917,49 +925,48 @@ export default function Portfolio() {
         <section id="contact" className="pf-contact">
           <div className="pf-contact-orbit" aria-hidden="true" />
           <div className="pf-wrap">
-            <SectionLabel index="05">THE NEXT CHAPTER</SectionLabel>
+            <SectionLabel index="05"><T>THE NEXT CHAPTER</T></SectionLabel>
             <div className="pf-contact-top pf-reveal">
               <h2>
-                Have something{" "}
-                <em>in mind?</em>
+                <T>Have something</T>{" "}
+                <em><T>in mind?</T></em>
                 <span>↗</span>
               </h2>
               <p>
-                I turn complex product ideas into clear, dependable web experiences—built
-                with thoughtful architecture and attention to detail.
+                <T>I turn complex product ideas into clear, dependable web experiences—built with thoughtful architecture and attention to detail.</T>
               </p>
             </div>
             <a className="pf-contact-email" href={`mailto:${email}`}>
-              <span>Let’s make it happen.</span>
+              <span><T>Let’s make it happen.</T></span>
               <ArrowUpRight />
             </a>
             <div className="pf-contact-details">
-              <a href={`mailto:${email}`} className="pf-contact-gmail"><GmailMark size={20} />{email}</a>
-              <a href="tel:+201099491558"><Phone size={18} />+20 109 949 1558</a>
-              <span><MapPin size={18} />CAIRO, EGYPT</span>
+              <a href={`mailto:${email}`} className="pf-contact-gmail"><GmailMark size={20} /><bdi dir="ltr">{email}</bdi></a>
+              <a href="tel:+201099491558"><Phone size={18} /><bdi dir="ltr">+20 109 949 1558</bdi></a>
+              <span><MapPin size={18} /><T>CAIRO, EGYPT</T></span>
             </div>
             <footer className="pf-footer">
               <PortfolioLogo footer />
-              <div className="pf-footer-links" aria-label="Social and résumé links">
-                <a className="pf-footer-github" href="https://github.com/ahmedebrahem0" {...external} aria-label="Ahmed on GitHub (opens in a new tab)">
+              <div className="pf-footer-links" aria-label={t("Social and résumé links")}>
+                <a className="pf-footer-github" href="https://github.com/ahmedebrahem0" {...external} aria-label={t("Ahmed on GitHub (opens in a new tab)")}>
                   <Github size={19} aria-hidden="true" /> GitHub <ArrowUpRight size={14} aria-hidden="true" />
                 </a>
                 <a
                   className="pf-footer-linkedin"
                   href="https://www.linkedin.com/in/ahmedebrahem"
                   {...external}
-                  aria-label="Ahmed on LinkedIn (opens in a new tab)"
+                  aria-label={t("Ahmed on LinkedIn (opens in a new tab)")}
                 >
                   <LinkedInMark /> LinkedIn <ArrowUpRight size={14} aria-hidden="true" />
                 </a>
-                <a className="pf-footer-whatsapp" href={whatsapp} {...external} aria-label="WhatsApp Ahmed at +20 109 949 1558 (opens in a new tab)">
+                <a className="pf-footer-whatsapp" href={whatsapp} {...external} aria-label={t("WhatsApp Ahmed at +20 109 949 1558 (opens in a new tab)")}>
                   <WhatsAppMark size={19} /> WhatsApp <ArrowUpRight size={14} aria-hidden="true" />
                 </a>
-                <a className="pf-footer-resume" href={resume} {...external} aria-label="View Ahmed’s résumé on Google Drive (opens in a new tab)">
+                <a className="pf-footer-resume" href={resume} {...external} aria-label={t("View Ahmed’s résumé on Google Drive (opens in a new tab)")}>
                   <DriveMark /> Résumé <ArrowUpRight size={14} aria-hidden="true" />
                 </a>
               </div>
-              <a href="#home" className="pf-back-top" aria-label="Back to top">
+              <a href="#home" className="pf-back-top" aria-label={t("Back to top")}>
                 <ArrowDown size={20} />
               </a>
             </footer>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { ChevronDown, ChevronRight, Code2, Image, Layers3, FileText, FileCode2 } from "lucide-react";
 import { architectureProjects, countArchitectureNodes, type ArchitectureNode } from "@/data/projectArchitecture";
+import { T, useTranslation } from "@/i18n";
 import "./architecture-tree.css";
 
 const allFolderPaths = (nodes: ArchitectureNode[], prefix = ""): string[] =>
@@ -70,6 +71,7 @@ function GuideHand() {
 }
 
 export function ArchitectureTree() {
+  const { t } = useTranslation();
   const [active, setActive] = useState(0);
   const [expandedByProject, setExpandedByProject] = useState<Record<number, Set<string>>>(() => Object.fromEntries(architectureProjects.map((_, index) => [index, new Set(index === 0 ? ["src", "src/features", "src/features/orders", "src/features/orders/components"] : ["src", "src/features"])])));
   const [visible, setVisible] = useState(false);
@@ -192,27 +194,27 @@ export function ArchitectureTree() {
   useEffect(() => () => { if (mouseFrameRef.current !== null) cancelAnimationFrame(mouseFrameRef.current); }, []);
 
   return (
-    <section ref={panelRef} className="arch-panel pf-reveal" aria-label="Project architecture explorer">
+    <section ref={panelRef} className="arch-panel pf-reveal" aria-label={t("Project architecture explorer")}>
       <div className="arch-heading"><span className="arch-heading-icon"><Layers3 size={17} /></span><div>
         {/* <span className="arch-kicker">INSIDE THE BUILD</span> */}
         {/* <h3>Project architecture<span>.</span> */}
-        <h3>How I Structure Real Applications<span>.</span>
+        <h3><T>How I Structure Real Applications</T><span>.</span>
         </h3>
       </div>
       </div>
       {/* <p className="arch-intro">A closer look at how I structure real applications.</p> */}
-      <div className="arch-projects" aria-label="Select a project">{architectureProjects.map((item, index) => <button key={item.name} type="button" className={`arch-project ${active === index ? "is-active" : ""}`} aria-pressed={active === index} onClick={() => { stopDemo(); setActive(index); }}><span>{String(index + 1).padStart(2, "0")}</span>{item.short}</button>)}</div>
+      <div className="arch-projects" aria-label={t("Select a project")}>{architectureProjects.map((item, index) => <button key={item.name} type="button" className={`arch-project ${active === index ? "is-active" : ""}`} aria-pressed={active === index} onClick={() => { stopDemo(); setActive(index); }}><span>{String(index + 1).padStart(2, "0")}</span>{t(item.short)}</button>)}</div>
       <div className="arch-editor" key={active}>
         <div className="arch-editor-bar"><span className="arch-editor-dots" aria-hidden="true"><i /><i /><i /></span><span className="arch-editor-title"><Code2 size={13} /> {project.name}</span><span className="arch-editor-count">{String(active + 1).padStart(2, "0")} / 04</span></div>
-        <div className="arch-editor-meta"><span>{project.stack}</span><span>{counts.folders} FOLDERS · {counts.files} FILES</span></div>
-        <div className="arch-tree-actions"><span className="arch-pan-hint" aria-hidden="true">SWIPE ↔ TO SEE DEEP PATHS</span><button type="button" onClick={() => { stopDemo(); setAll(true); }}>Expand all</button><button type="button" onClick={() => { stopDemo(); setAll(false); }}>Collapse all</button></div>
+        <div className="arch-editor-meta"><span>{t(project.stack)}</span><span>{counts.folders} <T>FOLDERS</T> · {counts.files} <T>FILES</T></span></div>
+        <div className="arch-tree-actions"><span className="arch-pan-hint" aria-hidden="true"><T>SWIPE ↔ TO SEE DEEP PATHS</T></span><button type="button" onClick={() => { stopDemo(); setAll(true); }}><T>Expand all</T></button><button type="button" onClick={() => { stopDemo(); setAll(false); }}><T>Collapse all</T></button></div>
         <div className={`arch-tree-viewport ${following && motionAllowed ? "is-following" : ""}`} ref={viewportRef} onPointerEnter={(event) => { if (event.pointerType === "mouse" && motionAllowed && window.matchMedia("(hover: hover) and (pointer: fine)").matches) setFollowing(true); }} onPointerMove={movePointer} onPointerLeave={() => { if (mouseFrameRef.current !== null) { cancelAnimationFrame(mouseFrameRef.current); mouseFrameRef.current = null; } setFollowing(false); setGuide(null); }} onPointerDown={() => stopDemo()} onKeyDown={() => stopDemo()} onWheel={() => stopDemo()}>
           <div className="arch-scroll" ref={scrollRef} role="region" aria-label={`${project.name} source tree`} tabIndex={0}><ul className="arch-list">{project.tree.map((node) => <TreeNode key={node.name} node={node} depth={0} path={node.name} expanded={expanded} toggle={toggle} />)}</ul></div>
           {guide && motionAllowed && <div className={`arch-guide ${guide.pressing ? "is-pressing" : ""} ${following ? "is-live" : ""}`} style={{ transform: `translate3d(${guide.x}px, ${guide.y}px, 0)` }} aria-hidden="true"><span className="arch-guide-halo" /><GuideHand /></div>}
         </div>
-        <div className="arch-editor-foot"><span className="arch-status-dot" /> {project.note}</div>
+        <div className="arch-editor-foot"><span className="arch-status-dot" /> {t(project.note)}</div>
       </div>
-      <p className="arch-caption"><span className="arch-discovery-dot" aria-hidden="true" /><span className="arch-hint-desktop">Click folders to explore</span><span className="arch-hint-touch">Tap folders to explore</span><span className="arch-caption-arrow" aria-hidden="true">↗</span></p>
+      <p className="arch-caption"><span className="arch-discovery-dot" aria-hidden="true" /><span className="arch-hint-desktop"><T>Click folders to explore</T></span><span className="arch-hint-touch"><T>Tap folders to explore</T></span><span className="arch-caption-arrow" aria-hidden="true">↗</span></p>
     </section>
   );
 }

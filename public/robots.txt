@@ -12,3 +12,4 @@ Allow: /
 
 User-agent: *
 Allow: /
+Sitemap: https://protofolio-blush-six.vercel.app/sitemap.xml

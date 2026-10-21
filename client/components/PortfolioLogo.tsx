@@ -1,14 +1,17 @@
+import { useTranslation } from "@/i18n";
+
 type PortfolioLogoProps = {
   footer?: boolean;
   onClick?: () => void;
 };
 
 export function PortfolioLogo({ footer = false, onClick }: PortfolioLogoProps) {
+  const { t } = useTranslation();
   return (
     <a
       href="#home"
       className={`pf-logo${footer ? " pf-logo--footer" : ""}`}
-      aria-label="Ahmed Ebrahem — home"
+      aria-label={t("Ahmed Ebrahem — home")}
       onClick={onClick}
     >
       <span className="pf-logo-art" aria-hidden="true">

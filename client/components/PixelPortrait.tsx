@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useTranslation } from "@/i18n";
 
 // const SOURCE = "/images/my-photo - Copy.png";
 const SOURCE = "/images/Confident Young Man in Black Suit-remove.png";
@@ -17,6 +18,7 @@ const REVEAL_DURATION_MS = Math.max(...tiles.map(({ delay }) => delay)) + TILE_D
 type PixelPortraitProps = { motionDisabled: boolean };
 
 export function PixelPortrait({ motionDisabled }: PixelPortraitProps) {
+  const { locale } = useTranslation();
   const [phase, setPhase] = useState<"idle" | "revealing" | "done">("idle");
   const [imageLoaded, setImageLoaded] = useState(false);
   const [inView, setInView] = useState(false);
@@ -63,7 +65,7 @@ export function PixelPortrait({ motionDisabled }: PixelPortraitProps) {
       <img
         className="pf-pixel-portrait-image"
         src={SOURCE}
-        alt="Ahmed Ebrahem"
+        alt={locale === "ar" ? "أحمد إبراهيم" : "Ahmed Ebrahem"}
         width="960"
         height="1280"
         fetchPriority="high"

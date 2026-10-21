@@ -2692,6 +2692,25 @@
 .pf .pf-nav nav > a.is-active svg { color: var(--lime); filter: drop-shadow(0 0 6px #c9f66f8c); }
 .pf .pf-nav nav > a.is-active::after { transform: scaleX(1); }
 .pf .pf-nav nav > a:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+.pf .pf-language-switch { display: inline-flex; align-items: center; margin-inline-start: 16px; padding: 9px 5px; color: var(--lime); font: 700 11px/1 "Courier New", monospace; white-space: nowrap; text-decoration: none; }
+.pf .pf-language-switch span { color: var(--muted); }
+.pf .pf-language-switch:hover { color: var(--cream); }
+.pf .pf-language-switch:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+[dir="rtl"] .pf { font-family: "Segoe UI", Tahoma, Arial, sans-serif; }
+[dir="rtl"] .pf .pf-hero h1 { letter-spacing: 0; }
+[dir="rtl"] .pf .pf-nav nav { margin-left: 0; margin-inline-start: auto; }
+[dir="rtl"] .pf .pf-language-switch { direction: ltr; }
+[dir="rtl"] .pf .pf-intro-right { left: auto; right: clamp(20px, 1.7vw, 30px); }
+[dir="rtl"] .pf .pf-hero-proof-arrow { margin-left: 0; margin-inline-start: auto; transform: scaleX(-1); }
+[dir="rtl"] .pf .pf-helix-controls button svg, [dir="rtl"] .pf .pf-command-mobile-step svg { transform: scaleX(-1); }
+[dir="rtl"] .pf .pf-projects .pc-gallery { direction: ltr; }
+[dir="rtl"] .pf .pf-pixel-portrait-grid { direction: ltr; }
+[dir="rtl"] .pf .pc-gallery-heading, [dir="rtl"] .pf .pc-gallery-row-top, [dir="rtl"] .pf .pc-card-copy, [dir="rtl"] .pf .pc-card-image-action, [dir="rtl"] .pf .pc-gallery-footer { direction: rtl; }
+[dir="rtl"] .pf .arch-editor, [dir="rtl"] .pf .arch-projects { direction: ltr; }
+[dir="rtl"] .pf .arch-editor-foot, [dir="rtl"] .pf .arch-tree-actions, [dir="rtl"] .pf .arch-editor-meta { direction: rtl; }
+[dir="rtl"] .pf .pf-contact-gmail, [dir="rtl"] .pf a[href^="mailto:"], [dir="rtl"] .pf a[href^="tel:"] { unicode-bidi: isolate; }
+[dir="rtl"] .pf .pf-skill-group-title, [dir="rtl"] .pf .pf-eyebrow, [dir="rtl"] .pf .pf-label, [dir="rtl"] .pf .pc-card-copy p { letter-spacing: 0; }
+@media (max-width: 799px) { .pf .pf-language-switch { margin-inline-start: auto; margin-inline-end: 8px; } .pf .pf-mobile-menu { margin-left: 0; } [dir="rtl"] .pf .pf-intro-right { right: auto; } }
 @keyframes pf-skill-enter { from { opacity: .45; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @media (min-width: 800px) and (max-width: 1050px) {
   .pf .pf-skill-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 46px; }

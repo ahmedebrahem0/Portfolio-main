@@ -1,6 +1,7 @@
 import { useEffect, useRef, type CSSProperties } from "react";
 import { BriefcaseBusiness, CalendarDays, MapPin } from "lucide-react";
 import { experiences } from "@/data/portfolio";
+import { T, useTranslation } from "@/i18n";
 import "./experience-timeline.css";
 
 const number = (value: number) => String(value).padStart(2, "0");
@@ -13,10 +14,12 @@ function IlluminatedText({ text }: { text: string }) {
 }
 
 function AchievementList({ items }: { items: readonly string[] }) {
-  return <ol>{items.map((item, index) => <li key={item}><span className="pf-career-achievement-index">{number(index + 1)}</span><span><IlluminatedText text={item} /></span></li>)}</ol>;
+  const { t } = useTranslation();
+  return <ol>{items.map((item, index) => <li key={item}><span className="pf-career-achievement-index">{number(index + 1)}</span><span><IlluminatedText text={t(item)} /></span></li>)}</ol>;
 }
 
 export function ExperienceTimeline({ motionDisabled }: { motionDisabled: boolean }) {
+  const { t } = useTranslation();
   const timelineRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const trackRef = useRef<SVGPathElement>(null);
@@ -133,17 +136,17 @@ export function ExperienceTimeline({ motionDisabled }: { motionDisabled: boolean
     <svg ref={svgRef} className="pf-career-rail-svg" preserveAspectRatio="none" aria-hidden="true"><path ref={trackRef} className="pf-career-rail-track" /><path ref={fillRef} className="pf-career-rail-fill" /></svg>
     {experiences.map((experience, index) => <article className={`pf-career-entry${index % 2 ? " is-right" : " is-left"}`} key={experience.company}>
       <span className="pf-career-node" aria-hidden="true"><span /></span>
-      <span className="pf-career-date"><CalendarDays size={13} aria-hidden="true" />{experience.period}</span>
-      <aside className="pf-career-contributions" aria-label={`${experience.company} achievements`}>
+      <span className="pf-career-date"><CalendarDays size={13} aria-hidden="true" />{t(experience.period)}</span>
+      <aside className="pf-career-contributions" aria-label={`${experience.company} ${t("achievements")}`}>
         <AchievementList items={experience.achievements} />
       </aside>
       <div className="pf-career-card">
-        <div className="pf-career-card-top"><span className="pf-career-card-index">{number(index + 1)} / {number(experiences.length)}</span>{index === 0 && <span className="pf-career-now"><i /> CURRENT CHAPTER</span>}</div>
-        <span className="pf-career-company"><BriefcaseBusiness size={16} aria-hidden="true" />{experience.company}</span>
-        <h3>{experience.title}</h3>
-        <div className="pf-career-facts"><span><MapPin size={15} aria-hidden="true" />{experience.location}</span></div>
-        <p><IlluminatedText text={experience.description} /></p>
-        <div className="pf-career-mobile-details" aria-label={`${experience.company} achievements`}><AchievementList items={experience.achievements} /></div>
+        <div className="pf-career-card-top"><span className="pf-career-card-index">{number(index + 1)} / {number(experiences.length)}</span>{index === 0 && <span className="pf-career-now"><i /> <T>CURRENT CHAPTER</T></span>}</div>
+        <span className="pf-career-company"><BriefcaseBusiness size={16} aria-hidden="true" /><bdi dir="ltr">{experience.company}</bdi></span>
+        <h3>{t(experience.title)}</h3>
+        <div className="pf-career-facts"><span><MapPin size={15} aria-hidden="true" />{t(experience.location)}</span></div>
+        <p><IlluminatedText text={t(experience.description)} /></p>
+        <div className="pf-career-mobile-details" aria-label={`${experience.company} ${t("achievements")}`}><AchievementList items={experience.achievements} /></div>
       </div>
     </article>)}
   </div>;
