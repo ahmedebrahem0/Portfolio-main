@@ -1,12 +1,12 @@
 type AiToolIconProps = { name: string };
 
-// Local brand marks. Antigravity and AMP use assets from their official press kits.
+// Local brand marks for the tools shown in the workflow list.
 const iconSlugs: Record<string, string> = {
   Codex: "openai",
   "Claude Code": "claude",
   "Cursor AI": "cursor",
   Windsurf: "windsurf",
-  AMP: "amp",
+  OpenCode: "opencode",
 };
 
 export function AiToolIcon({ name }: AiToolIconProps) {

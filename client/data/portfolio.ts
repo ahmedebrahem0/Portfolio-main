@@ -118,7 +118,7 @@ export const projects = [
     },
     {
       title: "EduSystem — School Management",
-      image: "/images/school-system.png",
+      image: "/images/EduSystem.png",
       description:
         "Built and maintained a full-featured school management system covering Admin, Teacher, and Student roles end-to-end — students, teachers, classes, subjects, grades, attendance, timetables, and analytics. Owned role-based access control (RBAC), dashboard architecture, data visualization.",
       technologies: [
@@ -141,7 +141,7 @@ export const projects = [
     },
     {
       title: "E-Commerce Platform",
-      image: "/images/FreshCart.png",
+      image: "/images/E-Commerce Platform.png",
       description:
         "Developed and deployed a fully functional e-commerce application using React, Context API, Redux and Tailwind CSS. Handled API integration for product management, user authentication, and payment processing. Optimized user experience with responsive design and interactive features.",
       technologies: [
@@ -289,7 +289,7 @@ export const projects = [
     },
     {
       title: "Bootstrap Responsive Page",
-      image: "/images/Bootstrap.png",
+      image: "/images/Bootstrap Responsive Page.png",
       description:
         "A clean and responsive Bootstrap-based webpage showcasing layout and component usage with organized structure. Built with core frontend fundamentals using HTML, CSS, and Bootstrap.",
       technologies: [
@@ -306,7 +306,7 @@ export const projects = [
     },
     {
       title: "Responsive Personal Landing Page",
-      image: "/images/PersonalLandingPage.png",
+      image: "/images/Responsive Personal Landing Page.png",
       description:
         "A clean and responsive landing page built with HTML and CSS to showcase content with a simple and modern layout. Demonstrates solid core frontend fundamentals without using frameworks.",
       technologies: [

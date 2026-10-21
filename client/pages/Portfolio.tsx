@@ -79,7 +79,7 @@ const projectSignals: Record<string, readonly string[]> = {
 };
 const signalsFor = (project: (typeof projects)[number]) => projectSignals[project.title] ?? defaultProjectSignals;
 const aiTools = [
-  "Codex", "Claude Code", "Cursor AI", "antigravity", "AMP", "Windsurf",
+  "Codex", "Claude Code", "Cursor AI", "antigravity", "OpenCode", "Windsurf",
 ];
 type Project = (typeof projects)[number];
 const external = { target: "_blank", rel: "noopener noreferrer" };
@@ -886,7 +886,7 @@ export default function Portfolio() {
               ))}
             </div>
             <div id="internships" className="pf-reveal">
-              <SectionLabel index="↗">LEARNING & COMMUNITY</SectionLabel>
+              <SectionLabel index="↗">LEARNING & INTERNSHIPS</SectionLabel>
               {[...internships, ...memberships].map((e) => (
                 <details key={e.organization}>
                   <summary>

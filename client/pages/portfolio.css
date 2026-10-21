@@ -1430,8 +1430,8 @@
 .pf-ai-mark-cursor { background: #252a2a; }
 .pf-ai-mark-windsurf { background: #153a37; }
 .pf-ai-mark-githubcopilot { background: #272b34; }
-.pf-ai-mark-amp { background: #fff; }
-.pf-ai-mark-amp img { width: 22px; height: 22px; }
+.pf-ai-mark-opencode { background: transparent; border-radius: 0; }
+.pf-ai-mark-opencode img { width: 20px; height: 25px; }
 .pf-ai-mark-antigravity { background: #152422; }
 .pf-ai-mark-antigravity img { width: 24px; height: 24px; }
 .pf-ai-mark-assistant { background: #635ec6; font-size: 10px; }
