@@ -27,9 +27,9 @@ A Next.js storefront serving real customers. My work covers OTP authentication, 
 
 An Arabic, right-to-left furniture storefront covering product discovery, account flows, and checkout. I organized the frontend by feature and built responsive screens, OTP login, API integration, forms, and SEO metadata.
 
-### Truck Expenses & Trip Settlement System — used in a real trucking workflow
+### [Truck Expenses & Trip Settlement System](https://cach-system.vercel.app/dashboard) — used in a real trucking workflow
 
-A mobile-oriented Arabic application for recording trips, freight charges, advances, categorized expenses, debts, company settlements, driver earnings, and assistant wages. It includes monthly financial reports, CSV export, print support, destination rates, and validated JSON backup and restore. Data is stored on the device through **Dexie and IndexedDB**. A truck driver currently uses the application. The product is not publicly linked from this portfolio.
+A mobile-oriented Arabic application for recording trips, freight charges, advances, categorized expenses, debts, company settlements, driver earnings, and assistant wages. It includes monthly financial reports, CSV export, print support, destination rates, and validated JSON backup and restore. Data is stored on the device through **Dexie and IndexedDB**. A truck driver currently uses the application. [View source](https://github.com/ahmedebrahem0/CachSystem.git).
 
 The locally developed fuel-spending comparison report is still awaiting release, so it is not presented as a shipped feature. The application does not claim cloud sync, multi-user authentication, or measured fuel consumption.
 
