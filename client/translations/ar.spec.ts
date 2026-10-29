@@ -21,8 +21,14 @@ describe("Arabic portfolio coverage", () => {
     }
   });
 
-  it("keeps project names unchanged", () => {
-    for (const project of projects) expect(translations[project.title]).toBeUndefined();
+  it("localizes the truck project while keeping existing project names unchanged", () => {
+    for (const project of projects) {
+      if (project.title === "Truck Expenses & Trip Settlement System") {
+        expect(translations[project.title]).toBe("نظام مصروفات وتسوية نقلات الشاحنات");
+      } else {
+        expect(translations[project.title]).toBeUndefined();
+      }
+    }
   });
 
   it("covers static translated text in portfolio components", () => {

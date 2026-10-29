@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useTranslation } from "@/i18n";
 
-// const SOURCE = "/images/my-photo - Copy.png";
 const SOURCE = "/images/Confident Young Man in Black Suit-remove.png";
 const COLUMNS = 6;
 const ROWS = 8;

@@ -2327,7 +2327,9 @@
 .pf .pf-helix-scene { min-height: 0; height: 100%; margin: 0; overflow: clip; isolation: isolate; }
 .pf .pf-helix-card { width: min(385px, 70%); border-radius: 8px; overflow: hidden; }
 .pf .pf-card-full-link { display: block; cursor: pointer; }
+.pf .pf-card-full-link--static { cursor: default; }
 .pf-card-full-link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.pf-card-full-link--static::after { content: none; }
 .pf-card-full-link:focus-visible { outline-offset: -4px; }
 .pf .pf-card-caption { padding: 17px; }
 .pf .pf-card-caption h3 { font-size: 17px; }

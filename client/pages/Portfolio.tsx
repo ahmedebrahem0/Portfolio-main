@@ -69,7 +69,9 @@ const resume =
   "https://drive.google.com/file/d/1yrsGISsfnTXcjxD0zgiS2cmJh9ES7-j4/view?usp=sharing";
 const selectedProjects = projects.filter((p) => p.featured);
 const showcaseStatus = (project: (typeof projects)[number]) =>
-  "showcaseStatus" in project && project.showcaseStatus === "production"
+  "showcaseStatus" in project && project.showcaseStatus === "in-use"
+    ? "IN USE"
+    : "showcaseStatus" in project && project.showcaseStatus === "production"
     ? "IN PRODUCTION"
     : "LIVE DEMO";
 const defaultProjectSignals = ["Feature-based", "Next.js", "TypeScript", "RBAC", "Performance", "SEO", "API Integration", "Authorization", "Role-based", "Order Lifecycle", "Error Handling", "Reusable", "Responsive", "RTK Query"];
@@ -78,6 +80,7 @@ const projectSignals: Record<string, readonly string[]> = {
   "E-Commerce Platform": ["React", "API Integration", "Responsive"],
   "Product Management System": ["Redux", "State Management", "Data Visualization"],
   "Breast Cancer Awareness Graduation Project": ["API Integration", "Authentication", "Authorization"],
+  "Truck Expenses & Trip Settlement System": ["Arabic", "mobile-oriented", "Dexie", "IndexedDB", "CSV export", "validated local backups"],
 };
 const signalsFor = (project: (typeof projects)[number]) => projectSignals[project.title] ?? defaultProjectSignals;
 const aiTools = [
@@ -124,9 +127,9 @@ function ProjectLinks({ project }: { project: Project }) {
   const { t } = useTranslation();
   return (
     <div className="pf-project-links">
-      <a className="pf-outline-action" href={project.liveDemo} {...external}>
+      {project.liveDemo && <a className="pf-outline-action" href={project.liveDemo} {...external}>
         <T>Visit live site</T> <ArrowUpRight size={16} />
-      </a>
+      </a>}
       {project.github && (
         <a className="pf-outline-action pf-sweep-action pf-source-link" href={project.github} {...external}>
           <span className="pf-sweep-content"><Github size={16} /> {t("Source")}</span>
@@ -289,12 +292,12 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
                   key={p.title}
                   style={style}
                 >
-                  <a className="pf-card-full-link" href={p.liveDemo} {...external} tabIndex={linear || focus ? 0 : -1} aria-label={`${t("Visit")} ${t(p.title)}`}>
+                  {p.liveDemo ? <a className="pf-card-full-link" href={p.liveDemo} {...external} tabIndex={linear || focus ? 0 : -1} aria-label={`${t("Visit")} ${t(p.title)}`}>
                     <div className="pf-card-top">
                       <span>
                         {number(i + 1)} / {number(selectedProjects.length)}
                       </span>
-                      <span className={`pf-showcase-status ${showcaseStatus(p) === "IN PRODUCTION" ? "is-production" : ""}`}>{t(showcaseStatus(p))}</span>
+                      <span className={`pf-showcase-status ${showcaseStatus(p) !== "LIVE DEMO" ? "is-production" : ""}`}>{t(showcaseStatus(p))}</span>
                       <ArrowUpRight size={15} />
                     </div>
                     <img
@@ -306,7 +309,11 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
                       <h3>{t(p.title)}</h3>
                       <ArrowUpRight size={21} />
                     </div>
-                  </a>
+                  </a> : <div className="pf-card-full-link pf-card-full-link--static">
+                    <div className="pf-card-top"><span>{number(i + 1)} / {number(selectedProjects.length)}</span><span className="pf-showcase-status is-production">{t(showcaseStatus(p))}</span></div>
+                    <img src={p.image} alt={`${t(p.title)} ${t("illustration")}`} loading="lazy" />
+                    <div className="pf-card-caption"><h3>{t(p.title)}</h3></div>
+                  </div>}
                   {linear && (
                     <>
                       <p className="pf-mobile-project-description">
@@ -326,7 +333,7 @@ function ProjectHelix({ reduced, motionDisabled }: { reduced: boolean; motionDis
                   <CalendarDays size={16} />
                   {t(selectedProjects[active].period || "SELECTED PROJECT")}
                 </span>
-                <span className={`pf-showcase-status pf-showcase-status-detail ${showcaseStatus(selectedProjects[active]) === "IN PRODUCTION" ? "is-production" : ""}`}>{t(showcaseStatus(selectedProjects[active]))}</span>
+                <span className={`pf-showcase-status pf-showcase-status-detail ${showcaseStatus(selectedProjects[active]) !== "LIVE DEMO" ? "is-production" : ""}`}>{t(showcaseStatus(selectedProjects[active]))}</span>
                 <h3>{t(selectedProjects[active].title)}</h3>
                 <p><SignalText text={t(selectedProjects[active].description)} disabled={motionDisabled || locale === "ar"} select={signalsFor(selectedProjects[active])} /></p>
                 <div className="pf-tags">{selectedProjects[active].technologies.map(tech => <span key={tech}><TechnologyIcon name={tech} size={15} />{t(tech)}</span>)}</div>
@@ -458,7 +465,7 @@ function Archive() {
     <div id="project-archive" className="pf-archive pf-wrap">
       <div className="pf-archive-heading">
         <div>
-          <span className="pf-command-kicker"><T>EXPLORE THE WORK</T> / 03—16</span>
+          <span className="pf-command-kicker"><T>EXPLORE THE WORK</T> / 03—{number(projects.length)}</span>
           <h3><T>The project index</T><span> / {number(projects.length)}</span></h3>
         </div>
         <div className="pf-filter" aria-label={t("Filter projects")}>

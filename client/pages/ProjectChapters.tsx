@@ -8,7 +8,7 @@ const midpoint = Math.ceil(projects.length / 2);
 const rows = [projects.slice(0, midpoint), projects.slice(midpoint).reverse()];
 const descriptors = [
   "Live furniture commerce · Next.js", "Arabic storefront · RTL commerce",
-  "Operations platform · Four roles", "School operations · Analytics",
+  "Operations platform · Four roles", "Truck accounting · In use", "School operations · Analytics",
   "Shopping experience · React", "Product dashboard · Data",
   "Live forecast · OpenWeather", "Healthcare awareness · React",
   "Business website · Frontend", "School website · Responsive",
@@ -18,10 +18,10 @@ const descriptors = [
 ];
 const imagePositions: Record<number, string> = {
   0: "30% 50%", // Keep the YUMA logo and hero copy in view.
-  8: "25% 50%", // Keep the Alkohlany headline and illustration together.
-  9: "30% 50%", // Preserve the school site's left-aligned identity.
-  10: "75% 50%", // Favor the prosthetic-care headline on the right.
-  15: "50% 25%", // Keep the taller task-management form heading visible.
+  9: "25% 50%", // Keep the Alkohlany headline and illustration together.
+  10: "30% 50%", // Preserve the school site's left-aligned identity.
+  11: "75% 50%", // Favor the prosthetic-care headline on the right.
+  16: "50% 25%", // Keep the taller task-management form heading visible.
 };
 const pad = (number: number) => String(number).padStart(2, "0");
 const pinQuery = "(prefers-reduced-motion: no-preference) and (min-height: 700px), (prefers-reduced-motion: no-preference) and (max-width: 799px) and (orientation: portrait) and (min-height: 600px)";
@@ -152,7 +152,7 @@ export function ProjectChapters() {
             <h3 id="pc-title"><T>The project</T> <em><T>index.</T></em></h3>
           </div>
           <div className="pc-gallery-heading-aside">
-            <p><T>Sixteen ideas, built and shipped.</T><br /><T>Scroll through the work.</T></p>
+            <p><T>Seventeen projects, built and used.</T><br /><T>Scroll through the work.</T></p>
             <a href="?archive=classic#project-archive"><T>View classic index</T> <ArrowUpRight size={15} aria-hidden="true" /></a>
           </div>
         </header>
@@ -170,15 +170,17 @@ export function ProjectChapters() {
                     const index = projects.indexOf(project);
                     return (
                       <article className="pc-card" id={index === 2 ? "logistics-project" : undefined} key={project.title} onFocus={(event) => bringIntoView(event, rowIndex)}>
-                        <a className={index === 10 ? "pc-card-image pc-card-image--prosthetic" : "pc-card-image"} href={project.liveDemo} {...external} aria-label={`${t("View")} ${t(project.title)} ${t("live")}`} style={{ "--pc-position": imagePositions[index] || "50% 50%" } as CSSProperties}>
+                        {project.liveDemo ? <a className={index === 11 ? "pc-card-image pc-card-image--prosthetic" : "pc-card-image"} href={project.liveDemo} {...external} aria-label={`${t("View")} ${t(project.title)} ${t("live")}`} style={{ "--pc-position": imagePositions[index] || "50% 50%" } as CSSProperties}>
                           <img src={project.image} alt={`${t(project.title)} ${t("screenshot")}`} loading="lazy" decoding="async" />
                           <span className="pc-card-image-action"><T>VISIT PROJECT</T> <ArrowUpRight size={16} /></span>
-                        </a>
+                        </a> : <div className="pc-card-image pc-card-image--static" style={{ "--pc-position": imagePositions[index] || "50% 50%" } as CSSProperties}>
+                          <img src={project.image} alt={`${t(project.title)} ${t("illustration")}`} loading="lazy" decoding="async" />
+                        </div>}
                         <div className="pc-card-info">
                           <span className="pc-card-number">{pad(index + 1)}<small> / {pad(projects.length)}</small></span>
                           <div className="pc-card-copy"><h4>{t(project.title)}</h4><p>{t(descriptors[index])}</p></div>
                           <div className="pc-card-links">
-                            <a href={project.liveDemo} {...external} aria-label={`${t("Open")} ${t(project.title)} ${t("live project")}`} title={t("Live project")}><ArrowUpRight size={19} /></a>
+                            {project.liveDemo && <a href={project.liveDemo} {...external} aria-label={`${t("Open")} ${t(project.title)} ${t("live project")}`} title={t("Live project")}><ArrowUpRight size={19} /></a>}
                             {"github" in project && project.github && <a href={project.github} {...external} aria-label={`${t("Open")} ${t(project.title)} ${t("source code")}`} title={t("Source code")}><Github size={18} /></a>}
                           </div>
                         </div>
