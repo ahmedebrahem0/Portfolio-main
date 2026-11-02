@@ -66,14 +66,14 @@ function DriveMark() {
   </svg>;
 }
 const resume =
-  "https://drive.google.com/file/d/1yrsGISsfnTXcjxD0zgiS2cmJh9ES7-j4/view?usp=sharing";
+  "https://drive.google.com/file/d/16t0WlSotfVWwBKLBUVbSYuUaUYB7amjH/view?usp=sharing?usp=sharing";
 const selectedProjects = projects.filter((p) => p.featured);
 const showcaseStatus = (project: (typeof projects)[number]) =>
   "showcaseStatus" in project && project.showcaseStatus === "in-use"
     ? "IN USE"
     : "showcaseStatus" in project && project.showcaseStatus === "production"
-    ? "IN PRODUCTION"
-    : "LIVE DEMO";
+      ? "IN PRODUCTION"
+      : "LIVE DEMO";
 const defaultProjectSignals = ["Feature-based", "Next.js", "TypeScript", "RBAC", "Performance", "SEO", "API Integration", "Authorization", "Role-based", "Order Lifecycle", "Error Handling", "Reusable", "Responsive", "RTK Query"];
 const projectSignals: Record<string, readonly string[]> = {
   "EduSystem — School Management": ["RBAC", "Architecture", "Data Visualization"],

@@ -61,4 +61,4 @@ The site uses **React, TypeScript, Vite, React Router, Tailwind CSS, and Radix U
 
 ## Connect
 
-[GitHub](https://github.com/ahmedebrahem0) · [LinkedIn](https://www.linkedin.com/in/ahmedebrahem) · [Email](mailto:ahmed.ebrahem.ebdelazem@gmail.com) · [WhatsApp](https://wa.me/201099491558) · [Résumé](https://drive.google.com/file/d/1yrsGISsfnTXcjxD0zgiS2cmJh9ES7-j4/view?usp=sharing)
+[GitHub](https://github.com/ahmedebrahem0) · [LinkedIn](https://www.linkedin.com/in/ahmedebrahem) · [Email](mailto:ahmed.ebrahem.ebdelazem@gmail.com) · [WhatsApp](https://wa.me/201099491558) · [Résumé](https://drive.google.com/file/d/16t0WlSotfVWwBKLBUVbSYuUaUYB7amjH/view?usp=sharing?usp=sharing)
