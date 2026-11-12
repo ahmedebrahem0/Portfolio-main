@@ -76,12 +76,34 @@
 .pf .pf-hero { height: auto; min-height: 0; max-height: none; padding-top: 95px; }
 .pf-personal-hero { display: grid; grid-template-columns: 1fr 1.2fr .88fr; gap: 18px; align-items: start; flex: none; min-height: 0; }
 .pf-intro-left, .pf-intro-right { position: relative; z-index: 2; }
-.pf-intro-left { animation: pf-enter-left 1s .12s both; }
 .pf-intro-right {
   /* Keep the proof and social rail clear of the portrait's floating tech cards. */
   left: clamp(20px, 1.7vw, 30px);
-  animation: pf-enter-right 1s .35s both;
 }
+/* Reveal each detail in reading order, keeping the portrait on its own timeline. */
+.pf-intro-left > :not(.pf-hero-actions),
+.pf-intro-left > .pf-hero-actions > a {
+  animation: pf-enter-left .7s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+.pf-intro-right > :not(.pf-hero-socials),
+.pf-intro-right > .pf-hero-socials > a {
+  animation: pf-enter-right .7s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+.pf-intro-left > :nth-child(1) { animation-delay: .12s; }
+.pf-intro-left > :nth-child(2) { animation-delay: .30s; }
+.pf-intro-left > :nth-child(3) { animation-delay: .48s; }
+.pf-intro-left > :nth-child(4) { animation-delay: .66s; }
+.pf-intro-left > .pf-hero-actions > a:nth-child(1) { animation-delay: .84s; }
+.pf-intro-left > .pf-hero-actions > a:nth-child(2) { animation-delay: 1.02s; }
+.pf-intro-right > :nth-child(1) { animation-delay: .35s; }
+.pf-intro-right > :nth-child(2) { animation-delay: .53s; }
+.pf-intro-right > :nth-child(3) { animation-delay: .71s; }
+.pf-intro-right > :nth-child(4) { animation-delay: .89s; }
+.pf-intro-right > .pf-hero-socials > a:nth-child(1) { animation-delay: 1.07s; }
+.pf-intro-right > .pf-hero-socials > a:nth-child(2) { animation-delay: 1.19s; }
+.pf-intro-right > .pf-hero-socials > a:nth-child(3) { animation-delay: 1.31s; }
+.pf-intro-right > .pf-hero-socials > a:nth-child(4) { animation-delay: 1.43s; }
+.pf-paused :is(.pf-intro-left, .pf-intro-right) * { animation: none; }
 .pf .pf-hero h1 { font-size: clamp(48px, 5.2vw, 78px); font-weight: 650; letter-spacing: -3px; line-height: 1.05; margin: 18px 0 25px; }
 .pf-hero h1 > span { color: var(--lime); }
 .pf-hero-role { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 500; }
